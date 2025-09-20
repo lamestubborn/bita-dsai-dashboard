@@ -81,7 +81,7 @@ export function Dashboard() {
             <Button asChild variant="outline">
                 <a href="https://www.linkedin.com/newsletters/7353139620018081793/" target="_blank" rel="noopener noreferrer">
                     <Newspaper className="mr-2 h-4 w-4" />
-                    Read my Blog
+                    Read my newsletter
                 </a>
             </Button>
         </div>
