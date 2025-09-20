@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CurrentSessions } from "@/components/current-sessions";
 import { PreviousSessions } from "@/components/previous-sessions";
 import { ProgressTracker } from "@/components/progress-tracker";
-import { CalendarDays, Linkedin } from "lucide-react";
+import { CalendarDays, Linkedin, Newspaper } from "lucide-react";
 import { BITSLogo } from '@/components/bits-logo';
 import { ThemeToggle } from './theme-toggle';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -71,11 +71,17 @@ export function Dashboard() {
         </Tabs>
       </main>
       <footer className="py-4 border-t">
-        <div className="container mx-auto flex items-center justify-center">
+        <div className="container mx-auto flex items-center justify-center gap-4">
             <Button asChild className="bg-[#0077b5] text-white hover:bg-[#0077b5]/90">
                 <a href="https://www.linkedin.com/in/thestubbornsailor/" target="_blank" rel="noopener noreferrer">
                     <Linkedin className="mr-2 h-4 w-4" />
                     Connect with the developer
+                </a>
+            </Button>
+            <Button asChild variant="outline">
+                <a href="https://www.linkedin.com/newsletters/7353139620018081793/" target="_blank" rel="noopener noreferrer">
+                    <Newspaper className="mr-2 h-4 w-4" />
+                    Read my Blog
                 </a>
             </Button>
         </div>
