@@ -99,7 +99,7 @@ export function ProgressTracker() {
                     </CardContent>
                   </Card>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent className="max-w-xs text-pretty">
                   <p className="font-bold">Evaluation Criteria</p>
                   <p>{subject.evaluationCriteria || 'Evaluation criteria to be updated.'}</p>
                 </TooltipContent>
