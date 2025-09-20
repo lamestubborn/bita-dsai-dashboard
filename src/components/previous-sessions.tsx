@@ -1,14 +1,36 @@
+
+"use client";
+
+import { useState, useEffect } from 'react';
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Video } from "lucide-react";
 import { currentSessions } from "@/lib/data";
 import { format } from "date-fns";
+import type { Session } from "@/lib/data";
+
 
 export function PreviousSessions() {
-  const now = new Date();
-  const expiredSessions = currentSessions
-    .filter((session) => session.endTime < now)
-    .sort((a, b) => b.startTime.getTime() - a.startTime.getTime());
+  const [expiredSessions, setExpiredSessions] = useState<Session[]>([]);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      const now = new Date();
+      const filteredSessions = currentSessions
+        .filter((session) => session.endTime < now)
+        .sort((a, b) => b.startTime.getTime() - a.startTime.getTime());
+      setExpiredSessions(filteredSessions);
+    }
+  }, [isClient]);
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <div className="space-y-6">
@@ -26,13 +48,13 @@ export function PreviousSessions() {
               </div>
             </CardHeader>
             <CardFooter className="flex justify-end gap-2">
-            {session.joinUrl === "#" ? (
+            {session.recordingUrl === "#" ? (
                 <Button disabled variant="secondary" size="sm">
                   Recording to be updated soon
                 </Button>
               ) : (
                 <Button asChild variant="secondary" size="sm">
-                  <a href={"#"}>
+                  <a href={session.recordingUrl}>
                     <Video className="mr-2 h-4 w-4" />
                     Recording
                   </a>

@@ -16,14 +16,7 @@ export interface Session {
   startTime: Date;
   endTime: Date;
   joinUrl: string;
-}
-
-export interface PastSession {
-  id:string;
-  subject: string;
-  date: Date;
-  joinUrl: string;
-  recordingUrl?: string;
+  recordingUrl: string;
 }
 
 export const subjects: Subject[] = [
@@ -71,8 +64,6 @@ export const subjects: Subject[] = [
   },
 ];
 
-const now = new Date();
-
 export const currentSessions: Session[] = [
   {
     id: "session-1",
@@ -81,6 +72,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-19T18:30:00"),
     endTime: new Date("2025-09-19T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-2",
@@ -89,6 +81,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-19T19:30:00"),
     endTime: new Date("2025-09-19T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-3",
@@ -97,6 +90,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-19T20:30:00"),
     endTime: new Date("2025-09-19T21:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-4",
@@ -105,6 +99,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-20T18:30:00"),
     endTime: new Date("2025-09-20T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-5",
@@ -113,6 +108,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-20T19:30:00"),
     endTime: new Date("2025-09-20T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-6",
@@ -121,6 +117,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-20T20:30:00"),
     endTime: new Date("2025-09-20T21:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-7",
@@ -129,6 +126,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-26T18:30:00"),
     endTime: new Date("2025-09-26T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-8",
@@ -137,6 +135,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-26T19:30:00"),
     endTime: new Date("2025-09-26T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-9",
@@ -145,6 +144,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-26T20:30:00"),
     endTime: new Date("2025-09-26T21:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-10",
@@ -153,6 +153,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-27T18:30:00"),
     endTime: new Date("2025-09-27T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-11",
@@ -161,6 +162,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-27T19:30:00"),
     endTime: new Date("2025-09-27T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-12",
@@ -169,6 +171,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-03T18:30:00"),
     endTime: new Date("2025-10-03T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-13",
@@ -177,6 +180,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-03T19:30:00"),
     endTime: new Date("2025-10-03T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-14",
@@ -185,6 +189,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-03T20:30:00"),
     endTime: new Date("2025-10-03T21:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-15",
@@ -193,6 +198,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-04T18:30:00"),
     endTime: new Date("2025-10-04T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-16",
@@ -201,6 +207,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-04T19:30:00"),
     endTime: new Date("2025-10-04T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-17",
@@ -209,6 +216,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-10T18:30:00"),
     endTime: new Date("2025-10-10T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-18",
@@ -217,6 +225,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-10T19:30:00"),
     endTime: new Date("2025-10-10T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-19",
@@ -225,6 +234,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-10T20:30:00"),
     endTime: new Date("2025-10-10T21:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-20",
@@ -233,6 +243,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-11T18:30:00"),
     endTime: new Date("2025-10-11T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-21",
@@ -241,6 +252,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-11T19:30:00"),
     endTime: new Date("2025-10-11T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-22",
@@ -249,6 +261,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-17T18:30:00"),
     endTime: new Date("2025-10-17T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-23",
@@ -257,6 +270,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-17T19:30:00"),
     endTime: new Date("2025-10-17T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-24",
@@ -265,6 +279,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-17T20:30:00"),
     endTime: new Date("2025-10-17T21:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-25",
@@ -273,6 +288,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-18T18:30:00"),
     endTime: new Date("2025-10-18T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-26",
@@ -281,6 +297,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-18T19:30:00"),
     endTime: new Date("2025-10-18T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-27",
@@ -289,6 +306,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-24T18:30:00"),
     endTime: new Date("2025-10-24T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-28",
@@ -297,6 +315,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-24T19:30:00"),
     endTime: new Date("2025-10-24T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-29",
@@ -305,6 +324,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-24T20:30:00"),
     endTime: new Date("2025-10-24T21:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-30",
@@ -313,6 +333,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-25T18:30:00"),
     endTime: new Date("2025-10-25T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-31",
@@ -321,6 +342,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-25T19:30:00"),
     endTime: new Date("2025-10-25T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-32",
@@ -329,6 +351,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-31T18:30:00"),
     endTime: new Date("2025-10-31T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-33",
@@ -337,6 +360,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-31T19:30:00"),
     endTime: new Date("2025-10-31T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-34",
@@ -345,6 +369,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-31T20:30:00"),
     endTime: new Date("2025-10-31T21:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-35",
@@ -353,6 +378,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-01T18:30:00"),
     endTime: new Date("2025-11-01T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-36",
@@ -361,6 +387,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-01T19:30:00"),
     endTime: new Date("2025-11-01T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-37",
@@ -369,6 +396,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-07T18:30:00"),
     endTime: new Date("2025-11-07T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-38",
@@ -377,6 +405,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-07T19:30:00"),
     endTime: new Date("2025-11-07T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-39",
@@ -385,6 +414,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-07T20:30:00"),
     endTime: new Date("2025-11-07T21:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-40",
@@ -393,6 +423,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-08T18:30:00"),
     endTime: new Date("2025-11-08T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-41",
@@ -401,6 +432,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-08T19:30:00"),
     endTime: new Date("2025-11-08T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-42",
@@ -409,6 +441,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-14T18:30:00"),
     endTime: new Date("2025-11-14T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-43",
@@ -417,6 +450,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-14T20:30:00"),
     endTime: new Date("2025-11-14T21:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-44",
@@ -425,6 +459,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-15T19:30:00"),
     endTime: new Date("2025-11-15T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-45",
@@ -433,6 +468,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-21T18:30:00"),
     endTime: new Date("2025-11-21T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-46",
@@ -441,6 +477,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-21T20:30:00"),
     endTime: new Date("2025-11-21T21:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-47",
@@ -449,6 +486,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-22T19:30:00"),
     endTime: new Date("2025-11-22T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-48",
@@ -457,6 +495,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-28T18:30:00"),
     endTime: new Date("2025-11-28T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-49",
@@ -465,6 +504,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-28T20:30:00"),
     endTime: new Date("2025-11-28T21:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-50",
@@ -473,6 +513,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-11-29T19:30:00"),
     endTime: new Date("2025-11-29T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-51",
@@ -481,6 +522,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-12-05T18:30:00"),
     endTime: new Date("2025-12-05T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-52",
@@ -489,6 +531,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-12-05T20:30:00"),
     endTime: new Date("2025-12-05T21:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-53",
@@ -497,6 +540,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-12-06T19:30:00"),
     endTime: new Date("2025-12-06T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-54",
@@ -505,6 +549,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-12-12T18:30:00"),
     endTime: new Date("2025-12-12T19:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-55",
@@ -513,6 +558,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-12-12T20:30:00"),
     endTime: new Date("2025-12-12T21:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
   {
     id: "session-56",
@@ -521,9 +567,6 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-12-13T19:30:00"),
     endTime: new Date("2025-12-13T20:30:00"),
     joinUrl: "#",
+    recordingUrl: "#",
   },
 ];
-
-export const previousSessions: PastSession[] = []
-
-    

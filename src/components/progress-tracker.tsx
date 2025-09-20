@@ -1,10 +1,10 @@
 
 "use client";
 
+import { useState, useEffect } from 'react';
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -12,7 +12,6 @@ import { Progress } from "@/components/ui/progress";
 import {
   subjects,
   currentSessions,
-  previousSessions,
   type Subject,
 } from "@/lib/data";
 
@@ -22,28 +21,39 @@ interface SubjectProgress extends Subject {
 }
 
 export function ProgressTracker() {
-  const now = new Date();
+  const [subjectsWithProgress, setSubjectsWithProgress] = useState<SubjectProgress[]>([]);
+  const [isClient, setIsClient] = useState(false);
 
-  const subjectsWithProgress: SubjectProgress[] = subjects.map((subject) => {
-    const allSubjectSessions = currentSessions.filter(
-      (session) => session.subject === subject.name
-    );
-    const completedCurrentSessions = allSubjectSessions.filter(
-      (session) => session.startTime < now
-    ).length;
-    const completedPastSessions = previousSessions.filter(
-      (session) => session.subject === subject.name
-    ).length;
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  
+  useEffect(() => {
+    if (isClient) {
+      const now = new Date();
+      const calculatedProgress = subjects.map((subject) => {
+        const allSubjectSessions = currentSessions.filter(
+          (session) => session.subject === subject.name
+        );
+        const completedSessions = allSubjectSessions.filter(
+          (session) => session.startTime < now
+        ).length;
 
-    const totalSessions = allSubjectSessions.length;
-    const completedSessions = completedCurrentSessions + completedPastSessions;
+        const totalSessions = allSubjectSessions.length;
 
-    return {
-      ...subject,
-      completedSessions,
-      totalSessions,
-    };
-  });
+        return {
+          ...subject,
+          completedSessions,
+          totalSessions,
+        };
+      });
+      setSubjectsWithProgress(calculatedProgress);
+    }
+  }, [isClient]);
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <div className="space-y-6">

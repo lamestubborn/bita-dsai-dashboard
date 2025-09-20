@@ -1,21 +1,43 @@
+
+"use client";
+
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Clock } from "lucide-react";
 import { currentSessions } from "@/lib/data";
 import { format, startOfWeek, endOfWeek } from "date-fns";
+import type { Session } from "@/lib/data";
 
 export function CurrentSessions() {
-  const now = new Date();
-  const weekStart = startOfWeek(now, { weekStartsOn: 0 });
-  const weekEnd = endOfWeek(now, { weekStartsOn: 0 });
+  const [upcomingSessions, setUpcomingSessions] = useState<Session[]>([]);
+  const [isClient, setIsClient] = useState(false);
 
-  const upcomingSessions = currentSessions
-    .filter(session => 
-      session.endTime > now &&
-      session.startTime >= weekStart &&
-      session.startTime <= weekEnd
-    )
-    .sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      const now = new Date();
+      const weekStart = startOfWeek(now, { weekStartsOn: 0 });
+      const weekEnd = endOfWeek(now, { weekStartsOn: 0 });
+
+      const filteredSessions = currentSessions
+        .filter(session => 
+          session.endTime > now &&
+          session.startTime >= weekStart &&
+          session.startTime <= weekEnd
+        )
+        .sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
+      
+      setUpcomingSessions(filteredSessions);
+    }
+  }, [isClient]);
+
+  if (!isClient) {
+    return null; 
+  }
   
   return (
     <div className="space-y-6">
