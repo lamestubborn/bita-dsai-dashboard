@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import { Card, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Video, Link as LinkIcon } from "lucide-react";
+import { Video } from "lucide-react";
 import { currentSessions } from "@/lib/data";
 import { format } from "date-fns";
 import type { Session } from "@/lib/data";
@@ -81,14 +81,6 @@ export function PreviousSessions() {
                       </a>
                     </Button>
                   )}
-                  {session.joinUrl !== '#' && (
-                     <Button asChild size="sm" className="rounded-full">
-                        <a href={session.joinUrl} target="_blank" rel="noopener noreferrer">
-                            <LinkIcon className="mr-2 h-4 w-4" />
-                            Original Link
-                        </a>
-                     </Button>
-                  )}
                 </CardFooter>
               </Card>
             </motion.div>
@@ -106,7 +98,6 @@ export function PreviousSessions() {
                   </CardHeader>
                   <CardFooter className="flex justify-end gap-2">
                      <div className="h-9 w-36 rounded-full bg-muted" />
-                     <div className="h-9 w-32 rounded-full bg-muted" />
                   </CardFooter>
                 </Card>
              </div>
@@ -116,4 +107,3 @@ export function PreviousSessions() {
     </div>
   );
 }
-
