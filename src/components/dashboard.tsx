@@ -32,7 +32,7 @@ export function Dashboard() {
         <Tabs defaultValue="current" className="w-full">
             <div className="flex justify-center">
                 <TabsList>
-                    <TabsTrigger value="current">This Week's Sessions</TabsTrigger>
+                    <TabsTrigger value="current">Upcoming Sessions</TabsTrigger>
                     <TabsTrigger value="previous">Session Archive</TabsTrigger>
                     <TabsTrigger value="progress">Progress Tracker</TabsTrigger>
                 </TabsList>

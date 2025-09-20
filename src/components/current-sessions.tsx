@@ -2,23 +2,21 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Clock } from "lucide-react";
 import { currentSessions } from "@/lib/data";
-import { format, startOfWeek, endOfWeek, isWithinInterval } from "date-fns";
+import { format } from "date-fns";
 
 export function CurrentSessions() {
   const now = new Date();
-  const start = startOfWeek(now);
-  const end = endOfWeek(now);
-
-  const thisWeeksSessions = currentSessions
-    .filter(session => isWithinInterval(session.startTime, { start, end }))
+  
+  const upcomingSessions = currentSessions
+    .filter(session => session.endTime > now)
     .sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
   
   return (
     <div className="space-y-6">
-      <h2 className="font-headline text-2xl font-semibold tracking-tight">This Week's Sessions</h2>
+      <h2 className="font-headline text-2xl font-semibold tracking-tight">Upcoming Sessions</h2>
       <div className="space-y-4">
-        {thisWeeksSessions.length > 0 ? (
-          thisWeeksSessions.map((session) => (
+        {upcomingSessions.length > 0 ? (
+          upcomingSessions.map((session) => (
             <Card key={session.id} className="transition-all hover:shadow-lg">
               <CardHeader>
                 <CardTitle className="font-headline">{session.title}</CardTitle>
@@ -43,7 +41,7 @@ export function CurrentSessions() {
             </Card>
           ))
         ) : (
-          <p className="text-muted-foreground">No upcoming sessions this week.</p>
+          <p className="text-muted-foreground">No upcoming sessions.</p>
         )}
       </div>
     </div>
