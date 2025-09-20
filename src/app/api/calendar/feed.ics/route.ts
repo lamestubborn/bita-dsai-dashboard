@@ -44,7 +44,7 @@ export async function GET() {
   const events = currentSessions.map(session => {
     const event = [
       'BEGIN:VEVENT',
-      `UID:${session.id}@studypulse.app`,
+      `UID:${session.id}@bits-dsai-dashboard.app`,
       // Use a UTC timestamp for DTSTAMP
       `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'}`,
       `DTSTART;TZID=Asia/Kolkata:${formatICalDate(session.startTime)}`,
@@ -62,7 +62,7 @@ export async function GET() {
     status: 200,
     headers: {
       'Content-Type': 'text/calendar; charset=utf-8',
-      'Content-Disposition': 'attachment; filename="studypulse_sessions.ics"',
+      'Content-Disposition': 'attachment; filename="bits_dsai_sessions.ics"',
     },
   });
 }

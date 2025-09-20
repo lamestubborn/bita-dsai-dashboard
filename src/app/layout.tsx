@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'StudyPulse',
+  title: 'BITS MSc DSAI Dashboard',
   description: 'Dashboard for BITS MSc DSAI',
 };
 
