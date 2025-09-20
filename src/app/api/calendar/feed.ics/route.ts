@@ -13,6 +13,7 @@ export async function GET() {
     'PRODID:-//StudyPulse//Your Study Companion//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
+    'X-PUBLISHED-TTL:PT1H',
     'X-WR-CALNAME:StudyPulse Sessions',
     'X-WR-TIMEZONE:UTC',
   ];
