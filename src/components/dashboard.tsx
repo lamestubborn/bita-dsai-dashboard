@@ -16,7 +16,7 @@ export function Dashboard() {
         <div className="flex items-center gap-2">
             <BookOpenCheck className="h-7 w-7 text-primary" />
             <h1 className="font-headline text-2xl font-bold tracking-tighter">
-                StudyPulse
+                BITS MSc DSAI Dashboard
             </h1>
         </div>
         <div className="ml-auto">

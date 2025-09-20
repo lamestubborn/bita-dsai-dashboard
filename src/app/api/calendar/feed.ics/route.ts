@@ -10,11 +10,11 @@ export async function GET() {
   const calHeader = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//StudyPulse//Your Study Companion//EN',
+    'PRODID:-//BITS MSc DSAI Dashboard//Your Study Companion//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'X-PUBLISHED-TTL:PT1H',
-    'X-WR-CALNAME:StudyPulse Sessions',
+    'X-WR-CALNAME:BITS MSc DSAI Sessions',
     'X-WR-TIMEZONE:UTC',
   ];
 

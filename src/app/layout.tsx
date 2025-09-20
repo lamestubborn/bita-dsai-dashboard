@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'StudyPulse',
-  description: 'Your personal study session manager.',
+  title: 'BITS MSc DSAI Dashboard',
+  description: 'Dashboard for BITS MSc DSAI',
 };
 
 export default function RootLayout({
