@@ -6,7 +6,7 @@ import { Card, CardFooter, CardHeader, CardTitle, CardDescription } from "@/comp
 import { Button } from "@/components/ui/button";
 import { Video } from "lucide-react";
 import { currentSessions } from "@/lib/data";
-import { format, getWeek } from "date-fns";
+import { format, differenceInCalendarWeeks, startOfWeek, endOfWeek } from "date-fns";
 import type { Session } from "@/lib/data";
 import { motion } from 'framer-motion';
 import { Separator } from './ui/separator';
@@ -26,14 +26,16 @@ export function PreviousSessions() {
   useEffect(() => {
     if (isClient) {
       const now = new Date();
+      const allSessionStartTimes = currentSessions.map(s => s.startTime.getTime());
+      const courseStartDate = new Date(Math.min(...allSessionStartTimes));
+
       const filteredSessions = currentSessions
         .filter((session) => session.endTime < now)
         .sort((a, b) => b.startTime.getTime() - a.startTime.getTime());
       
       const sessionsByWeek = filteredSessions.reduce((acc: GroupedSessions, session) => {
-        const week = getWeek(session.startTime, { weekStartsOn: 1 });
-        const year = session.startTime.getFullYear();
-        const key = `${year}-W${week}`;
+        const week = differenceInCalendarWeeks(session.startTime, courseStartDate, { weekStartsOn: 1 }) + 1;
+        const key = `Week ${week}`;
         if (!acc[key]) {
           acc[key] = [];
         }
@@ -60,9 +62,8 @@ export function PreviousSessions() {
   };
   
   const sortedWeeks = Object.keys(groupedSessions).sort((a, b) => {
-    const [yearA, weekA] = a.split('-W').map(Number);
-    const [yearB, weekB] = b.split('-W').map(Number);
-    if (yearA !== yearB) return yearB - yearA;
+    const weekA = parseInt(a.replace('Week ', ''), 10);
+    const weekB = parseInt(b.replace('Week ', ''), 10);
     return weekB - weekA;
   });
 
@@ -72,13 +73,11 @@ export function PreviousSessions() {
       <div className="relative">
         {isClient && sortedWeeks.length > 0 ? (
           <div className="space-y-8">
-            {sortedWeeks.map((weekKey) => {
-              const weekNumber = weekKey.split('-W')[1];
-              return (
+            {sortedWeeks.map((weekKey) => (
               <div key={weekKey} className="space-y-6">
                  <div className="flex items-center">
                     <Separator className="flex-1" />
-                    <h3 className="mx-4 text-lg font-semibold text-muted-foreground">Week {weekNumber}</h3>
+                    <h3 className="mx-4 text-lg font-semibold text-muted-foreground">{weekKey}</h3>
                     <Separator className="flex-1" />
                  </div>
                 <motion.div 
@@ -120,7 +119,7 @@ export function PreviousSessions() {
                   ))}
                 </motion.div>
               </div>
-            )})}
+            ))}
           </div>
         ) : isClient ? (
           <p className="text-muted-foreground py-12 text-center">No sessions have been archived yet.</p>
