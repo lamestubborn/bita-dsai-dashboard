@@ -9,6 +9,7 @@ import { ProgressTracker } from "@/components/progress-tracker";
 import { CalendarDays } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BITSLogo } from '@/components/bits-logo';
+import { ThemeToggle } from './theme-toggle';
 
 export function Dashboard() {
   return (
@@ -17,13 +18,14 @@ export function Dashboard() {
         <div className="flex items-center gap-4">
             <BITSLogo className="h-10 w-auto" />
         </div>
-        <div className="ml-auto">
+        <div className="ml-auto flex items-center gap-4">
             <Button asChild>
                 <a href="/api/calendar/feed.ics">
                     <CalendarDays className="mr-2 h-4 w-4" />
                     Subscribe to Calendar
                 </a>
             </Button>
+            <ThemeToggle />
         </div>
       </header>
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
