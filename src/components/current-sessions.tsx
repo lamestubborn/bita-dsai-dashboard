@@ -6,8 +6,8 @@ import { format, startOfWeek, endOfWeek } from "date-fns";
 
 export function CurrentSessions() {
   const now = new Date();
-  const weekStart = startOfWeek(now, { weekStartsOn: 1 });
-  const weekEnd = endOfWeek(now, { weekStartsOn: 1 });
+  const weekStart = startOfWeek(now, { weekStartsOn: 0 });
+  const weekEnd = endOfWeek(now, { weekStartsOn: 0 });
 
   const upcomingSessions = currentSessions
     .filter(session => 
