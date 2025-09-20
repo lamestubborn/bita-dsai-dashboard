@@ -2,13 +2,19 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Clock } from "lucide-react";
 import { currentSessions } from "@/lib/data";
-import { format } from "date-fns";
+import { format, startOfWeek, endOfWeek } from "date-fns";
 
 export function CurrentSessions() {
   const now = new Date();
-  
+  const weekStart = startOfWeek(now, { weekStartsOn: 1 });
+  const weekEnd = endOfWeek(now, { weekStartsOn: 1 });
+
   const upcomingSessions = currentSessions
-    .filter(session => session.endTime > now)
+    .filter(session => 
+      session.endTime > now &&
+      session.startTime >= weekStart &&
+      session.startTime <= weekEnd
+    )
     .sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
   
   return (
@@ -47,7 +53,7 @@ export function CurrentSessions() {
             </Card>
           ))
         ) : (
-          <p className="text-muted-foreground">No upcoming sessions.</p>
+          <p className="text-muted-foreground">No upcoming sessions this week.</p>
         )}
       </div>
     </div>
