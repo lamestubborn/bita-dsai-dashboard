@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { subjects, currentSessions, type Subject } from "@/lib/data";
 import { motion } from 'framer-motion';
-import { Info, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface SubjectProgress extends Subject {
@@ -49,10 +49,6 @@ export function ProgressTracker() {
     }
   }, [isClient]);
 
-  const handleFlip = (subjectId: string) => {
-    setFlippedCard(flippedCard === subjectId ? null : subjectId);
-  };
-
   const containerVariants = {
     hidden: {},
     visible: {
@@ -80,17 +76,22 @@ export function ProgressTracker() {
             animate={isClient ? "visible" : "hidden"}
         >
           {isClient ? subjectsWithProgress.map((subject) => (
-            <motion.div key={subject.id} variants={cardVariants}>
+            <motion.div 
+              key={subject.id} 
+              variants={cardVariants}
+              onMouseEnter={() => setFlippedCard(subject.id)}
+              onMouseLeave={() => setFlippedCard(null)}
+            >
               <motion.div
                 className="relative h-full w-full"
-                style={{ transformStyle: 'preserve-3d' }}
+                style={{ transformStyle: 'preserve-3d', minHeight: '190px' }}
                 initial={false}
                 animate={{ rotateY: flippedCard === subject.id ? 180 : 0 }}
                 transition={{ duration: 0.6 }}
               >
                 {/* Front of the card */}
                 <Card 
-                  className="group absolute flex h-full w-full flex-col rounded-2xl border-none bg-card shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  className="group absolute flex h-full w-full flex-col rounded-2xl border-none bg-card shadow-lg backdrop-blur-sm transition-all duration-300"
                   style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
                 >
                   <CardHeader className="flex-row items-center gap-4 space-y-0 pb-4">
@@ -100,15 +101,6 @@ export function ProgressTracker() {
                     <CardTitle className="font-headline text-xl">
                       {subject.name}
                     </CardTitle>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="absolute right-2 top-2 h-8 w-8 rounded-full"
-                      onClick={() => handleFlip(subject.id)}
-                    >
-                      <Info className="h-5 w-5" />
-                      <span className="sr-only">More info</span>
-                    </Button>
                   </CardHeader>
                   <CardContent className="flex flex-grow flex-col justify-end">
                     <div className="relative">
@@ -136,7 +128,7 @@ export function ProgressTracker() {
                       variant="ghost"
                       size="icon"
                       className="absolute right-2 top-2 h-8 w-8 rounded-full"
-                      onClick={() => handleFlip(subject.id)}
+                      onClick={() => setFlippedCard(null)}
                     >
                       <X className="h-5 w-5" />
                       <span className="sr-only">Close</span>
