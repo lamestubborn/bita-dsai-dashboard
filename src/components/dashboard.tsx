@@ -7,12 +7,9 @@ import { CurrentSessions } from "@/components/current-sessions";
 import { PreviousSessions } from "@/components/previous-sessions";
 import { ProgressTracker } from "@/components/progress-tracker";
 import { CalendarDays, BookOpenCheck } from "lucide-react";
-
-type View = 'current' | 'previous' | 'progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export function Dashboard() {
-  const [activeView, setActiveView] = useState<View>('current');
-
   return (
     <div className="flex min-h-screen w-full flex-col bg-background">
       <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm md:px-6">
@@ -32,19 +29,21 @@ export function Dashboard() {
         </div>
       </header>
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
-        <div className="flex justify-center">
-            <div className="flex gap-2 rounded-lg bg-muted p-1">
-                <Button variant={activeView === 'current' ? 'default' : 'ghost'} onClick={() => setActiveView('current')} className="w-full justify-center">This Week's Sessions</Button>
-                <Button variant={activeView === 'previous' ? 'default' : 'ghost'} onClick={() => setActiveView('previous')} className="w-full justify-center">Session Archive</Button>
-                <Button variant={activeView === 'progress' ? 'default' : 'ghost'} onClick={() => setActiveView('progress')} className="w-full justify-center">Progress Tracker</Button>
+        <Tabs defaultValue="current" className="w-full">
+            <div className="flex justify-center">
+                <TabsList>
+                    <TabsTrigger value="current">This Week's Sessions</TabsTrigger>
+                    <TabsTrigger value="previous">Session Archive</TabsTrigger>
+                    <TabsTrigger value="progress">Progress Tracker</TabsTrigger>
+                </TabsList>
             </div>
-        </div>
-        <div>
-            {activeView === 'progress' && <ProgressTracker />}
-            {activeView === 'current' && <CurrentSessions />}
-            {activeView === 'previous' && <PreviousSessions />}
-        </div>
+          <TabsContent value="current"><CurrentSessions /></TabsContent>
+          <TabsContent value="previous"><PreviousSessions /></TabsContent>
+          <TabsContent value="progress"><ProgressTracker /></TabsContent>
+        </Tabs>
       </main>
     </div>
   );
 }
+
+    
