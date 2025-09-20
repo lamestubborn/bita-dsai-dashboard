@@ -3,62 +3,69 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'PT Sans', sans-serif;
 }
 
 @layer base {
   :root {
-    --background: 240 5% 96%;
+    --background: 204 100% 98%; /* very light blue #F0F9FF */
     --foreground: 240 6% 10%;
-    --card: 240 5% 100%;
+    
+    --card: 240 5% 100% / 0.8; /* White with opacity for glassmorphism */
     --card-foreground: 240 6% 10%;
+    
     --popover: 240 5% 100%;
     --popover-foreground: 240 6% 10%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
+    
+    --primary: 203 92% 75%; /* sky blue #7DD3FC */
+    --primary-foreground: 240 6% 10%; /* Dark text on primary */
+    
     --secondary: 240 5% 90%;
     --secondary-foreground: 240 6% 20%;
+
     --muted: 240 5% 93%;
     --muted-foreground: 240 4% 46%;
-    --accent: 221 83% 53%;
-    --accent-foreground: 210 40% 98%;
+    
+    --accent: 173 75% 55%; /* teal #2DD4BF */
+    --accent-foreground: 240 6% 10%; /* Dark text on accent */
+    
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
+
     --border: 240 6% 88%;
     --input: 240 6% 88%;
-    --ring: 221 83% 53%;
-    --chart-1: 220 80% 60%;
-    --chart-2: 180 70% 50%;
-    --chart-3: 340 80% 60%;
-    --chart-4: 40 80% 60%;
-    --chart-5: 280 80% 60%;
-    --radius: 0.5rem;
+    --ring: 203 92% 75%; /* sky blue for focus rings */
+
+    --radius: 0.75rem;
   }
   .dark {
-    --background: 240 6% 10%;
-    --foreground: 240 5% 96%;
-    --card: 240 6% 12%;
-    --card-foreground: 240 5% 96%;
-    --popover: 240 6% 12%;
-    --popover-foreground: 240 5% 96%;
-    --primary: 217 91% 60%;
+    --background: 220 20% 10%; /* Darker blue-ish background */
+    --foreground: 210 20% 98%;
+
+    --card: 220 15% 15% / 0.7; /* Dark glassmorphism */
+    --card-foreground: 210 20% 98%;
+    
+    --popover: 220 20% 10%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 203 92% 75%; /* sky blue */
     --primary-foreground: 240 6% 10%;
-    --secondary: 240 4% 16%;
-    --secondary-foreground: 240 5% 96%;
-    --muted: 240 4% 16%;
-    --muted-foreground: 240 4% 60%;
-    --accent: 217 91% 60%;
+    
+    --secondary: 220 15% 20%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 220 15% 20%;
+    --muted-foreground: 210 20% 60%;
+    
+    --accent: 173 75% 55%; /* teal */
     --accent-foreground: 240 6% 10%;
+    
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 4% 20%;
-    --input: 240 4% 20%;
-    --ring: 217 91% 60%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+
+    --border: 220 15% 25%;
+    --input: 220 15% 25%;
+    --ring: 203 92% 75%;
   }
 }
 
