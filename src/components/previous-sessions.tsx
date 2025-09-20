@@ -26,17 +26,18 @@ export function PreviousSessions() {
               </div>
             </CardHeader>
             <CardFooter className="flex justify-end gap-2">
-              <Button
-                asChild
-                variant="secondary"
-                size="sm"
-                disabled={true}
-              >
-                <a href={"#"}>
-                  <Video className="mr-2 h-4 w-4" />
-                  Recording
-                </a>
-              </Button>
+            {session.joinUrl === "#" ? (
+                <Button disabled variant="secondary" size="sm">
+                  Recording to be updated soon
+                </Button>
+              ) : (
+                <Button asChild variant="secondary" size="sm">
+                  <a href={"#"}>
+                    <Video className="mr-2 h-4 w-4" />
+                    Recording
+                  </a>
+                </Button>
+              )}
             </CardFooter>
           </Card>
         ))
