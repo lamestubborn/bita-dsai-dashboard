@@ -6,12 +6,17 @@ import { Card, CardFooter, CardHeader, CardTitle, CardDescription } from "@/comp
 import { Button } from "@/components/ui/button";
 import { Video } from "lucide-react";
 import { currentSessions } from "@/lib/data";
-import { format } from "date-fns";
+import { format, getWeek } from "date-fns";
 import type { Session } from "@/lib/data";
 import { motion } from 'framer-motion';
+import { Separator } from './ui/separator';
+
+type GroupedSessions = {
+  [week: string]: Session[];
+};
 
 export function PreviousSessions() {
-  const [expiredSessions, setExpiredSessions] = useState<Session[]>([]);
+  const [groupedSessions, setGroupedSessions] = useState<GroupedSessions>({});
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -24,7 +29,19 @@ export function PreviousSessions() {
       const filteredSessions = currentSessions
         .filter((session) => session.endTime < now)
         .sort((a, b) => b.startTime.getTime() - a.startTime.getTime());
-      setExpiredSessions(filteredSessions);
+      
+      const sessionsByWeek = filteredSessions.reduce((acc: GroupedSessions, session) => {
+        const week = getWeek(session.startTime, { weekStartsOn: 1 });
+        const year = session.startTime.getFullYear();
+        const key = `${year}-W${week}`;
+        if (!acc[key]) {
+          acc[key] = [];
+        }
+        acc[key].push(session);
+        return acc;
+      }, {});
+
+      setGroupedSessions(sessionsByWeek);
     }
   }, [isClient]);
 
@@ -42,49 +59,69 @@ export function PreviousSessions() {
     visible: { opacity: 1, y: 0 },
   };
   
+  const sortedWeeks = Object.keys(groupedSessions).sort((a, b) => {
+    const [yearA, weekA] = a.split('-W').map(Number);
+    const [yearB, weekB] = b.split('-W').map(Number);
+    if (yearA !== yearB) return yearB - yearA;
+    return weekB - weekA;
+  });
+
   return (
     <div className="space-y-8">
       <h2 className="font-headline text-4xl font-bold tracking-tight">Session Archive</h2>
       <div className="relative">
-        {isClient && expiredSessions.length > 0 ? (
-          <motion.div 
-            className="grid grid-cols-1 gap-6 md:grid-cols-2"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {expiredSessions.map((session) => (
-              <motion.div 
-                key={session.id}
-                variants={cardVariants}
-                whileHover={{ y: -5, scale: 1.02 }} 
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                <Card className="flex h-full flex-col rounded-2xl border-none bg-card shadow-lg backdrop-blur-sm">
-                  <CardHeader>
-                    <CardTitle className="font-headline text-xl">{session.title}</CardTitle>
-                    <CardDescription className="text-muted-foreground">
-                      {format(session.startTime, "MMMM d, yyyy 'at' h:mm a")}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardFooter className="flex-grow items-end justify-end gap-2">
-                  {session.recordingUrl === "#" ? (
-                      <Button disabled variant="secondary" size="sm" className="rounded-full">
-                        Recording soon
-                      </Button>
-                    ) : (
-                      <Button asChild variant="secondary" size="sm" className="rounded-full">
-                        <a href={session.recordingUrl} target="_blank" rel="noopener noreferrer">
-                          <Video className="mr-2 h-4 w-4" />
-                          Watch Recording
-                        </a>
-                      </Button>
-                    )}
-                  </CardFooter>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+        {isClient && sortedWeeks.length > 0 ? (
+          <div className="space-y-8">
+            {sortedWeeks.map((weekKey) => {
+              const weekNumber = weekKey.split('-W')[1];
+              return (
+              <div key={weekKey} className="space-y-6">
+                 <div className="flex items-center">
+                    <Separator className="flex-1" />
+                    <h3 className="mx-4 text-lg font-semibold text-muted-foreground">Week {weekNumber}</h3>
+                    <Separator className="flex-1" />
+                 </div>
+                <motion.div 
+                  className="grid grid-cols-1 gap-6 md:grid-cols-2"
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  {groupedSessions[weekKey].map((session) => (
+                    <motion.div 
+                      key={session.id}
+                      variants={cardVariants}
+                      whileHover={{ y: -5, scale: 1.02 }} 
+                      transition={{ type: 'spring', stiffness: 300 }}
+                    >
+                      <Card className="flex h-full flex-col rounded-2xl border-none bg-card shadow-lg backdrop-blur-sm">
+                        <CardHeader>
+                          <CardTitle className="font-headline text-xl">{session.title}</CardTitle>
+                          <CardDescription className="text-muted-foreground">
+                            {format(session.startTime, "MMMM d, yyyy 'at' h:mm a")}
+                          </CardDescription>
+                        </CardHeader>
+                        <CardFooter className="flex-grow items-end justify-end gap-2">
+                        {session.recordingUrl === "#" ? (
+                            <Button disabled variant="secondary" size="sm" className="rounded-full">
+                              Recording soon
+                            </Button>
+                          ) : (
+                            <Button asChild variant="secondary" size="sm" className="rounded-full">
+                              <a href={session.recordingUrl} target="_blank" rel="noopener noreferrer">
+                                <Video className="mr-2 h-4 w-4" />
+                                Watch Recording
+                              </a>
+                            </Button>
+                          )}
+                        </CardFooter>
+                      </Card>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
+            )})}
+          </div>
         ) : isClient ? (
           <p className="text-muted-foreground py-12 text-center">No sessions have been archived yet.</p>
         ) : (
