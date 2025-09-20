@@ -72,7 +72,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-19T18:30:00"),
     endTime: new Date("2025-09-19T19:30:00"),
     joinUrl: "#",
-    recordingUrl: "https://lumen.com/",
+    recordingUrl: "https://lumen.com/vod/a2d3c9a6-7d6f-4c8a-9a8c-0e3d2a1b0c9a",
   },
   {
     id: "session-2",
@@ -81,7 +81,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-19T19:30:00"),
     endTime: new Date("2025-09-19T20:30:00"),
     joinUrl: "#",
-    recordingUrl: "https://lumen.com/",
+    recordingUrl: "https://lumen.com/vod/b3e4f8a9-8e7g-5d9b-8b9d-1f4e3b2c1d0b",
   },
   {
     id: "session-3",
@@ -90,7 +90,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-19T20:30:00"),
     endTime: new Date("2025-09-19T21:30:00"),
     joinUrl: "#",
-    recordingUrl: "https://lumen.com/",
+    recordingUrl: "https://lumen.com/vod/c4f5g9b0-9f8h-6e0c-9c0e-2g5f4c3d2e1c",
   },
   {
     id: "session-4",
