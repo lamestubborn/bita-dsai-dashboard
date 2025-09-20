@@ -52,19 +52,42 @@ export function ProgressTracker() {
   }, [isClient]);
 
   if (!isClient) {
-    return null;
+     return (
+       <div className="space-y-6">
+        <h2 className="font-headline text-3xl font-bold tracking-tight">
+          Progress Tracker
+        </h2>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {[...Array(subjects.length)].map((_, i) => (
+            <Card key={i} className="flex flex-col bg-card/50 shadow-none border-dashed animate-pulse">
+              <CardHeader className="flex-row items-center gap-4 space-y-0 pb-4">
+                 <div className="h-12 w-12 rounded-lg bg-muted" />
+                 <div className="h-6 w-3/4 rounded-md bg-muted" />
+              </CardHeader>
+              <CardContent className="flex flex-grow flex-col justify-between">
+                <div className="h-2 w-full rounded-full bg-muted mb-2" />
+                <div className="flex justify-between">
+                    <div className="h-4 w-1/3 rounded-md bg-muted" />
+                    <div className="h-4 w-1/4 rounded-md bg-muted" />
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+     );
   }
 
   return (
     <div className="space-y-6">
-      <h2 className="font-headline text-2xl font-semibold tracking-tight">
+      <h2 className="font-headline text-3xl font-bold tracking-tight">
         Progress Tracker
       </h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {subjectsWithProgress.map((subject) => (
           <Card
             key={subject.id}
-            className="flex flex-col transition-all hover:shadow-lg"
+            className="flex flex-col bg-card/50 shadow-none border-dashed"
           >
             <CardHeader className="flex-row items-center gap-4 space-y-0 pb-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">

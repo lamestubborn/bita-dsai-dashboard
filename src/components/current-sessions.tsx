@@ -36,18 +36,38 @@ export function CurrentSessions() {
   }, [isClient]);
 
   if (!isClient) {
-    return null; 
+    return (
+      <div className="space-y-6">
+        <h2 className="font-headline text-3xl font-bold tracking-tight">Upcoming Sessions</h2>
+        <div className="space-y-4">
+          {[...Array(2)].map((_, i) => (
+             <Card key={i} className="bg-card/50 shadow-none border-dashed animate-pulse">
+              <CardHeader>
+                <div className="h-6 w-3/4 rounded-md bg-muted" />
+                <div className="h-4 w-1/2 rounded-md bg-muted" />
+              </CardHeader>
+              <CardContent>
+                <div className="h-5 w-1/3 rounded-md bg-muted" />
+              </CardContent>
+              <CardFooter>
+                 <div className="ml-auto h-10 w-48 rounded-md bg-muted" />
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      </div>
+    );
   }
   
   return (
     <div className="space-y-6">
-      <h2 className="font-headline text-2xl font-semibold tracking-tight">Upcoming Sessions</h2>
+      <h2 className="font-headline text-3xl font-bold tracking-tight">Upcoming Sessions</h2>
       <div className="space-y-4">
         {upcomingSessions.length > 0 ? (
           upcomingSessions.map((session) => (
-            <Card key={session.id} className="transition-all hover:shadow-lg">
+            <Card key={session.id} className="bg-card/50 shadow-none border-dashed">
               <CardHeader>
-                <CardTitle className="font-headline">{session.title}</CardTitle>
+                <CardTitle className="font-headline text-xl">{session.title}</CardTitle>
                 <CardDescription>{session.subject}</CardDescription>
               </CardHeader>
               <CardContent>
@@ -60,7 +80,7 @@ export function CurrentSessions() {
               </CardContent>
               <CardFooter>
                 {session.joinUrl === "#" ? (
-                  <Button disabled className="w-full sm:w-auto ml-auto">
+                  <Button disabled variant="secondary" className="w-full sm:w-auto ml-auto">
                     Joining link will be updated soon
                   </Button>
                 ) : (
@@ -75,7 +95,7 @@ export function CurrentSessions() {
             </Card>
           ))
         ) : (
-          <p className="text-muted-foreground">No upcoming sessions this week.</p>
+          <p className="text-muted-foreground py-12 text-center">No upcoming sessions this week.</p>
         )}
       </div>
     </div>
