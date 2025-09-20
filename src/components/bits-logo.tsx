@@ -13,9 +13,10 @@ export function BITSLogo({ className }: { className?: string }) {
     >
       <title id="bits-logo-title">BITS Pilani Logo</title>
       <image
-        href="https://storage.googleapis.com/studiostor/asset/75f3a697-3a5a-426b-a2c3-11f67f66299d"
+        href="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/BITS_Pilani-Logo.svg/1200px-BITS_Pilani-Logo.svg.png"
         height="80"
         width="330"
+        
       />
     </svg>
   );
