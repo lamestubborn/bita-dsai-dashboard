@@ -1,10 +1,18 @@
+
+"use client";
+
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { CurrentSessions } from "@/components/current-sessions";
 import { PreviousSessions } from "@/components/previous-sessions";
 import { ProgressTracker } from "@/components/progress-tracker";
 import { CalendarDays, BookOpenCheck } from "lucide-react";
 
+type View = 'progress' | 'current' | 'previous';
+
 export function Dashboard() {
+  const [activeView, setActiveView] = useState<View>('progress');
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-background">
       <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm md:px-6">
@@ -24,14 +32,17 @@ export function Dashboard() {
         </div>
       </header>
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
-        <div className="grid gap-8 lg:grid-cols-3">
-          <div className="lg:col-span-2">
-            <ProgressTracker />
-          </div>
-          <div className="space-y-8">
-            <CurrentSessions />
-            <PreviousSessions />
-          </div>
+        <div className="flex justify-center">
+            <div className="flex gap-2 rounded-lg bg-muted p-1">
+                <Button variant={activeView === 'progress' ? 'default' : 'ghost'} onClick={() => setActiveView('progress')} className="w-full justify-center">Progress Tracker</Button>
+                <Button variant={activeView === 'current' ? 'default' : 'ghost'} onClick={() => setActiveView('current')} className="w-full justify-center">This Week's Sessions</Button>
+                <Button variant={activeView === 'previous' ? 'default' : 'ghost'} onClick={() => setActiveView('previous')} className="w-full justify-center">Session Archive</Button>
+            </div>
+        </div>
+        <div>
+            {activeView === 'progress' && <ProgressTracker />}
+            {activeView === 'current' && <CurrentSessions />}
+            {activeView === 'previous' && <PreviousSessions />}
         </div>
       </main>
     </div>
