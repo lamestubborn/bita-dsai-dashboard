@@ -71,13 +71,13 @@ export function Dashboard() {
       </main>
       <footer className="py-4 border-t">
         <div className="container mx-auto flex items-center justify-center gap-4">
-            <Button asChild className="bg-[#0077b5] text-white hover:bg-[#0077b5]/90">
+            <Button asChild size="icon" className="bg-[#0077b5] text-white hover:bg-[#0077b5]/90 rounded-full">
                 <a href="https://www.linkedin.com/in/thestubbornsailor/" target="_blank" rel="noopener noreferrer">
-                    <Linkedin className="mr-2 h-4 w-4" />
-                    Connect with developer
+                    <Linkedin className="h-5 w-5" />
+                    <span className="sr-only">Connect with developer</span>
                 </a>
             </Button>
-            <Button asChild variant="outline">
+            <Button asChild variant="outline" className="rounded-full">
                 <a href="https://www.linkedin.com/newsletters/7353139620018081793/" target="_blank" rel="noopener noreferrer">
                     <Newspaper className="mr-2 h-4 w-4" />
                     Read my newsletter
