@@ -72,7 +72,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-19T18:30:00"),
     endTime: new Date("2025-09-19T19:30:00"),
     joinUrl: "#",
-    recordingUrl: "https://lumen.com/vod/a2d3c9a6-7d6f-4c8a-9a8c-0e3d2a1b0c9a",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6727/topics/7239",
   },
   {
     id: "session-2",
@@ -81,7 +81,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-19T19:30:00"),
     endTime: new Date("2025-09-19T20:30:00"),
     joinUrl: "#",
-    recordingUrl: "https://lumen.com/vod/b3e4f8a9-8e7g-5d9b-8b9d-1f4e3b2c1d0b",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6726/topics/7240",
   },
   {
     id: "session-3",
@@ -90,7 +90,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-19T20:30:00"),
     endTime: new Date("2025-09-19T21:30:00"),
     joinUrl: "#",
-    recordingUrl: "https://lumen.com/vod/c4f5g9b0-9f8h-6e0c-9c0e-2g5f4c3d2e1c",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6725/topics/7238",
   },
   {
     id: "session-4",
@@ -98,7 +98,7 @@ export const currentSessions: Session[] = [
     subject: "Statistical Modelling and Inferencing",
     startTime: new Date("2025-09-20T18:30:00"),
     endTime: new Date("2025-09-20T19:30:00"),
-    joinUrl: "https://zoom.us/j/9445575",
+    joinUrl: "https://zoom.us/j/94455755263",
     recordingUrl: "#",
   },
   {
@@ -107,7 +107,7 @@ export const currentSessions: Session[] = [
     subject: "Data Stores and Pipelines",
     startTime: new Date("2025-09-20T19:30:00"),
     endTime: new Date("2025-09-20T20:30:00"),
-    joinUrl: "https://zoom.us/j/9604765",
+    joinUrl: "https://zoom.us/j/96047659647",
     recordingUrl: "#",
   },
   {
@@ -116,7 +116,7 @@ export const currentSessions: Session[] = [
     subject: "Advanced Apex Project I",
     startTime: new Date("2025-09-20T20:30:00"),
     endTime: new Date("2025-09-20T21:30:00"),
-    joinUrl: "https://zoom.us/j/9642809",
+    joinUrl: "https://zoom.us/j/96428093403",
     recordingUrl: "#",
   },
   {
