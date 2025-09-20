@@ -1,9 +1,18 @@
 import { NextResponse } from 'next/server';
 import { currentSessions } from '@/lib/data';
 
-// Function to format a date for iCalendar, e.g., 20240101T120000Z
+// Function to format a date for iCalendar in a specific timezone, e.g., 20240101T120000
 const formatICalDate = (date: Date): string => {
-  return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  const pad = (num: number) => num.toString().padStart(2, '0');
+  
+  const year = date.getFullYear();
+  const month = pad(date.getMonth() + 1);
+  const day = pad(date.getDate());
+  const hours = pad(date.getHours());
+  const minutes = pad(date.getMinutes());
+  const seconds = pad(date.getSeconds());
+  
+  return `${year}${month}${day}T${hours}${minutes}${seconds}`;
 };
 
 export async function GET() {
@@ -15,18 +24,31 @@ export async function GET() {
     'METHOD:PUBLISH',
     'X-PUBLISHED-TTL:PT1H',
     'X-WR-CALNAME:BITS MSc DSAI Sessions',
-    'X-WR-TIMEZONE:UTC',
+    'X-WR-TIMEZONE:Asia/Kolkata', // Set timezone to IST
+    'BEGIN:VTIMEZONE',
+    'TZID:Asia/Kolkata',
+    'BEGIN:STANDARD',
+    'DTSTART:19700101T000000',
+    'TZOFFSETFROM:+0530',
+    'TZOFFSETTO:+0530',
+    'TZNAME:IST',
+    'END:STANDARD',
+    'END:VTIMEZONE'
   ];
 
   const calFooter = ['END:VCALENDAR'];
 
+  // All dates in lib/data.ts are parsed as local time.
+  // When deploying to a server, we need to ensure the server's timezone is set correctly,
+  // or handle timezones more explicitly here. For now, we assume local is IST.
   const events = currentSessions.map(session => {
     const event = [
       'BEGIN:VEVENT',
       `UID:${session.id}@studypulse.app`,
-      `DTSTAMP:${formatICalDate(new Date())}`,
-      `DTSTART:${formatICalDate(session.startTime)}`,
-      `DTEND:${formatICalDate(session.endTime)}`,
+      // Use a UTC timestamp for DTSTAMP
+      `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'}`,
+      `DTSTART;TZID=Asia/Kolkata:${formatICalDate(session.startTime)}`,
+      `DTEND;TZID=Asia/Kolkata:${formatICalDate(session.endTime)}`,
       `SUMMARY:${session.title}`,
       `DESCRIPTION:Subject: ${session.subject}\\nJoin your session here: ${session.joinUrl}`,
       'END:VEVENT',
