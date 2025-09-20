@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CurrentSessions } from "@/components/current-sessions";
 import { PreviousSessions } from "@/components/previous-sessions";
 import { ProgressTracker } from "@/components/progress-tracker";
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, Linkedin } from "lucide-react";
 import { BITSLogo } from '@/components/bits-logo';
 import { ThemeToggle } from './theme-toggle';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -70,6 +70,16 @@ export function Dashboard() {
             </TabsContent>
         </Tabs>
       </main>
+      <footer className="py-4 border-t">
+        <div className="container mx-auto flex items-center justify-center">
+            <Button asChild variant="link">
+                <a href="https://www.linkedin.com/in/thestubbornsailor/" target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="mr-2 h-4 w-4" />
+                    Connect with the developer
+                </a>
+            </Button>
+        </div>
+      </footer>
     </div>
   );
 }
