@@ -72,7 +72,7 @@ export function Dashboard() {
       </main>
       <footer className="py-4 border-t">
         <div className="container mx-auto flex items-center justify-center">
-            <Button asChild variant="link">
+            <Button asChild className="bg-[#0077b5] text-white hover:bg-[#0077b5]/90">
                 <a href="https://www.linkedin.com/in/thestubbornsailor/" target="_blank" rel="noopener noreferrer">
                     <Linkedin className="mr-2 h-4 w-4" />
                     Connect with the developer
