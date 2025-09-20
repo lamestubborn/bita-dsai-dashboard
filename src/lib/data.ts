@@ -72,7 +72,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-19T18:30:00"),
     endTime: new Date("2025-09-19T19:30:00"),
     joinUrl: "#",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.com/",
   },
   {
     id: "session-2",
@@ -81,7 +81,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-19T19:30:00"),
     endTime: new Date("2025-09-19T20:30:00"),
     joinUrl: "#",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.com/",
   },
   {
     id: "session-3",
@@ -90,7 +90,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-19T20:30:00"),
     endTime: new Date("2025-09-19T21:30:00"),
     joinUrl: "#",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.com/",
   },
   {
     id: "session-4",
@@ -98,7 +98,7 @@ export const currentSessions: Session[] = [
     subject: "Statistical Modelling and Inferencing",
     startTime: new Date("2025-09-20T18:30:00"),
     endTime: new Date("2025-09-20T19:30:00"),
-    joinUrl: "#",
+    joinUrl: "https://zoom.us/j/9445575",
     recordingUrl: "#",
   },
   {
@@ -107,7 +107,7 @@ export const currentSessions: Session[] = [
     subject: "Data Stores and Pipelines",
     startTime: new Date("2025-09-20T19:30:00"),
     endTime: new Date("2025-09-20T20:30:00"),
-    joinUrl: "#",
+    joinUrl: "https://zoom.us/j/9604765",
     recordingUrl: "#",
   },
   {
@@ -116,7 +116,7 @@ export const currentSessions: Session[] = [
     subject: "Advanced Apex Project I",
     startTime: new Date("2025-09-20T20:30:00"),
     endTime: new Date("2025-09-20T21:30:00"),
-    joinUrl: "#",
+    joinUrl: "https://zoom.us/j/9642809",
     recordingUrl: "#",
   },
   {
