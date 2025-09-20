@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -73,9 +74,18 @@ export function ProgressTracker() {
                   }
                   className="h-2"
                 />
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {subject.completedSessions} / {subject.totalSessions} sessions
-                </p>
+                <div className="mt-2 flex justify-between text-sm text-muted-foreground">
+                  <p>
+                    {subject.completedSessions} / {subject.totalSessions} sessions
+                  </p>
+                  <p className="font-medium">
+                    {subject.totalSessions > 0
+                      ? `${Math.round(
+                          (subject.completedSessions / subject.totalSessions) * 100
+                        )}%`
+                      : "0%"}
+                  </p>
+                </div>
               </div>
             </CardContent>
           </Card>
