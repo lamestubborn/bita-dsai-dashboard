@@ -1,3 +1,4 @@
+
 import type { LucideIcon } from "lucide-react";
 import { BarChartBig, Cog, Filter, Sigma, Database, Rocket } from "lucide-react";
 
@@ -27,7 +28,7 @@ export const subjects: Subject[] = [
     icon: BarChartBig,
     totalChapters: 10,
     completedChapters: 0,
-    evaluationCriteria: "Assignments (40%), Mid-term Exam (30%), Final Exam (30%)",
+    evaluationCriteria: "1 Quiz (after 4th Week) - 20%, 1 Coding Assignment (5-7th Week) - 40% & 1 Compre Exam - 40%",
   },
   {
     id: "fe",
@@ -35,7 +36,7 @@ export const subjects: Subject[] = [
     icon: Cog,
     totalChapters: 10,
     completedChapters: 0,
-    evaluationCriteria: "Project (50%), Quizzes (20%), Final Exam (30%)",
+    evaluationCriteria: "6 Quizes - 60% (10% each quiz) & 1 Compre Exam - 40%",
   },
   {
     id: "dp",
@@ -43,7 +44,7 @@ export const subjects: Subject[] = [
     icon: Filter,
     totalChapters: 10,
     completedChapters: 0,
-    evaluationCriteria: "Assignments (60%), Final Exam (40%)",
+    evaluationCriteria: "Quiz 1 (After Module 4) - 8%; Quiz 2 (After Module 8) - 8%; Quiz 3 (After Module 13) - 9%; Assignment 1 (After Module 5) - 20%; Assignment 2 - 20%; Compre Exam - 35%",
   },
   {
     id: "smi",
@@ -51,7 +52,7 @@ export const subjects: Subject[] = [
     icon: Sigma,
     totalChapters: 10,
     completedChapters: 0,
-    evaluationCriteria: "Mid-term Exam (40%), Final Exam (60%)",
+    evaluationCriteria: "Evaluation criteria to be updated.",
   },
   {
     id: "dsp",
@@ -59,6 +60,7 @@ export const subjects: Subject[] = [
     icon: Database,
     totalChapters: 10,
     completedChapters: 0,
+    evaluationCriteria: "Evaluation criteria to be updated.",
   },
   {
     id: "aap",
@@ -66,6 +68,7 @@ export const subjects: Subject[] = [
     icon: Rocket,
     totalChapters: 10,
     completedChapters: 0,
+    evaluationCriteria: "Evaluation criteria to be updated.",
   },
 ];
 
@@ -575,3 +578,5 @@ export const currentSessions: Session[] = [
     recordingUrl: "#",
   },
 ];
+
+    
