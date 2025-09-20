@@ -7,6 +7,7 @@ export interface Subject {
   icon: LucideIcon;
   totalChapters: number;
   completedChapters: number;
+  evaluationCriteria?: string;
 }
 
 export interface Session {
@@ -26,6 +27,7 @@ export const subjects: Subject[] = [
     icon: BarChartBig,
     totalChapters: 10,
     completedChapters: 0,
+    evaluationCriteria: "Assignments (40%), Mid-term Exam (30%), Final Exam (30%)",
   },
   {
     id: "fe",
@@ -33,6 +35,7 @@ export const subjects: Subject[] = [
     icon: Cog,
     totalChapters: 10,
     completedChapters: 0,
+    evaluationCriteria: "Project (50%), Quizzes (20%), Final Exam (30%)",
   },
   {
     id: "dp",
@@ -40,6 +43,7 @@ export const subjects: Subject[] = [
     icon: Filter,
     totalChapters: 10,
     completedChapters: 0,
+    evaluationCriteria: "Assignments (60%), Final Exam (40%)",
   },
   {
     id: "smi",
@@ -47,6 +51,7 @@ export const subjects: Subject[] = [
     icon: Sigma,
     totalChapters: 10,
     completedChapters: 0,
+    evaluationCriteria: "Mid-term Exam (40%), Final Exam (60%)",
   },
   {
     id: "dsp",
@@ -71,7 +76,7 @@ export const currentSessions: Session[] = [
     subject: "Data Visualization and Storytelling",
     startTime: new Date("2025-09-19T18:30:00"),
     endTime: new Date("2025-09-19T19:30:00"),
-    joinUrl: "#",
+    joinUrl: "https://zoom.us/j/94455755263",
     recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6727/topics/7239",
   },
   {
@@ -80,7 +85,7 @@ export const currentSessions: Session[] = [
     subject: "Feature Engineering",
     startTime: new Date("2025-09-19T19:30:00"),
     endTime: new Date("2025-09-19T20:30:00"),
-    joinUrl: "#",
+    joinUrl: "https://zoom.us/j/96047659647",
     recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6726/topics/7240",
   },
   {
@@ -89,7 +94,7 @@ export const currentSessions: Session[] = [
     subject: "Data Pre-processing",
     startTime: new Date("2025-09-19T20:30:00"),
     endTime: new Date("2025-09-19T21:30:00"),
-    joinUrl: "#",
+    joinUrl: "https://zoom.us/j/96428093403",
     recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6725/topics/7238",
   },
   {

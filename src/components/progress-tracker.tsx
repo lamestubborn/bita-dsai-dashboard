@@ -10,6 +10,12 @@ import {
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
   subjects,
   currentSessions,
   type Subject,
@@ -83,47 +89,56 @@ export function ProgressTracker() {
       <h2 className="font-headline text-3xl font-bold tracking-tight">
         Progress Tracker
       </h2>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {subjectsWithProgress.map((subject) => (
-          <Card
-            key={subject.id}
-            className="flex flex-col bg-card/50 shadow-none border-dashed"
-          >
-            <CardHeader className="flex-row items-center gap-4 space-y-0 pb-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <subject.icon className="h-6 w-6" />
-              </div>
-              <CardTitle className="font-headline text-lg">
-                {subject.name}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-grow flex-col justify-between">
-              <div>
-                <Progress
-                  value={
-                    subject.totalSessions > 0
-                      ? (subject.completedSessions / subject.totalSessions) * 100
-                      : 0
-                  }
-                  className="h-2"
-                />
-                <div className="mt-2 flex justify-between text-sm text-muted-foreground">
-                  <p>
-                    {subject.completedSessions} / {subject.totalSessions} sessions
-                  </p>
-                  <p className="font-medium">
-                    {subject.totalSessions > 0
-                      ? `${Math.round(
-                          (subject.completedSessions / subject.totalSessions) * 100
-                        )}%`
-                      : "0%"}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      <TooltipProvider>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {subjectsWithProgress.map((subject) => (
+            <Tooltip key={subject.id}>
+              <TooltipTrigger asChild>
+                <Card
+                  className="flex flex-col bg-card/50 shadow-none border-dashed"
+                >
+                  <CardHeader className="flex-row items-center gap-4 space-y-0 pb-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <subject.icon className="h-6 w-6" />
+                    </div>
+                    <CardTitle className="font-headline text-lg">
+                      {subject.name}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex flex-grow flex-col justify-between">
+                    <div>
+                      <Progress
+                        value={
+                          subject.totalSessions > 0
+                            ? (subject.completedSessions / subject.totalSessions) * 100
+                            : 0
+                        }
+                        className="h-2"
+                      />
+                      <div className="mt-2 flex justify-between text-sm text-muted-foreground">
+                        <p>
+                          {subject.completedSessions} / {subject.totalSessions} sessions
+                        </p>
+                        <p className="font-medium">
+                          {subject.totalSessions > 0
+                            ? `${Math.round(
+                                (subject.completedSessions / subject.totalSessions) * 100
+                              )}%`
+                            : "0%"}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p className="font-bold">Evaluation Criteria</p>
+                <p>{subject.evaluationCriteria || 'Evaluation criteria to be updated.'}</p>
+              </TooltipContent>
+            </Tooltip>
+          ))}
+        </div>
+      </TooltipProvider>
     </div>
   );
 }
