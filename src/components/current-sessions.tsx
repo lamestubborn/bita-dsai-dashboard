@@ -31,12 +31,18 @@ export function CurrentSessions() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button asChild className="w-full sm:w-auto ml-auto">
-                  <a href={session.joinUrl}>
-                    Join Session
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
+                {session.joinUrl === "#" ? (
+                  <Button disabled className="w-full sm:w-auto ml-auto">
+                    Joining link will be updated soon
+                  </Button>
+                ) : (
+                  <Button asChild className="w-full sm:w-auto ml-auto">
+                    <a href={session.joinUrl}>
+                      Join Session
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                )}
               </CardFooter>
             </Card>
           ))
