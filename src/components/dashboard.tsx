@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -75,7 +74,7 @@ export function Dashboard() {
             <Button asChild className="bg-[#0077b5] text-white hover:bg-[#0077b5]/90">
                 <a href="https://www.linkedin.com/in/thestubbornsailor/" target="_blank" rel="noopener noreferrer">
                     <Linkedin className="mr-2 h-4 w-4" />
-                    Connect with the developer
+                    Connect with developer
                 </a>
             </Button>
             <Button asChild variant="outline">
