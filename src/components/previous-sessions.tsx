@@ -1,6 +1,6 @@
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { LogIn, Video } from "lucide-react";
+import { Video } from "lucide-react";
 import { currentSessions } from "@/lib/data";
 import { format } from "date-fns";
 
@@ -21,17 +21,11 @@ export function PreviousSessions() {
               <div>
                 <CardTitle className="font-headline">{session.title}</CardTitle>
                 <p className="text-sm text-muted-foreground">
-                  {format(session.startTime, "MMMM d, yyyy")}
+                  {format(session.startTime, "MMMM d, yyyy 'at' h:mm a")}
                 </p>
               </div>
             </CardHeader>
             <CardFooter className="flex justify-end gap-2">
-              <Button asChild variant="outline" size="sm">
-                <a href={session.joinUrl}>
-                  <LogIn className="mr-2 h-4 w-4" />
-                  Details
-                </a>
-              </Button>
               <Button
                 asChild
                 variant="secondary"
