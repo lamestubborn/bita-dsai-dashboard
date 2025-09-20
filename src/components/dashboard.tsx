@@ -8,6 +8,7 @@ import { ProgressTracker } from "@/components/progress-tracker";
 import { CalendarDays } from "lucide-react";
 import { BITSLogo } from '@/components/bits-logo';
 import { ThemeToggle } from './theme-toggle';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from 'framer-motion';
 
 export function Dashboard() {
@@ -27,28 +28,47 @@ export function Dashboard() {
           </div>
         </div>
       </header>
-      <main className="container mx-auto flex flex-1 flex-col gap-12 p-4 md:gap-16 md:p-8">
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
+      <main className="container mx-auto flex flex-1 flex-col gap-8 p-4 md:p-8">
+        <Tabs defaultValue="this-week">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-        >
-            <CurrentSessions />
-        </motion.div>
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-        >
-            <ProgressTracker />
-        </motion.div>
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-        >
-            <PreviousSessions />
-        </motion.div>
+          >
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="this-week">This Week</TabsTrigger>
+              <TabsTrigger value="progress">Progress</TabsTrigger>
+              <TabsTrigger value="archive">Archive</TabsTrigger>
+            </TabsList>
+          </motion.div>
+            <TabsContent value="this-week">
+              <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                  <CurrentSessions />
+              </motion.div>
+            </TabsContent>
+            <TabsContent value="progress">
+              <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                  <ProgressTracker />
+              </motion.div>
+            </TabsContent>
+            <TabsContent value="archive">
+              <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                  <PreviousSessions />
+              </motion.div>
+            </TabsContent>
+        </Tabs>
       </main>
     </div>
   );
