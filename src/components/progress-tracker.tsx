@@ -4,9 +4,10 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { subjects, currentSessions, type Subject } from "@/lib/data";
 import { motion } from 'framer-motion';
+import { ResponsiveTooltipDialog, ResponsiveTooltipDialogContent, ResponsiveTooltipDialogTrigger } from './responsive-tooltip-dialog';
+import { DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 
 interface SubjectProgress extends Subject {
   completedSessions: number;
@@ -66,7 +67,6 @@ export function ProgressTracker() {
       <h2 className="font-headline text-4xl font-bold tracking-tight">
         Progress Tracker
       </h2>
-      <TooltipProvider>
         <motion.div 
             className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
             variants={containerVariants}
@@ -75,8 +75,8 @@ export function ProgressTracker() {
         >
           {isClient ? subjectsWithProgress.map((subject) => (
             <motion.div key={subject.id} variants={cardVariants}>
-              <Tooltip>
-                <TooltipTrigger asChild>
+              <ResponsiveTooltipDialog>
+                <ResponsiveTooltipDialogTrigger>
                   <Card className="group flex h-full flex-col rounded-2xl border-none bg-card shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
                     <CardHeader className="flex-row items-center gap-4 space-y-0 pb-4">
                       <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
@@ -98,12 +98,20 @@ export function ProgressTracker() {
                       </p>
                     </CardContent>
                   </Card>
-                </TooltipTrigger>
-                <TooltipContent className="max-w-xs text-pretty">
-                  <p className="font-bold">Evaluation Criteria</p>
-                  <p>{subject.evaluationCriteria || 'Evaluation criteria to be updated.'}</p>
-                </TooltipContent>
-              </Tooltip>
+                </ResponsiveTooltipDialogTrigger>
+                <ResponsiveTooltipDialogContent 
+                  tooltipClassName="max-w-xs text-pretty"
+                  dialogTitle={
+                    <DialogHeader>
+                      <DialogTitle>Evaluation Criteria</DialogTitle>
+                    </DialogHeader>
+                  }
+                >
+                  <div className="p-4 sm:p-0">
+                    <p>{subject.evaluationCriteria || 'Evaluation criteria to be updated.'}</p>
+                  </div>
+                </ResponsiveTooltipDialogContent>
+              </ResponsiveTooltipDialog>
             </motion.div>
           )) : (
              [...Array(subjects.length)].map((_, i) => (
@@ -120,7 +128,6 @@ export function ProgressTracker() {
              ))
           )}
         </motion.div>
-      </TooltipProvider>
     </div>
   );
 }
