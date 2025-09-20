@@ -8,10 +8,10 @@ import { PreviousSessions } from "@/components/previous-sessions";
 import { ProgressTracker } from "@/components/progress-tracker";
 import { CalendarDays, BookOpenCheck } from "lucide-react";
 
-type View = 'progress' | 'current' | 'previous';
+type View = 'current' | 'previous' | 'progress';
 
 export function Dashboard() {
-  const [activeView, setActiveView] = useState<View>('progress');
+  const [activeView, setActiveView] = useState<View>('current');
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-background">
@@ -34,9 +34,9 @@ export function Dashboard() {
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
         <div className="flex justify-center">
             <div className="flex gap-2 rounded-lg bg-muted p-1">
-                <Button variant={activeView === 'progress' ? 'default' : 'ghost'} onClick={() => setActiveView('progress')} className="w-full justify-center">Progress Tracker</Button>
                 <Button variant={activeView === 'current' ? 'default' : 'ghost'} onClick={() => setActiveView('current')} className="w-full justify-center">This Week's Sessions</Button>
                 <Button variant={activeView === 'previous' ? 'default' : 'ghost'} onClick={() => setActiveView('previous')} className="w-full justify-center">Session Archive</Button>
+                <Button variant={activeView === 'progress' ? 'default' : 'ghost'} onClick={() => setActiveView('progress')} className="w-full justify-center">Progress Tracker</Button>
             </div>
         </div>
         <div>
