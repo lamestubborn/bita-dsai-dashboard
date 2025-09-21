@@ -63,6 +63,9 @@ export async function GET() {
     headers: {
       'Content-Type': 'text/calendar; charset=utf-8',
       'Content-Disposition': 'attachment; filename="bits_dsai_sessions.ics"',
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0',
     },
   });
 }
