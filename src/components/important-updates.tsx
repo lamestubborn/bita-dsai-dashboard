@@ -8,13 +8,8 @@ export function ImportantUpdates() {
   const updates = [
     {
       id: 'update-1',
-      title: 'Mid-term Exam Schedule Announced',
-      description: 'The mid-term examination schedule for all subjects has been published. Please check your emails and the student portal for details.',
-    },
-    {
-      id: 'update-2',
-      title: 'Project Submission Deadline Extended',
-      description: 'The deadline for the Advanced Apex Project I has been extended by one week. The new submission date is November 15th.',
+      title: 'Data Pre-processing Graded Quiz 1 Available',
+      description: 'Graded Quiz 1 can be accessed only after completing all materials in Week 1. No deadline has been announced yet, but it is advised to complete it as soon as possible.',
     }
   ];
 
