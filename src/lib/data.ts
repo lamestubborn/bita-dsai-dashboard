@@ -1,6 +1,6 @@
 
 import type { LucideIcon } from "lucide-react";
-import { BarChartBig, Cog, Filter, Sigma, Database, Rocket, BotMessageSquare } from "lucide-react";
+import { BarChartBig, Cog, Filter, Sigma, Database, Rocket } from "lucide-react";
 
 export interface Subject {
   id: string;
@@ -70,14 +70,6 @@ export const subjects: Subject[] = [
     completedChapters: 0,
     evaluationCriteria: "Evaluation criteria to be updated.",
   },
-  {
-    id: 'gen-ai-assistant',
-    name: 'GenAI Assistant',
-    icon: BotMessageSquare,
-    totalChapters: 10,
-    completedChapters: 0,
-    evaluationCriteria: 'This is a helper bot, no evaluation here!',
-  }
 ];
 
 export const currentSessions: Session[] = [
