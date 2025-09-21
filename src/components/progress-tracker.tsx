@@ -113,7 +113,7 @@ export function ProgressTracker() {
                       </CardTitle>
                     </div>
                     {subject.slidesUrl && (
-                      <Button asChild variant="ghost" size="icon" className="h-8 w-8 rounded-full flex-shrink-0">
+                      <Button asChild variant="ghost" size="icon" className="h-8 w-8 rounded-full flex-shrink-0" onMouseEnter={(e) => e.stopPropagation()}>
                         <a href={subject.slidesUrl} target="_blank" rel="noopener noreferrer" title="View Slides">
                           <Presentation className="h-5 w-5" />
                           <span className="sr-only">View Slides</span>
