@@ -1,16 +1,18 @@
 
+
 "use client";
 
 import { Button } from "@/components/ui/button";
 import { CurrentSessions } from "@/components/current-sessions";
 import { PreviousSessions } from "@/components/previous-sessions";
 import { ProgressTracker } from "@/components/progress-tracker";
-import { CalendarDays, Linkedin, Newspaper, BookOpen } from "lucide-react";
+import { CalendarDays, Linkedin, Newspaper, BookOpen, Menu } from "lucide-react";
 import { BITSLogo } from '@/components/bits-logo';
 import { ThemeToggle } from './theme-toggle';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from 'framer-motion';
 import { ImportantUpdates } from "./important-updates";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "./ui/sheet";
 
 export function Dashboard() {
   return (
@@ -18,7 +20,8 @@ export function Dashboard() {
       <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-lg transition-all duration-300">
         <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-8">
             <BITSLogo className="h-10 w-auto" />
-          <div className="flex items-center gap-4">
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-4">
               <Button asChild variant="ghost" className="rounded-full">
                   <a href="#">
                       <BookOpen className="mr-2 h-4 w-4" />
@@ -32,7 +35,40 @@ export function Dashboard() {
                   </a>
               </Button>
               <ThemeToggle />
-          </div>
+            </div>
+
+            {/* Mobile Navigation */}
+            <div className="md:hidden flex items-center gap-2">
+              <ThemeToggle />
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="icon">
+                    <Menu className="h-5 w-5" />
+                    <span className="sr-only">Open menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right">
+                  <div className="flex flex-col gap-4 pt-8">
+                    <SheetClose asChild>
+                      <Button asChild variant="ghost" className="justify-start">
+                          <a href="#">
+                              <BookOpen className="mr-2 h-4 w-4" />
+                              Study Materials
+                          </a>
+                      </Button>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Button asChild variant="ghost" className="justify-start">
+                          <a href="/api/calendar/feed.ics">
+                              <CalendarDays className="mr-2 h-4 w-4" />
+                              Subscribe to Calendar
+                          </a>
+                      </Button>
+                    </SheetClose>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
         </div>
       </header>
       <main className="container mx-auto flex flex-1 flex-col gap-8 p-4 md:p-8">
