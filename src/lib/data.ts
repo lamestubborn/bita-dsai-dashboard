@@ -28,7 +28,7 @@ export const subjects: Subject[] = [
     icon: BarChartBig,
     totalChapters: 10,
     completedChapters: 0,
-    evaluationCriteria: "1 Quiz (after 4th Week) - 20%, 1 Coding Assignment (5-7th Week) - 40% & 1 Compre Exam - 40%",
+    evaluationCriteria: "Evaluation criteria to be updated.",
   },
   {
     id: "fe",
