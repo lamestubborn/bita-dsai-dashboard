@@ -29,7 +29,7 @@ export function Dashboard() {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button asChild variant="ghost" size="icon">
-                        <a href="#">
+                        <a href="https://drive.google.com/drive/folders/1w0ecymnFR6UKVDApGB8-NKI_0XAUrfue?usp=sharing" target="_blank" rel="noopener noreferrer">
                             <BookOpen className="h-5 w-5" />
                             <span className="sr-only">Study Materials</span>
                         </a>
@@ -57,7 +57,7 @@ export function Dashboard() {
                 {/* Desktop Full Buttons */}
                 <div className="hidden md:flex items-center gap-2">
                   <Button asChild variant="ghost" className="rounded-full">
-                      <a href="#">
+                      <a href="https://drive.google.com/drive/folders/1w0ecymnFR6UKVDApGB8-NKI_0XAUrfue?usp=sharing" target="_blank" rel="noopener noreferrer">
                           <BookOpen className="mr-2 h-4 w-4" />
                           Study Materials
                       </a>
