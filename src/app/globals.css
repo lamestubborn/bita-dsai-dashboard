@@ -26,15 +26,15 @@ body {
     --muted: 240 5% 93%;
     --muted-foreground: 240 4% 46%;
     
-    --accent: 173 75% 55%; /* teal #2DD4BF */
-    --accent-foreground: 240 6% 10%; /* Dark text on accent */
+    --accent: 270 90% 65%; /* a vibrant purple */
+    --accent-foreground: 0 0% 98%; /* Light text on accent */
     
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 240 6% 88%;
     --input: 240 6% 88%;
-    --ring: 203 92% 75%; /* sky blue for focus rings */
+    --ring: 270 90% 65%; /* purple for focus rings */
 
     --radius: 0.75rem;
   }
@@ -57,15 +57,15 @@ body {
     --muted: 220 15% 20%;
     --muted-foreground: 210 20% 60%;
     
-    --accent: 173 75% 55%; /* teal */
-    --accent-foreground: 240 6% 10%;
+    --accent: 270 80% 70%; /* slightly lighter purple for dark mode */
+    --accent-foreground: 0 0% 98%;
     
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 220 15% 25%;
     --input: 220 15% 25%;
-    --ring: 203 92% 75%;
+    --ring: 270 80% 70%;
   }
 }
 
