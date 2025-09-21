@@ -1,6 +1,6 @@
 
 import type { LucideIcon } from "lucide-react";
-import { BarChartBig, Cog, Filter, Sigma, Database, Rocket } from "lucide-react";
+import { BarChartBig, Cog, Filter, Sigma, Database, Rocket, BotMessageSquare } from "lucide-react";
 
 export interface Subject {
   id: string;
@@ -36,7 +36,7 @@ export const subjects: Subject[] = [
     icon: Cog,
     totalChapters: 10,
     completedChapters: 0,
-    evaluationCriteria: "6 Quizes - 60% (10% each quiz) & 1 Compre Exam - 40%",
+    evaluationCriteria: "Evaluation Criteria: 1 Quiz (after 4th Week) - 20% , 1 Coding Assignment (5-7th Week) - 40% & 1 Compre Exam - 40%",
   },
   {
     id: "dp",
