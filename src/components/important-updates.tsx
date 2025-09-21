@@ -23,24 +23,27 @@ export function ImportantUpdates() {
   }
 
   return (
-    <Accordion type="multiple" className="w-full space-y-2">
-      {updates.map(update => (
-        <AccordionItem value={update.id} key={update.id} className="border-none">
-           <Alert>
-            <AccordionTrigger className="w-full text-left p-0 hover:no-underline">
-                <div className="flex items-center">
-                    <Megaphone className="h-4 w-4" />
-                    <AlertTitle className="font-bold ml-4">{update.title}</AlertTitle>
-                </div>
-            </AccordionTrigger>
-            <AccordionContent className="pt-4">
-              <AlertDescription>
-                {update.description}
-              </AlertDescription>
-            </AccordionContent>
-          </Alert>
+    <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
+        <AccordionItem value="item-1" className="border-none">
+            <Alert>
+                <AccordionTrigger className="w-full text-left p-0 hover:no-underline">
+                    <div className="flex items-center">
+                        <Megaphone className="h-4 w-4" />
+                        <AlertTitle className="font-bold ml-4">Important Updates</AlertTitle>
+                    </div>
+                </AccordionTrigger>
+                <AccordionContent className="pt-4 space-y-4">
+                    {updates.map(update => (
+                        <div key={update.id}>
+                            <p className="font-semibold">{update.title}</p>
+                            <AlertDescription>
+                                {update.description}
+                            </AlertDescription>
+                        </div>
+                    ))}
+                </AccordionContent>
+            </Alert>
         </AccordionItem>
-      ))}
     </Accordion>
   );
 }
