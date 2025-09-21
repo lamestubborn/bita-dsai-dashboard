@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { subjects, currentSessions, type Subject } from "@/lib/data";
+import { subjects as staticSubjects, currentSessions as staticSessions, type Subject } from "@/lib/data";
 import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import { Button } from './ui/button';
@@ -19,9 +19,18 @@ export function ProgressTracker() {
   const [subjectsWithProgress, setSubjectsWithProgress] = useState<SubjectProgress[]>([]);
   const [isClient, setIsClient] = useState(false);
   const [flippedCard, setFlippedCard] = useState<string | null>(null);
+  const [subjects, setSubjects] = useState(staticSubjects);
+  const [currentSessions, setCurrentSessions] = useState(staticSessions);
+
 
   useEffect(() => {
     setIsClient(true);
+    // In a real app, you might fetch this dynamically
+    // For now, we simulate a dynamic load by just setting it.
+    // import('@/lib/dynamic-data').then(module => {
+    //   setSubjects(module.getSubjects());
+    //   setCurrentSessions(module.getCurrentSessions());
+    // });
   }, []);
   
   useEffect(() => {
@@ -47,7 +56,7 @@ export function ProgressTracker() {
       });
       setSubjectsWithProgress(calculatedProgress);
     }
-  }, [isClient]);
+  }, [isClient, subjects, currentSessions]);
 
   const containerVariants = {
     hidden: {},

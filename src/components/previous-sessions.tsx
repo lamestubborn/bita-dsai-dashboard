@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 import { Card, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Video } from "lucide-react";
-import { currentSessions } from "@/lib/data";
-import { format, differenceInCalendarWeeks, startOfWeek, endOfWeek } from "date-fns";
+import { currentSessions as staticSessions } from "@/lib/data";
+import { format, differenceInCalendarWeeks } from "date-fns";
 import type { Session } from "@/lib/data";
 import { motion } from 'framer-motion';
 import { Separator } from './ui/separator';
@@ -18,9 +18,16 @@ type GroupedSessions = {
 export function PreviousSessions() {
   const [groupedSessions, setGroupedSessions] = useState<GroupedSessions>({});
   const [isClient, setIsClient] = useState(false);
+  const [currentSessions, setCurrentSessions] = useState(staticSessions);
+
 
   useEffect(() => {
     setIsClient(true);
+    // In a real app, you might fetch this dynamically
+    // For now, we simulate a dynamic load by just setting it.
+    // import('@/lib/dynamic-data').then(module => {
+    //   setCurrentSessions(module.getCurrentSessions());
+    // });
   }, []);
 
   useEffect(() => {
@@ -45,7 +52,7 @@ export function PreviousSessions() {
 
       setGroupedSessions(sessionsByWeek);
     }
-  }, [isClient]);
+  }, [isClient, currentSessions]);
 
   const containerVariants = {
     hidden: {},

@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Clock } from "lucide-react";
-import { currentSessions } from "@/lib/data";
+import { currentSessions as staticSessions } from "@/lib/data";
 import { format, startOfWeek, endOfWeek } from "date-fns";
 import type { Session } from "@/lib/data";
 import { motion } from 'framer-motion';
@@ -13,9 +13,15 @@ import { motion } from 'framer-motion';
 export function CurrentSessions() {
   const [upcomingSessions, setUpcomingSessions] = useState<Session[]>([]);
   const [isClient, setIsClient] = useState(false);
+  const [currentSessions, setCurrentSessions] = useState(staticSessions);
 
   useEffect(() => {
     setIsClient(true);
+    // In a real app, you might fetch this dynamically
+    // For now, we simulate a dynamic load by just setting it.
+    // import('@/lib/dynamic-data').then(module => {
+    //   setCurrentSessions(module.getCurrentSessions());
+    // });
   }, []);
 
   useEffect(() => {
@@ -34,7 +40,7 @@ export function CurrentSessions() {
       
       setUpcomingSessions(filteredSessions);
     }
-  }, [isClient]);
+  }, [isClient, currentSessions]);
 
   const containerVariants = {
     hidden: {},
