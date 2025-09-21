@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { subjects as staticSubjects, currentSessions as staticSessions, type Subject } from "@/lib/data";
 import { motion } from 'framer-motion';
-import { X, Slideshow } from 'lucide-react';
+import { X, Presentation } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface SubjectProgress extends Subject {
@@ -115,7 +115,7 @@ export function ProgressTracker() {
                     {subject.slidesUrl && (
                       <Button asChild variant="ghost" size="icon" className="h-8 w-8 rounded-full flex-shrink-0">
                         <a href={subject.slidesUrl} target="_blank" rel="noopener noreferrer" title="View Slides">
-                          <Slideshow className="h-5 w-5" />
+                          <Presentation className="h-5 w-5" />
                           <span className="sr-only">View Slides</span>
                         </a>
                       </Button>
