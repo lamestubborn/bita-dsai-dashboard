@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { subjects as staticSubjects, currentSessions as staticSessions, type Subject } from "@/lib/data";
 import { motion } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, Slideshow } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface SubjectProgress extends Subject {
@@ -103,13 +103,23 @@ export function ProgressTracker() {
                   className="group absolute flex h-full w-full flex-col rounded-2xl border-none bg-card shadow-lg backdrop-blur-sm transition-all duration-300"
                   style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
                 >
-                  <CardHeader className="flex-row items-center gap-4 space-y-0 pb-4">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <subject.icon className="h-7 w-7" />
+                  <CardHeader className="flex-row items-start justify-between gap-4 space-y-0 pb-4">
+                    <div className='flex items-center gap-4'>
+                      <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <subject.icon className="h-7 w-7" />
+                      </div>
+                      <CardTitle className="font-headline text-xl">
+                        {subject.name}
+                      </CardTitle>
                     </div>
-                    <CardTitle className="font-headline text-xl">
-                      {subject.name}
-                    </CardTitle>
+                    {subject.slidesUrl && (
+                      <Button asChild variant="ghost" size="icon" className="h-8 w-8 rounded-full flex-shrink-0">
+                        <a href={subject.slidesUrl} target="_blank" rel="noopener noreferrer" title="View Slides">
+                          <Slideshow className="h-5 w-5" />
+                          <span className="sr-only">View Slides</span>
+                        </a>
+                      </Button>
+                    )}
                   </CardHeader>
                   <CardContent className="flex flex-grow flex-col justify-end">
                     <div className="relative">

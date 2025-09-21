@@ -9,6 +9,7 @@ export interface Subject {
   totalChapters: number;
   completedChapters: number;
   evaluationCriteria?: string;
+  slidesUrl?: string;
 }
 
 export interface Session {
@@ -45,6 +46,7 @@ export const subjects: Subject[] = [
     totalChapters: 10,
     completedChapters: 0,
     evaluationCriteria: "Evaluation Criteria: 6 Quizes - 60% (10% each quiz) & 1 Compre Exam - 40% ",
+    slidesUrl: "https://drive.google.com/drive/u/3/folders/1z2k6AZuzAt6vt7AHj9PNUDo-HpY7o7WS",
   },
   {
     id: "smi",
