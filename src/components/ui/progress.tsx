@@ -13,13 +13,13 @@ const Progress = React.forwardRef<
   <ProgressPrimitive.Root
     ref={ref}
     className={cn(
-      "relative h-4 w-full overflow-hidden rounded-full bg-primary/20",
+      "relative h-4 w-full overflow-hidden rounded-full bg-accent/20",
       className
     )}
     {...props}
   >
     <motion.div
-      className="h-full w-full flex-1 bg-primary"
+      className="h-full w-full flex-1 bg-accent"
       initial={{ x: "-100%" }}
       animate={{ x: `-${100 - (value || 0)}%` }}
       transition={{ duration: 0.8, ease: "easeInOut" }}

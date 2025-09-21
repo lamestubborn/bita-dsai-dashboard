@@ -105,7 +105,7 @@ export function ProgressTracker() {
                 >
                   <CardHeader className="flex-row items-start justify-between gap-4 space-y-0 pb-4">
                     <div className='flex items-center gap-4'>
-                      <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10 text-accent">
                         <subject.icon className="h-7 w-7" />
                       </div>
                       <CardTitle className="font-headline text-xl">
