@@ -88,6 +88,8 @@ export function ProgressTracker() {
             <motion.div 
               key={subject.id} 
               variants={cardVariants}
+              onMouseEnter={() => setFlippedCard(subject.id)}
+              onMouseLeave={() => setFlippedCard(null)}
             >
               <motion.div
                 className="relative h-full w-full"
@@ -100,8 +102,6 @@ export function ProgressTracker() {
                 <Card 
                   className="group absolute flex h-full w-full flex-col rounded-2xl border-none bg-card shadow-lg backdrop-blur-sm transition-all duration-300"
                   style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
-                  onMouseEnter={() => setFlippedCard(subject.id)}
-                  onMouseLeave={() => setFlippedCard(null)}
                 >
                   <CardHeader className="flex-row items-start justify-between gap-4 space-y-0 pb-4">
                     <div className='flex items-center gap-4'>
@@ -130,7 +130,6 @@ export function ProgressTracker() {
                 <Card 
                   className="absolute flex h-full w-full flex-col rounded-2xl border-none bg-card p-6 shadow-lg backdrop-blur-sm"
                   style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-                  onMouseLeave={() => setFlippedCard(null)}
                 >
                     <CardHeader className='p-0'>
                       <CardTitle className="font-headline text-xl mb-4">Evaluation Criteria</CardTitle>
