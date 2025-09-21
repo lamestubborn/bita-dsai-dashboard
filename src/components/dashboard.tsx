@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { CurrentSessions } from "@/components/current-sessions";
 import { PreviousSessions } from "@/components/previous-sessions";
 import { ProgressTracker } from "@/components/progress-tracker";
-import { CalendarDays, Linkedin, Newspaper } from "lucide-react";
+import { CalendarDays, Linkedin, Newspaper, BookOpen } from "lucide-react";
 import { BITSLogo } from '@/components/bits-logo';
 import { ThemeToggle } from './theme-toggle';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -19,6 +19,12 @@ export function Dashboard() {
         <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-8">
             <BITSLogo className="h-10 w-auto" />
           <div className="flex items-center gap-4">
+              <Button asChild variant="ghost" className="rounded-full">
+                  <a href="#">
+                      <BookOpen className="mr-2 h-4 w-4" />
+                      Study Materials
+                  </a>
+              </Button>
               <Button asChild variant="ghost" className="rounded-full">
                   <a href="/api/calendar/feed.ics">
                       <CalendarDays className="mr-2 h-4 w-4" />
