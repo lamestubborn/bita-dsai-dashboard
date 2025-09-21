@@ -1,5 +1,6 @@
 
 import { Megaphone } from 'lucide-react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export function ImportantUpdates() {
@@ -22,16 +23,24 @@ export function ImportantUpdates() {
   }
 
   return (
-    <div className="space-y-4">
-        {updates.map(update => (
-            <Alert key={update.id}>
-                <Megaphone className="h-4 w-4" />
-                <AlertTitle className="font-bold">{update.title}</AlertTitle>
-                <AlertDescription>
+    <Accordion type="multiple" className="w-full space-y-2">
+      {updates.map(update => (
+        <AccordionItem value={update.id} key={update.id} className="border-none">
+           <Alert>
+            <AccordionTrigger className="w-full text-left p-0 hover:no-underline">
+                <div className="flex items-center">
+                    <Megaphone className="h-4 w-4" />
+                    <AlertTitle className="font-bold ml-4">{update.title}</AlertTitle>
+                </div>
+            </AccordionTrigger>
+            <AccordionContent className="pt-4">
+              <AlertDescription>
                 {update.description}
-                </AlertDescription>
-            </Alert>
-        ))}
-    </div>
+              </AlertDescription>
+            </AccordionContent>
+          </Alert>
+        </AccordionItem>
+      ))}
+    </Accordion>
   );
 }
