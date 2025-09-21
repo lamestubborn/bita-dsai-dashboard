@@ -3,6 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from '@/components/theme-provider';
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: 'BITS MSc DSAI Dashboard',
@@ -32,6 +33,7 @@ export default function RootLayout({
           <Toaster />
         </ThemeProvider>
         <SpeedInsights />
+        <Analytics />
         </body>
     </html>
   );
