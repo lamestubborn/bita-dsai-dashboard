@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,7 @@ import { BITSLogo } from '@/components/bits-logo';
 import { ThemeToggle } from './theme-toggle';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from 'framer-motion';
+import { ImportantUpdates } from "./important-updates";
 
 export function Dashboard() {
   return (
@@ -28,6 +30,7 @@ export function Dashboard() {
         </div>
       </header>
       <main className="container mx-auto flex flex-1 flex-col gap-8 p-4 md:p-8">
+        <ImportantUpdates />
         <Tabs defaultValue="this-week">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
