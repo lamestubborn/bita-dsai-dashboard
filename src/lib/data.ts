@@ -44,7 +44,7 @@ export const subjects: Subject[] = [
     icon: Filter,
     totalChapters: 10,
     completedChapters: 0,
-    evaluationCriteria: "Quiz 1 (After Module 4) - 8%; Quiz 2 (After Module 8) - 8%; Quiz 3 (After Module 13) - 9%; Assignment 1 (After Module 5) - 20%; Assignment 2 - 20%; Compre Exam - 35%",
+    evaluationCriteria: "Evaluation Criteria: 6 Quizes - 60% (10% each quiz) & 1 Compre Exam - 40% ",
   },
   {
     id: "smi",
@@ -60,7 +60,7 @@ export const subjects: Subject[] = [
     icon: Database,
     totalChapters: 10,
     completedChapters: 0,
-    evaluationCriteria: "Evaluation criteria to be updated.",
+    evaluationCriteria: "Evaluation Criteria: Quiz 1 (After Module 4)- 8%; Quiz 2 (After Module 8)- 8%; Quiz 3 (After Module 13)- 9%; Assignment 1(After Module 5)- 20%; Assignment 2(After Module 9) - 20%; Compre Exam - 35%",
   },
   {
     id: "aap",
@@ -70,6 +70,14 @@ export const subjects: Subject[] = [
     completedChapters: 0,
     evaluationCriteria: "Evaluation criteria to be updated.",
   },
+  {
+    id: 'gen-ai-assistant',
+    name: 'GenAI Assistant',
+    icon: BotMessageSquare,
+    totalChapters: 10,
+    completedChapters: 0,
+    evaluationCriteria: 'This is a helper bot, no evaluation here!',
+  }
 ];
 
 export const currentSessions: Session[] = [
@@ -434,3 +442,5 @@ export const currentSessions: Session[] = [
     recordingUrl: "#",
   },
 ];
+
+    
