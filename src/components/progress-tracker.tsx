@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { subjects as staticSubjects, currentSessions as staticSessions, type Subject } from "@/lib/data";
 import { motion } from 'framer-motion';
@@ -88,8 +88,6 @@ export function ProgressTracker() {
             <motion.div 
               key={subject.id} 
               variants={cardVariants}
-              onMouseEnter={() => setFlippedCard(subject.id)}
-              onMouseLeave={() => setFlippedCard(null)}
             >
               <motion.div
                 className="relative h-full w-full"
@@ -102,6 +100,8 @@ export function ProgressTracker() {
                 <Card 
                   className="group absolute flex h-full w-full flex-col rounded-2xl border-none bg-card shadow-lg backdrop-blur-sm transition-all duration-300"
                   style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
+                  onMouseEnter={() => setFlippedCard(subject.id)}
+                  onMouseLeave={() => setFlippedCard(null)}
                 >
                   <CardHeader className="flex-row items-start justify-between gap-4 space-y-0 pb-4">
                     <div className='flex items-center gap-4'>
@@ -112,14 +112,6 @@ export function ProgressTracker() {
                         {subject.name}
                       </CardTitle>
                     </div>
-                    {subject.slidesUrl && (
-                      <Button asChild variant="ghost" size="icon" className="h-8 w-8 rounded-full flex-shrink-0" onMouseEnter={(e) => e.stopPropagation()}>
-                        <a href={subject.slidesUrl} target="_blank" rel="noopener noreferrer" title="View Slides">
-                          <Presentation className="h-5 w-5" />
-                          <span className="sr-only">View Slides</span>
-                        </a>
-                      </Button>
-                    )}
                   </CardHeader>
                   <CardContent className="flex flex-grow flex-col justify-end">
                     <div className="relative">
@@ -138,20 +130,33 @@ export function ProgressTracker() {
                 <Card 
                   className="absolute flex h-full w-full flex-col rounded-2xl border-none bg-card p-6 shadow-lg backdrop-blur-sm"
                   style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                  onMouseLeave={() => setFlippedCard(null)}
                 >
-                    <CardTitle className="font-headline text-xl mb-4">Evaluation Criteria</CardTitle>
+                    <CardHeader className='p-0'>
+                      <CardTitle className="font-headline text-xl mb-4">Evaluation Criteria</CardTitle>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="absolute right-2 top-2 h-8 w-8 rounded-full"
+                        onClick={() => setFlippedCard(null)}
+                      >
+                        <X className="h-5 w-5" />
+                        <span className="sr-only">Close</span>
+                      </Button>
+                    </CardHeader>
                     <CardContent className="flex-grow overflow-auto p-0">
-                      <p className="text-sm">{subject.evaluationCriteria || 'Evaluation criteria to be updated.'}</p>
+                      <p className="text-sm pt-2">{subject.evaluationCriteria || 'Evaluation criteria to be updated.'}</p>
                     </CardContent>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="absolute right-2 top-2 h-8 w-8 rounded-full"
-                      onClick={() => setFlippedCard(null)}
-                    >
-                      <X className="h-5 w-5" />
-                      <span className="sr-only">Close</span>
-                    </Button>
+                    {subject.slidesUrl && (
+                      <CardFooter className='p-0 pt-4 justify-end'>
+                        <Button asChild variant="secondary" size="sm" className="rounded-full">
+                          <a href={subject.slidesUrl} target="_blank" rel="noopener noreferrer">
+                            <Presentation className="mr-2 h-4 w-4" />
+                            View Slides
+                          </a>
+                        </Button>
+                      </CardFooter>
+                    )}
                 </Card>
               </motion.div>
             </motion.div>
