@@ -10,8 +10,8 @@ export function ImportantUpdates() {
   const updates = [
     {
       id: 'update-1',
-      title: 'Data Pre-processing Graded Quiz 1 Available',
-      description: 'Graded Quiz 1 can be accessed only after completing all materials in Week 1. No deadline has been announced yet, but it is advised to complete it as soon as possible.',
+      title: 'Data Pre-processing Graded Quiz 2 Available',
+      description: 'Graded Quiz 2 is available only after completing all materials in Week 2. No deadline has been announced yet, but it is recommended to complete it at the earliest. Since the Week 1 quiz closed on Monday of Week 2, it is likely that this quiz will close on Monday of Week 3',
     }
   ];
 
