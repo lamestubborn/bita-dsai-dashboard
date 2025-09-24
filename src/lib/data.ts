@@ -1,6 +1,6 @@
 
 import type { LucideIcon } from "lucide-react";
-import { BarChartBig, Cog, Filter, Sigma, Database, Rocket } from "lucide-react";
+import { BarChartBig, Cog, Filter, Sigma, Database, Rocket, FileText } from "lucide-react";
 
 export interface Subject {
   id: string;
@@ -10,6 +10,7 @@ export interface Subject {
   completedChapters: number;
   evaluationCriteria?: string;
   slidesUrl?: string;
+  projectDetailsUrl?: string;
 }
 
 export interface Session {
@@ -71,6 +72,7 @@ export const subjects: Subject[] = [
     totalChapters: 10,
     completedChapters: 0,
     evaluationCriteria: "Evaluation criteria to be updated.",
+    projectDetailsUrl: "https://drive.google.com/file/d/1QtpRoeHrxdNT3gPS9ewkVyns44z_XZ9B/view?usp=sharing",
   },
 ];
 
@@ -436,3 +438,5 @@ export const currentSessions: Session[] = [
     recordingUrl: "#",
   },
 ];
+
+    

@@ -6,7 +6,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Progress } from "@/components/ui/progress";
 import { subjects as staticSubjects, currentSessions as staticSessions, type Subject } from "@/lib/data";
 import { motion } from 'framer-motion';
-import { X, Presentation } from 'lucide-react';
+import { X, Presentation, FileText } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface SubjectProgress extends Subject {
@@ -146,16 +146,24 @@ export function ProgressTracker() {
                     <CardContent className="flex-grow overflow-auto p-0">
                       <p className="text-sm pt-2">{subject.evaluationCriteria || 'Evaluation criteria to be updated.'}</p>
                     </CardContent>
-                    {subject.slidesUrl && (
-                      <CardFooter className='p-0 pt-4 justify-end'>
+                    <CardFooter className='p-0 pt-4 justify-end gap-2'>
+                      {subject.slidesUrl && (
                         <Button asChild variant="secondary" size="sm" className="rounded-full">
                           <a href={subject.slidesUrl} target="_blank" rel="noopener noreferrer">
                             <Presentation className="mr-2 h-4 w-4" />
                             View Slides
                           </a>
                         </Button>
-                      </CardFooter>
-                    )}
+                      )}
+                      {subject.projectDetailsUrl && (
+                        <Button asChild variant="secondary" size="sm" className="rounded-full">
+                          <a href={subject.projectDetailsUrl} target="_blank" rel="noopener noreferrer">
+                            <FileText className="mr-2 h-4 w-4" />
+                            Project Details
+                          </a>
+                        </Button>
+                      )}
+                    </CardFooter>
                 </Card>
               </motion.div>
             </motion.div>
@@ -177,3 +185,5 @@ export function ProgressTracker() {
     </div>
   );
 }
+
+    
