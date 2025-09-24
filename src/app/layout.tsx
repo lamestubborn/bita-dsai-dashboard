@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from '@/components/theme-provider';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'BITS MSc DSAI Dashboard',
@@ -34,6 +35,14 @@ export default function RootLayout({
         </ThemeProvider>
         <SpeedInsights />
         <Analytics />
+        <Script id="force-reload-on-reconnect" strategy="afterInteractive">
+          {`
+            window.addEventListener('online', () => {
+              console.log('Reconnected to the network. Forcing a page reload for latest content.');
+              window.location.reload();
+            });
+          `}
+        </Script>
         </body>
     </html>
   );

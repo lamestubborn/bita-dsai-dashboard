@@ -9,9 +9,9 @@ export function ImportantUpdates() {
   // In a real app, this data would likely come from a CMS or API
   const updates = [
     {
-      id: 'update-2',
-      title: 'Data Pre-processing Graded Quiz 1 Available',
-      description: 'Graded Quiz 1 is available only after completing all materials in Week 2. No deadline has been announced yet, but it is recommended to complete it at the earliest. If you are unable to see it, please attempt practice quizzes again, it will be visble.',
+      id: 'update-1',
+      title: 'Data Pre-processing Graded Quiz 1 & 2 Available',
+      description: 'Graded Quiz 1 & 2 are available only after completing all materials in Week 1 & 2 respectively. No deadline has been announced yet, but it is recommended to complete it at the earliest. If you are unable to see it, please attempt practice quizzes again, it will be visble.',
     },
   ];
 
