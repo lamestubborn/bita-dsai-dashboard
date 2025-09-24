@@ -8,7 +8,6 @@ import { PreviousSessions } from "@/components/previous-sessions";
 import { ProgressTracker } from "@/components/progress-tracker";
 import { CalendarDays, Linkedin, Newspaper, BookOpen } from "lucide-react";
 import { BITSLogo } from '@/components/bits-logo';
-import { ThemeToggle } from './theme-toggle';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from 'framer-motion';
 import { ImportantUpdates } from "./important-updates";
@@ -71,7 +70,6 @@ export function Dashboard() {
                   </Button>
                 </div>
 
-                <ThemeToggle />
               </div>
           </div>
         </TooltipProvider>
