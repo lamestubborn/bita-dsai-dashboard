@@ -10,14 +10,19 @@ export function ImportantUpdates() {
   const updates = [
     {
       id: 'update-1',
-      title: 'Data Pre-processing Graded Quiz 2 Available',
-      description: 'Graded Quiz 2 is available only after completing all materials in Week 2. No deadline has been announced yet, but it is recommended to complete it at the earliest.',
+      title: 'Register Now for Advanced Apex Project 1',
+      titleLink: 'https://forms.gle/DmVirab9zD1dnF6K8',
+      description: `
+        <p>Team registration for Advanced Apex Project 1 is now open. <strong>Deadline: 26/09/2025 (FRI) 10:00AM</strong></p>
+        <p class="mt-2"><strong>To Register:</strong> Click the title above to access the Google Form and submit your team and project details.</p>
+        <p class="mt-2"><strong>To Find Project Details:</strong> Navigate to the 'Progress' tab. Hover over the project section to find and download the PDF with all the information.</p>
+      `,
     },
     {
       id: 'update-2',
       title: 'Data Pre-processing Graded Quiz 1 Available',
-      description: 'Graded Quiz 1 is available only after completing all materials in Week 2. No deadline has been announced yet, but it is recommended to complete it at the earliest. If you are unable to see it, please attemot practice quizzes again, it will be visble',
-    }
+      description: 'Graded Quiz 1 is available only after completing all materials in Week 2. No deadline has been announced yet, but it is recommended to complete it at the earliest. If you are unable to see it, please attempt practice quizzes again, it will be visble.',
+    },
   ];
 
   if (updates.length === 0) {
@@ -37,10 +42,16 @@ export function ImportantUpdates() {
                 <AccordionContent className="pt-4 space-y-4">
                     {updates.map(update => (
                         <div key={update.id}>
-                            <p className="font-semibold">{update.title}</p>
-                            <AlertDescription>
-                                {update.description}
-                            </AlertDescription>
+                            {update.titleLink ? (
+                                <a href={update.titleLink} target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-base">
+                                  {update.title}
+                                </a>
+                            ) : (
+                                <p className="font-semibold">{update.title}</p>
+                            )}
+                            <AlertDescription
+                              dangerouslySetInnerHTML={{ __html: update.description }}
+                            />
                         </div>
                     ))}
                 </AccordionContent>
