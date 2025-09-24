@@ -1,17 +1,21 @@
 
 "use client";
 
-import { Megaphone } from 'lucide-react';
+import { Rocket } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
-export function ImportantUpdates() {
-  // In a real app, this data would likely come from a CMS or API
+export function ApexProjectRegistration() {
   const updates = [
     {
-      id: 'update-2',
-      title: 'Data Pre-processing Graded Quiz 1 Available',
-      description: 'Graded Quiz 1 is available only after completing all materials in Week 2. No deadline has been announced yet, but it is recommended to complete it at the earliest. If you are unable to see it, please attempt practice quizzes again, it will be visble.',
+      id: 'update-1',
+      title: 'Register Now for Advanced Apex Project 1',
+      titleLink: 'https://forms.gle/DmVirab9zD1dnF6K8',
+      description: `
+        <p>Team registration for Advanced Apex Project 1 is now open. <strong>Deadline: 26/09/2025 (FRI) 10:00AM</strong></p>
+        <p class="mt-2"><strong>To Register:</strong> Click the title above to access the Google Form and submit your team and project details.</p>
+        <p class="mt-2"><strong>To Find Project Details:</strong> Navigate to the 'Progress' tab. Hover over the project section to find and download the PDF with all the information.</p>
+      `,
     },
   ];
 
@@ -25,8 +29,8 @@ export function ImportantUpdates() {
             <Alert>
                 <AccordionTrigger className="w-full text-left p-0 hover:no-underline">
                     <div className="flex items-center">
-                        <Megaphone className="h-4 w-4" />
-                        <AlertTitle className="font-bold ml-4">Important Updates</AlertTitle>
+                        <Rocket className="h-4 w-4" />
+                        <AlertTitle className="font-bold ml-4">Apex Project Registration</AlertTitle>
                     </div>
                 </AccordionTrigger>
                 <AccordionContent className="pt-4 space-y-4">

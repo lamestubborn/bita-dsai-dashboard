@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from 'framer-motion';
 import { ImportantUpdates } from "./important-updates";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { ApexProjectRegistration } from "./apex-project-registration";
 
 
 export function Dashboard() {
@@ -76,6 +77,7 @@ export function Dashboard() {
         </TooltipProvider>
       </header>
       <main className="container mx-auto flex flex-1 flex-col gap-8 p-4 md:p-8">
+        <ApexProjectRegistration />
         <ImportantUpdates />
         <Tabs defaultValue="this-week">
           <motion.div
