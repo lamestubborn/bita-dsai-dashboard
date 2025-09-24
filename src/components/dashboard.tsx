@@ -77,8 +77,10 @@ export function Dashboard() {
         </TooltipProvider>
       </header>
       <main className="container mx-auto flex flex-1 flex-col gap-8 p-4 md:p-8">
-        <ApexProjectRegistration />
-        <ImportantUpdates />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <ApexProjectRegistration />
+          <ImportantUpdates />
+        </div>
         <Tabs defaultValue="this-week">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
