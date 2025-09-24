@@ -37,7 +37,7 @@ export function ApexProjectRegistration() {
                     {updates.map(update => (
                         <div key={update.id}>
                             {update.titleLink ? (
-                                <a href={update.titleLink} target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline text-base">
+                                <a href={update.titleLink} target="_blank" rel="noopener noreferrer" className="font-semibold text-base text-red-600 bg-yellow-300 px-2 py-1 rounded-md hover:bg-yellow-400 transition-colors">
                                   {update.title}
                                 </a>
                             ) : (
