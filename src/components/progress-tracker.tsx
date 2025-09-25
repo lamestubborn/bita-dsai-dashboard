@@ -4,14 +4,12 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { subjects as staticSubjects, currentSessions as staticSessions, type Subject } from "@/lib/data";
+import { subjects as staticSubjects, type Subject } from "@/lib/data";
 import { motion } from 'framer-motion';
 import { X, Presentation, FileText } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface SubjectProgress extends Subject {
-  completedSessions: number;
-  totalSessions: number;
   progress: number;
 }
 
@@ -20,43 +18,25 @@ export function ProgressTracker() {
   const [isClient, setIsClient] = useState(false);
   const [flippedCard, setFlippedCard] = useState<string | null>(null);
   const [subjects, setSubjects] = useState(staticSubjects);
-  const [currentSessions, setCurrentSessions] = useState(staticSessions);
-
 
   useEffect(() => {
     setIsClient(true);
-    // In a real app, you might fetch this dynamically
-    // For now, we simulate a dynamic load by just setting it.
-    // import('@/lib/dynamic-data').then(module => {
-    //   setSubjects(module.getSubjects());
-    //   setCurrentSessions(module.getCurrentSessions());
-    // });
+    // In a real app, you might fetch this dynamically.
   }, []);
   
   useEffect(() => {
     if (isClient) {
-      const now = new Date();
       const calculatedProgress = subjects.map((subject) => {
-        const allSubjectSessions = currentSessions.filter(
-          (session) => session.subject === subject.name
-        );
-        const completedSessions = allSubjectSessions.filter(
-          (session) => session.startTime < now
-        ).length;
-
-        const totalSessions = subject.totalChapters || 10;
-        const progress = totalSessions > 0 ? (completedSessions / totalSessions) * 100 : 0;
+        const progress = subject.totalChapters > 0 ? (subject.completedChapters / subject.totalChapters) * 100 : 0;
         
         return {
           ...subject,
-          completedSessions,
-          totalSessions,
           progress,
         };
       });
       setSubjectsWithProgress(calculatedProgress);
     }
-  }, [isClient, subjects, currentSessions]);
+  }, [isClient, subjects]);
 
   const containerVariants = {
     hidden: {},
@@ -121,7 +101,7 @@ export function ProgressTracker() {
                         </span>
                     </div>
                     <p className="mt-2 text-sm text-muted-foreground">
-                      {subject.completedSessions} / {subject.totalSessions} sessions completed
+                      {subject.completedChapters} / {subject.totalChapters} sessions completed
                     </p>
                   </CardContent>
                 </Card>
@@ -185,5 +165,3 @@ export function ProgressTracker() {
     </div>
   );
 }
-
-    

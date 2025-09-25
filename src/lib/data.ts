@@ -29,7 +29,7 @@ export const subjects: Subject[] = [
     name: "Data Visualization and Storytelling",
     icon: BarChartBig,
     totalChapters: 10,
-    completedChapters: 0,
+    completedChapters: 1,
     evaluationCriteria: "Evaluation criteria to be updated.",
   },
   {
@@ -37,7 +37,7 @@ export const subjects: Subject[] = [
     name: "Feature Engineering",
     icon: Cog,
     totalChapters: 10,
-    completedChapters: 0,
+    completedChapters: 1,
     evaluationCriteria: "Evaluation Criteria: 1 Quiz (after 4th Week) - 20% , 1 Coding Assignment (5-7th Week) - 40% & 1 Compre Exam - 40%",
   },
   {
@@ -45,7 +45,7 @@ export const subjects: Subject[] = [
     name: "Data Pre-processing",
     icon: Filter,
     totalChapters: 13,
-    completedChapters: 0,
+    completedChapters: 2,
     evaluationCriteria: "Evaluation Criteria: 6 Quizes - 60% (10% each quiz) & 1 Compre Exam - 40% ",
     slidesUrl: "https://drive.google.com/drive/u/3/folders/1z2k6AZuzAt6vt7AHj9PNUDo-HpY7o7WS",
   },
@@ -54,7 +54,7 @@ export const subjects: Subject[] = [
     name: "Statistical Modelling and Inferencing",
     icon: Sigma,
     totalChapters: 10,
-    completedChapters: 0,
+    completedChapters: 1,
     evaluationCriteria: "Evaluation criteria to be updated.",
   },
   {
@@ -62,7 +62,7 @@ export const subjects: Subject[] = [
     name: "Data Stores and Pipelines",
     icon: Database,
     totalChapters: 13,
-    completedChapters: 0,
+    completedChapters: 1,
     evaluationCriteria: "Evaluation Criteria: Quiz 1 (After Module 4)- 8%; Quiz 2 (After Module 8)- 8%; Quiz 3 (After Module 13)- 9%; Assignment 1(After Module 5)- 20%; Assignment 2(After Module 9) - 20%; Compre Exam - 35%",
   },
   {
@@ -70,7 +70,7 @@ export const subjects: Subject[] = [
     name: "Advanced Apex Project I",
     icon: Rocket,
     totalChapters: 10,
-    completedChapters: 0,
+    completedChapters: 1,
     evaluationCriteria: "Evaluation criteria to be updated.",
     projectDetailsUrl: "https://drive.google.com/file/d/1QtpRoeHrxdNT3gPS9ewkVyns44z_XZ9B/view?usp=sharing",
   },
