@@ -41,7 +41,7 @@ export async function GET() {
     'PRODID:-//BITS MSc DSAI Dashboard//Your Study Companion//EN',
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
-    'X-PUBLISHED-TTL:PT1H',
+    'X-PUBLISHED-TTL:PT1M',
     'X-WR-CALNAME:BITS MSc DSAI Sessions',
     'X-WR-TIMEZONE:Asia/Kolkata', // Set timezone to IST
     'BEGIN:VTIMEZONE',
