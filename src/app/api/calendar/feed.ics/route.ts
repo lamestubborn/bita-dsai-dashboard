@@ -9,14 +9,27 @@ export const dynamic = 'force-dynamic';
 const formatICalDate = (date: Date): string => {
   const pad = (num: number) => num.toString().padStart(2, '0');
   
-  // Use getUTC* methods to prevent timezone conversion by the server environment.
-  // The Date objects from data.ts are already correctly set to a specific point in time (IST).
-  const year = date.getUTCFullYear();
-  const month = pad(date.getUTCMonth() + 1);
-  const day = pad(date.getUTCDate());
-  const hours = pad(date.getUTCHours());
-  const minutes = pad(date.getUTCMinutes());
-  const seconds = pad(date.getUTCSeconds());
+  // Use toLocaleString to get date parts in the correct timezone
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+    timeZone: 'Asia/Kolkata',
+  };
+
+  const formatter = new Intl.DateTimeFormat('en-US', options);
+  const parts = formatter.formatToParts(date);
+
+  const year = parts.find(p => p.type === 'year')?.value || '0000';
+  const month = parts.find(p => p.type === 'month')?.value || '00';
+  const day = parts.find(p => p.type === 'day')?.value || '00';
+  const hours = parts.find(p => p.type === 'hour')?.value || '00';
+  const minutes = parts.find(p => p.type === 'minute')?.value || '00';
+  const seconds = parts.find(p => p.type === 'second')?.value || '00';
   
   return `${year}${month}${day}T${hours}${minutes}${seconds}`;
 };
