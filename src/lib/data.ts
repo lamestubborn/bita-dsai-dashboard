@@ -133,7 +133,7 @@ export const currentSessions: Session[] = [
   },
   {
     id: "session-7",
-    title: "Data Visualization and Storytelling: Week 2 - Live Session",
+    title: "Data Visualization and Storytelling",
     subject: "Data Visualization and Storytelling",
     startTime: new Date("2025-09-26T18:30:00+05:30"),
     endTime: new Date("2025-09-26T19:30:00+05:30"),
@@ -142,7 +142,7 @@ export const currentSessions: Session[] = [
   },
   {
     id: "session-8",
-    title: "Feature Engineering: Week 2 - Live Session",
+    title: "Feature Engineering",
     subject: "Feature Engineering",
     startTime: new Date("2025-09-26T19:40:00+05:30"),
     endTime: new Date("2025-09-26T20:40:00+05:30"),
@@ -151,7 +151,7 @@ export const currentSessions: Session[] = [
   },
   {
     id: "session-9",
-    title: "Statistical Modelling and Inferencing: Week 2 - Live Session",
+    title: "Statistical Modelling and Inferencing",
     subject: "Statistical Modelling and Inferencing",
     startTime: new Date("2025-09-26T20:50:00+05:30"),
     endTime: new Date("2025-09-26T21:50:00+05:30"),
@@ -160,7 +160,7 @@ export const currentSessions: Session[] = [
   },
   {
     id: "session-10",
-    title: "Data Pre-processing: Week 2 - Live Session",
+    title: "Data Pre-processing",
     subject: "Data Pre-processing",
     startTime: new Date("2025-09-27T18:30:00+05:30"),
     endTime: new Date("2025-09-27T19:30:00+05:30"),
@@ -169,7 +169,7 @@ export const currentSessions: Session[] = [
   },
   {
     id: "session-11",
-    title: "Data Stores and Pipelines: Week 2 - Live Session",
+    title: "Data Stores and Pipelines",
     subject: "Data Stores and Pipelines",
     startTime: new Date("2025-09-27T20:50:00+05:30"),
     endTime: new Date("2025-09-27T21:50:00+05:30"),

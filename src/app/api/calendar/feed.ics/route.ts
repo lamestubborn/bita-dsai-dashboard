@@ -1,3 +1,4 @@
+
 import { NextResponse } from 'next/server';
 import { currentSessions } from '@/lib/data';
 
@@ -5,12 +6,14 @@ import { currentSessions } from '@/lib/data';
 const formatICalDate = (date: Date): string => {
   const pad = (num: number) => num.toString().padStart(2, '0');
   
-  const year = date.getFullYear();
-  const month = pad(date.getMonth() + 1);
-  const day = pad(date.getDate());
-  const hours = pad(date.getHours());
-  const minutes = pad(date.getMinutes());
-  const seconds = pad(date.getSeconds());
+  // Use getUTC* methods to prevent timezone conversion by the server environment.
+  // The Date objects from data.ts are already correctly set to a specific point in time (IST).
+  const year = date.getUTCFullYear();
+  const month = pad(date.getUTCMonth() + 1);
+  const day = pad(date.getUTCDate());
+  const hours = pad(date.getUTCHours());
+  const minutes = pad(date.getUTCMinutes());
+  const seconds = pad(date.getUTCSeconds());
   
   return `${year}${month}${day}T${hours}${minutes}${seconds}`;
 };
@@ -38,9 +41,8 @@ export async function GET() {
 
   const calFooter = ['END:VCALENDAR'];
 
-  // All dates in lib/data.ts are parsed as local time.
-  // When deploying to a server, we need to ensure the server's timezone is set correctly,
-  // or handle timezones more explicitly here. For now, we assume local is IST.
+  // The dates in lib/data.ts are parsed with a specific timezone offset (+05:30),
+  // so they represent a correct point in time.
   const events = currentSessions.map(session => {
     const event = [
       'BEGIN:VEVENT',
