@@ -133,29 +133,29 @@ export const currentSessions: Session[] = [
   },
   {
     id: "session-7",
-    title: "Data Visualization and Storytelling",
+    title: "Data Visualization and Storytelling: Week 2 - Live Session",
     subject: "Data Visualization and Storytelling",
     startTime: new Date("2025-09-26T18:30:00"),
     endTime: new Date("2025-09-26T19:30:00"),
-    joinUrl: "#",
+    joinUrl: "https://zoom.us/j/95028876403",
     recordingUrl: "#",
   },
   {
     id: "session-8",
-    title: "Feature Engineering",
+    title: "Feature Engineering: Week 2 - Live Session",
     subject: "Feature Engineering",
-    startTime: new Date("2025-09-26T19:30:00"),
-    endTime: new Date("2025-09-26T20:30:00"),
-    joinUrl: "#",
+    startTime: new Date("2025-09-26T19:40:00"),
+    endTime: new Date("2025-09-26T20:40:00"),
+    joinUrl: "https://zoom.us/j/97724996046",
     recordingUrl: "#",
   },
   {
     id: "session-9",
-    title: "Statistical Modelling and Inferencing",
+    title: "Statistical Modelling and Inferencing: Week 2 - Live Session",
     subject: "Statistical Modelling and Inferencing",
-    startTime: new Date("2025-09-26T20:30:00"),
-    endTime: new Date("2025-09-26T21:30:00"),
-    joinUrl: "#",
+    startTime: new Date("2025-09-26T20:50:00"),
+    endTime: new Date("2025-09-26T21:50:00"),
+    joinUrl: "https://zoom.us/j/96848846105",
     recordingUrl: "#",
   },
   {
@@ -439,4 +439,5 @@ export const currentSessions: Session[] = [
   },
 ];
 
+    
     
