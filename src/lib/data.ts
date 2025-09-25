@@ -349,7 +349,7 @@ export const currentSessions: Session[] = [
   },
   {
     id: "session-31",
-_title: "Data Stores and Pipelines",
+    title: "Data Stores and Pipelines",
     subject: "Data Stores and Pipelines",
     startTime: new Date("2025-10-25T19:30:00+05:30"),
     endTime: new Date("2025-10-25T20:30:00+05:30"),

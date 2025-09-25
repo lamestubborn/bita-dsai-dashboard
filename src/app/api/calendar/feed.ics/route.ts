@@ -2,6 +2,9 @@
 import { NextResponse } from 'next/server';
 import { currentSessions } from '@/lib/data';
 
+// Force the route to be dynamic
+export const dynamic = 'force-dynamic';
+
 // Function to format a date for iCalendar in a specific timezone, e.g., 20240101T120000
 const formatICalDate = (date: Date): string => {
   const pad = (num: number) => num.toString().padStart(2, '0');
