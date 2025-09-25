@@ -44,7 +44,7 @@ export function ProgressTracker() {
           (session) => session.startTime < now
         ).length;
 
-        const totalSessions = allSubjectSessions.length > 0 ? allSubjectSessions.length : subject.totalChapters || 10;
+        const totalSessions = subject.totalChapters || 10;
         const progress = totalSessions > 0 ? (completedSessions / totalSessions) * 100 : 0;
         
         return {
