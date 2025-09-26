@@ -45,7 +45,7 @@ export const subjects: Subject[] = [
     name: "Data Pre-processing",
     icon: Filter,
     totalChapters: 8,
-    completedChapters: 1,
+    completedChapters: 2,
     evaluationCriteria: "Evaluation Criteria: 6 Quizes - 60% (10% each quiz) & 1 Compre Exam - 40% ",
     slidesUrl: "https://drive.google.com/drive/u/3/folders/1z2k6AZuzAt6vt7AHj9PNUDo-HpY7o7WS",
   },
@@ -55,7 +55,7 @@ export const subjects: Subject[] = [
     icon: Sigma,
     totalChapters: 13,
     completedChapters: 1,
-    evaluationCriteria: "Evaluation criteria to be updated.",
+    evaluationCriteria: "3 Quizzes (45%; W3, W6, W11), Assignment (20%; W10), Trimester Exam (35%)",
   },
   {
     id: "dsp",
