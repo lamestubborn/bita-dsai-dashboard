@@ -160,7 +160,7 @@ export const currentSessions: Session[] = [
   },
   {
     id: "session-10",
-    title: "Data Pre-processing",
+    title: "Data Pre-processing: Week 2 - Live Session",
     subject: "Data Pre-processing",
     startTime: new Date("2025-09-27T18:30:00+05:30"),
     endTime: new Date("2025-09-27T19:30:00+05:30"),
@@ -168,8 +168,17 @@ export const currentSessions: Session[] = [
     recordingUrl: "#",
   },
   {
+    id: "session-41",
+    title: "Advanced Apex Project I",
+    subject: "Advanced Apex Project I",
+    startTime: new Date("2025-09-27T19:40:00+05:30"),
+    endTime: new Date("2025-09-27T20:40:00+05:30"),
+    joinUrl: "https://zoom.us/j/94514953897",
+    recordingUrl: "#",
+  },
+  {
     id: "session-11",
-    title: "Data Stores and Pipelines",
+    title: "Data Stores and Pipelines: Week 2 - Live Session",
     subject: "Data Stores and Pipelines",
     startTime: new Date("2025-09-27T20:50:00+05:30"),
     endTime: new Date("2025-09-27T21:50:00+05:30"),
