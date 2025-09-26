@@ -69,7 +69,7 @@ export const subjects: Subject[] = [
     id: "aap",
     name: "Advanced Apex Project I",
     icon: Rocket,
-    totalChapters: 1,
+    totalChapters: 2,
     completedChapters: 1,
     evaluationCriteria: "Evaluation criteria to be updated.",
     projectDetailsUrl: "https://drive.google.com/file/d/1QtpRoeHrxdNT3gPS9ewkVyns44z_XZ9B/view?usp=sharing",
@@ -160,7 +160,7 @@ export const currentSessions: Session[] = [
   },
   {
     id: "session-10",
-    title: "Data Pre-processing: Week 2 - Live Session",
+    title: "Data Pre-processing",
     subject: "Data Pre-processing",
     startTime: new Date("2025-09-27T18:30:00+05:30"),
     endTime: new Date("2025-09-27T19:30:00+05:30"),
@@ -178,7 +178,7 @@ export const currentSessions: Session[] = [
   },
   {
     id: "session-11",
-    title: "Data Stores and Pipelines: Week 2 - Live Session",
+    title: "Data Stores and Pipelines",
     subject: "Data Stores and Pipelines",
     startTime: new Date("2025-09-27T20:50:00+05:30"),
     endTime: new Date("2025-09-27T21:50:00+05:30"),
