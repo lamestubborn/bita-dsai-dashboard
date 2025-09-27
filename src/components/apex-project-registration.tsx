@@ -9,11 +9,10 @@ export function ApexProjectRegistration() {
   const updates = [
     {
       id: 'update-1',
-      title: 'Register Now for Advanced Apex Project 1',
-      titleLink: 'https://forms.gle/DmVirab9zD1dnF6K8',
+      title: 'Registration Closed',
+      titleLink: '',
       description: `
-        <p>Team registration for Advanced Apex Project 1 is now open. <strong>Deadline: 26/09/2025 (FRI) 10:00AM</strong></p>
-        <p class="mt-2"><strong>To Register:</strong> Click the title above to access the Google Form and submit your team and project details.</p>
+        <p>Team registration for Advanced Apex Project 1 is now closed. The deadline was 26/09/2025 (FRI) 10:00AM.</p>
         <p class="mt-2"><strong>To Find Project Details:</strong> Navigate to the 'Progress' tab. Hover over the project section to find and download the PDF with all the information.</p>
       `,
     },
@@ -41,7 +40,7 @@ export function ApexProjectRegistration() {
                                   {update.title}
                                 </a>
                             ) : (
-                                <p className="font-semibold">{update.title}</p>
+                                <p className="font-semibold text-base">{update.title}</p>
                             )}
                             <AlertDescription
                               dangerouslySetInnerHTML={{ __html: update.description }}
