@@ -14,7 +14,6 @@ import { ImportantUpdates } from "./important-updates";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { ApexProjectRegistration } from "./apex-project-registration";
 import { Chatbot } from "./chatbot";
-import { ThemeSwitcher } from "./theme-switcher";
 
 
 export function Dashboard() {
@@ -26,7 +25,6 @@ export function Dashboard() {
               <BITSLogo className="h-10 w-auto" />
               
               <div className="flex items-center gap-2">
-                <ThemeSwitcher />
                 {/* Mobile Icon Buttons */}
                 <div className="flex md:hidden items-center gap-1">
                   <Tooltip>
