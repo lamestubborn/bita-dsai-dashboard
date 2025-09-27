@@ -52,7 +52,7 @@ User's question:
 "{{{query}}}"`,
 });
 
-const chatFlow = ai.defineFlow(
+export const chatFlow = ai.defineFlow(
   {
     name: 'chatFlow',
     inputSchema: ChatInputSchema,

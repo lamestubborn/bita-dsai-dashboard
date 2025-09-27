@@ -1,6 +1,8 @@
-import {genkitNext} from '@genkit-ai/next';
+import {createNextApiRequest} from '@genkit-ai/next';
 import {chatFlow} from '@/ai/flows/chat-flow';
 
-export const {POST} = genkitNext({
+const {POST} = createNextApiRequest({
   flows: [chatFlow],
 });
+
+export {POST};
