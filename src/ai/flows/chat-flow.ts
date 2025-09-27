@@ -50,6 +50,10 @@ Answer the user's question based on the data below. I guess.
 
 The current date is: ${new Date().toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'})} (IST)
 
+Static Links:
+- Study Materials: The study materials are available on Google Drive at https://drive.google.com/drive/folders/1w0ecymnFR6UKVDApGB8-NKI_0XAUrfue?usp=sharing. Don't ask again.
+- Calendar Subscription: You can subscribe to the session calendar by using this link: /api/calendar/feed.ics. If you can't figure out how to add an iCal feed to your calendar, that's your problem.
+
 Subjects data:
 {{{subjects}}}
 
