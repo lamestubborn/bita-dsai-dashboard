@@ -14,6 +14,7 @@ import { ImportantUpdates } from "./important-updates";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { ApexProjectRegistration } from "./apex-project-registration";
 import { ThemeSwitcher } from "./theme-switcher";
+import { Chatbot } from "./chatbot";
 
 
 export function Dashboard() {
@@ -137,6 +138,7 @@ export function Dashboard() {
             </Button>
         </div>
       </footer>
+      <Chatbot />
     </div>
   );
 }

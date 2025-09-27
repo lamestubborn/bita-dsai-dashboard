@@ -2,7 +2,5 @@
 
 import { currentSessions, subjects } from './data';
 
-export const dynamic = 'force-dynamic';
-
-export const getCurrentSessions = () => currentSessions;
-export const getSubjects = () => subjects;
+export const getCurrentSessions = async () => currentSessions;
+export const getSubjects = async () => subjects;

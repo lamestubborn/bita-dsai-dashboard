@@ -29,7 +29,7 @@ export const subjects: Subject[] = [
     name: "Data Visualization and Storytelling",
     icon: BarChartBig,
     totalChapters: 13,
-    completedChapters: 1,
+    completedChapters: 2,
     evaluationCriteria: "Evaluation criteria to be updated.",
   },
   {
@@ -37,7 +37,7 @@ export const subjects: Subject[] = [
     name: "Feature Engineering",
     icon: Cog,
     totalChapters: 8,
-    completedChapters: 1,
+    completedChapters: 2,
     evaluationCriteria: "1 Quiz (20%; W4) , Assignment (40%; W5-W7) & Trimester Exam (40%)",
   },
   {
@@ -45,7 +45,7 @@ export const subjects: Subject[] = [
     name: "Data Pre-processing",
     icon: Filter,
     totalChapters: 8,
-    completedChapters: 1,
+    completedChapters: 2,
     evaluationCriteria: "6 Quizes - 60% (10% each quiz) & Trimester Exam - 40% ",
     slidesUrl: "https://drive.google.com/drive/u/3/folders/1z2k6AZuzAt6vt7AHj9PNUDo-HpY7o7WS",
   },
@@ -54,7 +54,7 @@ export const subjects: Subject[] = [
     name: "Statistical Modelling and Inferencing",
     icon: Sigma,
     totalChapters: 13,
-    completedChapters: 1,
+    completedChapters: 2,
     evaluationCriteria: "3 Quizzes (45%; W3, W6, W11), Assignment (20%; W10), Trimester Exam (35%)",
   },
   {
@@ -62,7 +62,7 @@ export const subjects: Subject[] = [
     name: "Data Stores and Pipelines",
     icon: Database,
     totalChapters: 13,
-    completedChapters: 1,
+    completedChapters: 2,
     evaluationCriteria: "3 Quizzes (25%; W4, W8, W13), 2 Assignmens (40%; W5, W9),Trimester Exam - 35%",
   },
   {
@@ -70,7 +70,7 @@ export const subjects: Subject[] = [
     name: "Advanced Apex Project I",
     icon: Rocket,
     totalChapters: 2,
-    completedChapters: 1,
+    completedChapters: 2,
     evaluationCriteria: "Evaluation criteria to be updated.",
     projectDetailsUrl: "https://drive.google.com/drive/folders/1xhZZmYmC2vTwnKvaJj0MQJxnk3j1i5wz?usp=sharing",
   },
