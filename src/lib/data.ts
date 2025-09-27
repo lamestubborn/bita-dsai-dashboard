@@ -1,11 +1,10 @@
 
 import type { LucideIcon } from "lucide-react";
-import { BarChartBig, Cog, Filter, Sigma, Database, Rocket, FileText } from "lucide-react";
 
 export interface Subject {
   id: string;
   name: string;
-  icon: LucideIcon;
+  icon: string; // Changed from LucideIcon
   totalChapters: number;
   completedChapters: number;
   evaluationCriteria?: string;
@@ -27,7 +26,7 @@ export const subjects: Subject[] = [
   {
     id: "dvs",
     name: "Data Visualization and Storytelling",
-    icon: BarChartBig,
+    icon: "BarChartBig",
     totalChapters: 13,
     completedChapters: 2,
     evaluationCriteria: "Evaluation criteria to be updated.",
@@ -35,7 +34,7 @@ export const subjects: Subject[] = [
   {
     id: "fe",
     name: "Feature Engineering",
-    icon: Cog,
+    icon: "Cog",
     totalChapters: 8,
     completedChapters: 2,
     evaluationCriteria: "1 Quiz (20%; W4) , Assignment (40%; W5-W7) & Trimester Exam (40%)",
@@ -43,7 +42,7 @@ export const subjects: Subject[] = [
   {
     id: "dp",
     name: "Data Pre-processing",
-    icon: Filter,
+    icon: "Filter",
     totalChapters: 8,
     completedChapters: 2,
     evaluationCriteria: "6 Quizes - 60% (10% each quiz) & Trimester Exam - 40% ",
@@ -52,7 +51,7 @@ export const subjects: Subject[] = [
   {
     id: "smi",
     name: "Statistical Modelling and Inferencing",
-    icon: Sigma,
+    icon: "Sigma",
     totalChapters: 13,
     completedChapters: 2,
     evaluationCriteria: "3 Quizzes (45%; W3, W6, W11), Assignment (20%; W10), Trimester Exam (35%)",
@@ -60,7 +59,7 @@ export const subjects: Subject[] = [
   {
     id: "dsp",
     name: "Data Stores and Pipelines",
-    icon: Database,
+    icon: "Database",
     totalChapters: 13,
     completedChapters: 2,
     evaluationCriteria: "3 Quizzes (25%; W4, W8, W13), 2 Assignmens (40%; W5, W9),Trimester Exam - 35%",
@@ -68,7 +67,7 @@ export const subjects: Subject[] = [
   {
     id: "aap",
     name: "Advanced Apex Project I",
-    icon: Rocket,
+    icon: "Rocket",
     totalChapters: 2,
     completedChapters: 2,
     evaluationCriteria: "Evaluation criteria to be updated.",

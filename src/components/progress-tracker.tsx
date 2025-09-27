@@ -8,6 +8,7 @@ import { type Subject } from "@/lib/data";
 import { motion } from 'framer-motion';
 import { X, Presentation, FileText } from 'lucide-react';
 import { Button } from './ui/button';
+import { Icon } from './icons';
 
 interface SubjectProgress extends Subject {
   progress: number;
@@ -85,7 +86,7 @@ export function ProgressTracker() {
                   <CardHeader className="flex-row items-start justify-between gap-4 space-y-0 pb-4">
                     <div className='flex items-center gap-4'>
                       <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10 text-accent">
-                        <subject.icon className="h-7 w-7" />
+                        <Icon name={subject.icon} className="h-7 w-7" />
                       </div>
                       <CardTitle className="font-headline text-xl">
                         {subject.name}
