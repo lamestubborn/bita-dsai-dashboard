@@ -13,7 +13,6 @@ import { motion } from 'framer-motion';
 import { ImportantUpdates } from "./important-updates";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { ApexProjectRegistration } from "./apex-project-registration";
-import { ThemeSwitcher } from "./theme-switcher";
 import { Chatbot } from "./chatbot";
 
 
@@ -71,7 +70,6 @@ export function Dashboard() {
                       </a>
                   </Button>
                 </div>
-                <ThemeSwitcher />
               </div>
           </div>
         </TooltipProvider>
