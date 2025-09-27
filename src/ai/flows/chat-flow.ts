@@ -36,6 +36,7 @@ const prompt = ai.definePrompt({
   },
   output: {schema: ChatOutputSchema},
   prompt: `You are a helpful assistant for a student dashboard. Your goal is to answer questions based on the provided data about subjects and class sessions. Be concise and friendly.
+When providing links, please use Markdown format, like [link text](URL).
 
 Answer the user's question based on the data below.
 

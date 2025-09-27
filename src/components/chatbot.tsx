@@ -8,6 +8,7 @@ import { Input } from './ui/input';
 import { Card } from './ui/card';
 import { chat } from '@/ai/flows/chat-flow';
 import { BITSLogo } from './bits-logo';
+import ReactMarkdown from 'react-markdown';
 
 interface Message {
   role: 'user' | 'bot';
@@ -88,13 +89,19 @@ export function Chatbot() {
                       }`}
                     >
                       <div
-                        className={`max-w-[80%] p-3 rounded-xl ${
+                        className={`prose prose-sm max-w-[80%] p-3 rounded-xl dark:prose-invert prose-p:my-0 prose-a:text-accent-foreground prose-a:underline hover:prose-a:no-underline ${
                           message.role === 'user'
                             ? 'bg-primary text-primary-foreground'
                             : 'bg-muted text-muted-foreground'
                         }`}
                       >
-                        <p className="text-sm whitespace-pre-wrap">{message.text}</p>
+                         <ReactMarkdown
+                            components={{
+                              a: ({node, ...props}) => <a {...props} target="_blank" rel="noopener noreferrer" />
+                            }}
+                         >
+                           {message.text}
+                         </ReactMarkdown>
                       </div>
                     </div>
                   ))}
