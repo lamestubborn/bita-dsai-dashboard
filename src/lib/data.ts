@@ -45,7 +45,7 @@ export const subjects: Subject[] = [
     name: "Data Pre-processing",
     icon: Filter,
     totalChapters: 8,
-    completedChapters: 2,
+    completedChapters: 1,
     evaluationCriteria: "6 Quizes - 60% (10% each quiz) & Trimester Exam - 40% ",
     slidesUrl: "https://drive.google.com/drive/u/3/folders/1z2k6AZuzAt6vt7AHj9PNUDo-HpY7o7WS",
   },
@@ -72,7 +72,7 @@ export const subjects: Subject[] = [
     totalChapters: 2,
     completedChapters: 1,
     evaluationCriteria: "Evaluation criteria to be updated.",
-    projectDetailsUrl: "https://drive.google.com/file/d/1QtpRoeHrxdNT3gPS9ewkVyns44z_XZ9B/view?usp=sharing",
+    projectDetailsUrl: "https://drive.google.com/drive/folders/1xhZZmYmC2vTwnKvaJj0MQJxnk3j1i5wz?usp=sharing",
   },
 ];
 
@@ -343,7 +343,7 @@ export const currentSessions: Session[] = [
     title: "Statistical Modelling and Inferencing",
     subject: "Statistical Modelling and Inferencing",
     startTime: new Date("2025-10-24T20:30:00+05:30"),
-    endTime: new Date("2025-10-24T21:30:00+05:30"),
+    endTime: new Date("2025-10-24T21:50:00+05:30"),
     joinUrl: "#",
     recordingUrl: "#",
   },
@@ -447,3 +447,5 @@ export const currentSessions: Session[] = [
     recordingUrl: "#",
   },
 ];
+
+    
