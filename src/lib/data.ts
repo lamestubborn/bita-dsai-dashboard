@@ -22,6 +22,40 @@ export interface Session {
   recordingUrl: string;
 }
 
+export interface ImportantUpdate {
+  id: string;
+  title: string;
+  description: string;
+  titleLink?: string;
+}
+
+export interface ApexUpdate {
+  id: string;
+  title: string;
+  description: string;
+  titleLink?: string;
+}
+
+export const importantUpdates: ImportantUpdate[] = [
+  {
+    id: 'update-1',
+    title: 'Data Pre-processing Graded Quiz 1 & 2 Available',
+    description: 'Graded Quiz 1 & 2 are available only after completing all materials in Week 1 & 2 respectively. No deadline has been announced yet, but it is recommended to complete it at the earliest. If you are unable to see it, please attempt practice quizzes again, it will be visble.',
+  },
+];
+
+export const apexUpdates: ApexUpdate[] = [
+  {
+    id: 'update-1',
+    title: 'Registration Closed',
+    titleLink: '',
+    description: `
+      <p>Team registration for Advanced Apex Project 1 is now closed. The deadline was 26/09/2025 (FRI) 10:00AM.</p>
+      <p class="mt-2"><strong>To Find Project Details:</strong> Navigate to the 'Progress' tab. Hover over the project section to find and download the PDF with all the information.</p>
+    `,
+  },
+];
+
 export const subjects: Subject[] = [
   {
     id: "dvs",

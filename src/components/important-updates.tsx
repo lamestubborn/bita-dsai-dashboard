@@ -1,19 +1,25 @@
 
 "use client";
 
+import { useState, useEffect } from 'react';
 import { Megaphone } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import type { ImportantUpdate } from '@/lib/data';
 
 export function ImportantUpdates() {
-  // In a real app, this data would likely come from a CMS or API
-  const updates = [
-    {
-      id: 'update-1',
-      title: 'Data Pre-processing Graded Quiz 1 & 2 Available',
-      description: 'Graded Quiz 1 & 2 are available only after completing all materials in Week 1 & 2 respectively. No deadline has been announced yet, but it is recommended to complete it at the earliest. If you are unable to see it, please attempt practice quizzes again, it will be visble.',
-    },
-  ];
+  const [updates, setUpdates] = useState<ImportantUpdate[]>([]);
+
+  useEffect(() => {
+    const fetchUpdates = async () => {
+      const { getImportantUpdates } = await import('@/lib/dynamic-data');
+      const importantUpdates = await getImportantUpdates();
+      setUpdates(importantUpdates);
+    };
+
+    fetchUpdates();
+  }, []);
+
 
   if (updates.length === 0) {
     return null;

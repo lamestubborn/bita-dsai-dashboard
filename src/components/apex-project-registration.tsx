@@ -1,22 +1,25 @@
 
 "use client";
 
+import { useState, useEffect } from 'react';
 import { Rocket } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import type { ApexUpdate } from '@/lib/data';
 
 export function ApexProjectRegistration() {
-  const updates = [
-    {
-      id: 'update-1',
-      title: 'Registration Closed',
-      titleLink: '',
-      description: `
-        <p>Team registration for Advanced Apex Project 1 is now closed. The deadline was 26/09/2025 (FRI) 10:00AM.</p>
-        <p class="mt-2"><strong>To Find Project Details:</strong> Navigate to the 'Progress' tab. Hover over the project section to find and download the PDF with all the information.</p>
-      `,
-    },
-  ];
+  const [updates, setUpdates] = useState<ApexUpdate[]>([]);
+  
+  useEffect(() => {
+    const fetchUpdates = async () => {
+      const { getApexUpdates } = await import('@/lib/dynamic-data');
+      const apexUpdates = await getApexUpdates();
+      setUpdates(apexUpdates);
+    };
+
+    fetchUpdates();
+  }, []);
+
 
   if (updates.length === 0) {
     return null;
