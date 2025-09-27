@@ -35,12 +35,14 @@ export function Chatbot() {
 
     const userMessage: Message = { role: 'user', text: inputValue };
     setMessages((prev) => [...prev, userMessage]);
+    console.log(`User: ${userMessage.text}`);
     setInputValue('');
     setIsLoading(true);
 
     try {
       const response = await chat({ query: inputValue });
       const botMessage: Message = { role: 'bot', text: response.answer };
+      console.log(`Bot: ${botMessage.text}`);
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error('Error fetching chat response:', error);
