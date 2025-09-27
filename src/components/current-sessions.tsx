@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Clock } from "lucide-react";
-import { currentSessions as staticSessions } from "@/lib/data";
 import { format, startOfWeek, endOfWeek } from "date-fns";
 import type { Session } from "@/lib/data";
 import { motion } from 'framer-motion';
@@ -13,19 +12,13 @@ import { motion } from 'framer-motion';
 export function CurrentSessions() {
   const [upcomingSessions, setUpcomingSessions] = useState<Session[]>([]);
   const [isClient, setIsClient] = useState(false);
-  const [currentSessions, setCurrentSessions] = useState(staticSessions);
 
   useEffect(() => {
     setIsClient(true);
-    // In a real app, you might fetch this dynamically
-    // For now, we simulate a dynamic load by just setting it.
-    // import('@/lib/dynamic-data').then(module => {
-    //   setCurrentSessions(module.getCurrentSessions());
-    // });
-  }, []);
-
-  useEffect(() => {
-    if (isClient) {
+    const fetchSessions = async () => {
+      const { getCurrentSessions } = await import('@/lib/dynamic-data');
+      const currentSessions = await getCurrentSessions();
+      
       const now = new Date();
       const weekStart = startOfWeek(now, { weekStartsOn: 0 });
       const weekEnd = endOfWeek(now, { weekStartsOn: 0 });
@@ -39,8 +32,10 @@ export function CurrentSessions() {
         .sort((a, b) => a.startTime.getTime() - b.startTime.getTime());
       
       setUpcomingSessions(filteredSessions);
-    }
-  }, [isClient, currentSessions]);
+    };
+
+    fetchSessions();
+  }, []);
 
   const containerVariants = {
     hidden: {},

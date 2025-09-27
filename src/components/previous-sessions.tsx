@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { Card, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Video } from "lucide-react";
-import { currentSessions as staticSessions } from "@/lib/data";
 import { format, differenceInCalendarWeeks } from "date-fns";
 import type { Session } from "@/lib/data";
 import { motion } from 'framer-motion';
@@ -18,22 +17,18 @@ type GroupedSessions = {
 export function PreviousSessions() {
   const [groupedSessions, setGroupedSessions] = useState<GroupedSessions>({});
   const [isClient, setIsClient] = useState(false);
-  const [currentSessions, setCurrentSessions] = useState(staticSessions);
-
 
   useEffect(() => {
     setIsClient(true);
-    // In a real app, you might fetch this dynamically
-    // For now, we simulate a dynamic load by just setting it.
-    // import('@/lib/dynamic-data').then(module => {
-    //   setCurrentSessions(module.getCurrentSessions());
-    // });
-  }, []);
 
-  useEffect(() => {
-    if (isClient) {
+    const fetchSessions = async () => {
+      const { getCurrentSessions } = await import('@/lib/dynamic-data');
+      const currentSessions = await getCurrentSessions();
+
       const now = new Date();
       const allSessionStartTimes = currentSessions.map(s => s.startTime.getTime());
+      if (allSessionStartTimes.length === 0) return;
+
       const courseStartDate = new Date(Math.min(...allSessionStartTimes));
 
       const filteredSessions = currentSessions
@@ -51,8 +46,10 @@ export function PreviousSessions() {
       }, {});
 
       setGroupedSessions(sessionsByWeek);
-    }
-  }, [isClient, currentSessions]);
+    };
+
+    fetchSessions();
+  }, []);
 
   const containerVariants = {
     hidden: {},

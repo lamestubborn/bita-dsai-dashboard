@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { subjects as staticSubjects, type Subject } from "@/lib/data";
+import { type Subject } from "@/lib/data";
 import { motion } from 'framer-motion';
 import { X, Presentation, FileText } from 'lucide-react';
 import { Button } from './ui/button';
@@ -17,15 +17,12 @@ export function ProgressTracker() {
   const [subjectsWithProgress, setSubjectsWithProgress] = useState<SubjectProgress[]>([]);
   const [isClient, setIsClient] = useState(false);
   const [flippedCard, setFlippedCard] = useState<string | null>(null);
-  const [subjects, setSubjects] = useState(staticSubjects);
 
   useEffect(() => {
     setIsClient(true);
-    // In a real app, you might fetch this dynamically.
-  }, []);
-  
-  useEffect(() => {
-    if (isClient) {
+    const fetchSubjects = async () => {
+      const { getSubjects } = await import('@/lib/dynamic-data');
+      const subjects = await getSubjects();
       const calculatedProgress = subjects.map((subject) => {
         const progress = subject.totalChapters > 0 ? (subject.completedChapters / subject.totalChapters) * 100 : 0;
         
@@ -35,8 +32,10 @@ export function ProgressTracker() {
         };
       });
       setSubjectsWithProgress(calculatedProgress);
-    }
-  }, [isClient, subjects]);
+    };
+
+    fetchSubjects();
+  }, []);
 
   const containerVariants = {
     hidden: {},
@@ -148,7 +147,7 @@ export function ProgressTracker() {
               </motion.div>
             </motion.div>
           )) : (
-             [...Array(subjects.length)].map((_, i) => (
+             [...Array(6)].map((_, i) => (
                 <Card key={i} className="animate-pulse rounded-2xl border-none bg-muted/50 shadow-lg h-[190px]">
                   <CardHeader className="flex-row items-center gap-4 space-y-0 pb-4">
                      <div className="h-14 w-14 rounded-xl bg-muted" />
