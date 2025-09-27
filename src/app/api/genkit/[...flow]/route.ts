@@ -1,8 +1,10 @@
-import {createNextApiRequest} from '@genkit-ai/next';
-import {chatFlow} from '@/ai/flows/chat-flow';
+import { createGenkitHandler } from '@genkit-ai/next'
+import { chatFlow } from '@/ai/flows/chat-flow'
 
-const {POST} = createNextApiRequest({
-  flows: [chatFlow],
-});
+// If you’re using the Next.js App Router
+export const runtime = 'edge' // or 'nodejs', depending on your deployment
 
-export {POST};
+export async function POST(req: Request) {
+  const handler = createGenkitHandler({ flow: chatFlow })
+  return handler(req)
+}
