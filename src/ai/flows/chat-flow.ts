@@ -77,9 +77,11 @@ export const chatFlow = ai.defineFlow(
     outputSchema: ChatOutputSchema,
   },
   async (input) => {
+    console.log(`[Chatbot] User query: ${input.query}`);
+
     const subjects = await getSubjects();
     const sessions = await getCurrentSessions();
-    const importantUpdates = await getImportantUpdates();
+    const importantUpdates = await getImportantupdates();
     const apexUpdates = await getApexUpdates();
 
     const result = await prompt({
@@ -93,6 +95,9 @@ export const chatFlow = ai.defineFlow(
       importantUpdates: JSON.stringify(importantUpdates, null, 2),
       apexUpdates: JSON.stringify(apexUpdates, null, 2),
     });
+
+    console.log(`[Chatbot] Bot answer: ${result.output!.answer}`);
+    
     return result.output!;
   }
 );
