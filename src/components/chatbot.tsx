@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
@@ -74,12 +75,12 @@ export function Chatbot() {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="fixed bottom-24 right-6 z-50"
           >
-            <Card className="w-[350px] h-[500px] flex flex-col shadow-2xl rounded-2xl overflow-hidden">
+            <Card className="w-[350px] h-[500px] flex flex-col shadow-2xl rounded-2xl overflow-hidden bg-background">
               <div className="p-4 bg-muted/50 border-b flex items-center gap-3">
                 <BITSLogo className="w-8 h-8" />
                 <h3 className="font-headline text-lg font-semibold">Study Assistant</h3>
               </div>
-              <div className="flex-1 p-4 overflow-y-auto bg-background/50">
+              <div className="flex-1 p-4 overflow-y-auto bg-background">
                 <div className="space-y-4">
                   {messages.map((message, index) => (
                     <div
