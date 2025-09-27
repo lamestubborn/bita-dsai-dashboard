@@ -91,7 +91,7 @@ export function Chatbot() {
                       <div
                         className={`prose prose-sm max-w-[80%] p-3 rounded-xl dark:prose-invert prose-p:my-0 prose-a:text-accent-foreground prose-a:underline hover:prose-a:no-underline ${
                           message.role === 'user'
-                            ? 'bg-primary text-primary-foreground'
+                            ? 'bg-accent text-accent-foreground'
                             : 'bg-muted text-muted-foreground'
                         }`}
                       >
@@ -126,7 +126,7 @@ export function Chatbot() {
                     className="flex-1"
                     disabled={isLoading}
                   />
-                  <Button type="submit" size="icon" disabled={isLoading}>
+                  <Button type="submit" size="icon" disabled={isLoading} variant="secondary" className="bg-accent text-accent-foreground">
                     <CornerDownLeft />
                   </Button>
                 </form>
