@@ -11,6 +11,7 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'zod';
 import {getSubjects, getCurrentSessions, getImportantUpdates, getApexUpdates} from '@/lib/dynamic-data';
+import { appendToSheet } from '@/lib/sheets';
 
 const ChatInputSchema = z.object({
   query: z.string().describe('The user question'),
@@ -81,7 +82,7 @@ export const chatFlow = ai.defineFlow(
 
     const subjects = await getSubjects();
     const sessions = await getCurrentSessions();
-    const importantUpdates = await getImportantupdates();
+    const importantUpdates = await getImportantUpdates();
     const apexUpdates = await getApexUpdates();
 
     const result = await prompt({
@@ -95,9 +96,17 @@ export const chatFlow = ai.defineFlow(
       importantUpdates: JSON.stringify(importantUpdates, null, 2),
       apexUpdates: JSON.stringify(apexUpdates, null, 2),
     });
-
-    console.log(`[Chatbot] Bot answer: ${result.output!.answer}`);
     
-    return result.output!;
+    const answer = result.output!.answer;
+    console.log(`[Chatbot] Bot answer: ${answer}`);
+    
+    // Log the conversation to Google Sheets
+    try {
+      await appendToSheet([new Date(), input.query, answer]);
+    } catch (e) {
+        console.error("Failed to write to google sheet", e);
+    }
+    
+    return { answer };
   }
 );
