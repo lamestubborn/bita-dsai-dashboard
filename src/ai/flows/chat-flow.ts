@@ -38,9 +38,11 @@ const prompt = ai.definePrompt({
   prompt: `You are a helpful assistant for a student dashboard. Your goal is to answer questions based on the provided data about subjects and class sessions. Be concise and friendly.
 When providing links, please use Markdown format, like [link text](URL).
 
+IMPORTANT: All session times are in Indian Standard Time (IST), which is UTC+05:30. When answering any time-related questions, always refer to the time in IST.
+
 Answer the user's question based on the data below.
 
-The current date is: ${new Date().toDateString()}
+The current date is: ${new Date().toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'})} (IST)
 
 Subjects data:
 {{{subjects}}}
