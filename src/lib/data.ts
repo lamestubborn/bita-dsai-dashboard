@@ -38,7 +38,7 @@ export const subjects: Subject[] = [
     icon: Cog,
     totalChapters: 8,
     completedChapters: 1,
-    evaluationCriteria: "Evaluation Criteria: 1 Quiz (after 4th Week) - 20% , 1 Coding Assignment (5-7th Week) - 40% & 1 Compre Exam - 40%",
+    evaluationCriteria: "1 Quiz (20%; W4) , Assignment (40%; W5-W7) & Trimester Exam (40%)",
   },
   {
     id: "dp",
@@ -46,7 +46,7 @@ export const subjects: Subject[] = [
     icon: Filter,
     totalChapters: 8,
     completedChapters: 2,
-    evaluationCriteria: "Evaluation Criteria: 6 Quizes - 60% (10% each quiz) & 1 Compre Exam - 40% ",
+    evaluationCriteria: "6 Quizes - 60% (10% each quiz) & Trimester Exam - 40% ",
     slidesUrl: "https://drive.google.com/drive/u/3/folders/1z2k6AZuzAt6vt7AHj9PNUDo-HpY7o7WS",
   },
   {
@@ -63,7 +63,7 @@ export const subjects: Subject[] = [
     icon: Database,
     totalChapters: 13,
     completedChapters: 1,
-    evaluationCriteria: "Evaluation Criteria: Quiz 1 (After Module 4)- 8%; Quiz 2 (After Module 8)- 8%; Quiz 3 (After Module 13)- 9%; Assignment 1(After Module 5)- 20%; Assignment 2(After Module 9) - 20%; Compre Exam - 35%",
+    evaluationCriteria: "3 Quizzes (25%; W4, W8, W13), 2 Assignmens (40%; W5, W9),Trimester Exam - 35%",
   },
   {
     id: "aap",
