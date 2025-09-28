@@ -39,8 +39,15 @@ export interface ApexUpdate {
 export const importantUpdates: ImportantUpdate[] = [
   {
     id: 'update-1',
-    title: 'Data Pre-processing Graded Quiz 1 & 2 Available',
-    description: 'Graded Quiz 1 & 2 are available only after completing all materials in Week 1 & 2 respectively. No deadline has been announced yet, but it is recommended to complete it at the earliest. If you are unable to see it, please attempt practice quizzes again, it will be visble.',
+    title: 'Data Pre-processing Graded Quizzes 1, 2 & 3 Available',
+    description: `
+      <ul class="list-disc pl-5 space-y-1">
+        <li>Quizzes 1, 2, & 3 are available after completing materials for their respective weeks.</li>
+        <li><strong>Deadline for Quiz 2 & 3:</strong> 4th October, 11:59 PM IST.</li>
+        <li><strong>Deadline for Quiz 1:</strong> The deadline is not confirmed, but it will be on or before 4th October. It is highly recommended to complete it as soon as possible.</li>
+        <li>If you cannot see a quiz, please try re-attempting the practice quizzes for that week.</li>
+      </ul>
+    `,
   },
 ];
 
@@ -480,5 +487,7 @@ export const currentSessions: Session[] = [
     recordingUrl: "#",
   },
 ];
+
+    
 
     

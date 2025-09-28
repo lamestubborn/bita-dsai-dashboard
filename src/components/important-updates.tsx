@@ -43,7 +43,7 @@ export function ImportantUpdates() {
                                   {update.title}
                                 </a>
                             ) : (
-                                <p className="font-semibold">{update.title}</p>
+                                <p className="font-semibold text-base">{update.title}</p>
                             )}
                             <AlertDescription
                               dangerouslySetInnerHTML={{ __html: update.description }}
@@ -56,3 +56,5 @@ export function ImportantUpdates() {
     </Accordion>
   );
 }
+
+    
