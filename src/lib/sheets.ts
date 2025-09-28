@@ -37,10 +37,10 @@ async function getSheetsClient() {
 
 /**
  * Appends a row to the specified Google Sheet.
- * @param {string[]} rowData - The data to append.
+ * @param {Array<string | Date | null | undefined>} rowData - The data to append.
  * @param {string} [sheetName='Sheet1'] - The name of the sheet to append to.
  */
-export async function appendToSheet(rowData: (string | Date)[], sheetName = 'Sheet1') {
+export async function appendToSheet(rowData: (string | Date | null | undefined)[], sheetName = 'Sheet1') {
   if (!SHEET_ID || !SERVICE_ACCOUNT_CREDS) {
     // Silently fail if not configured to avoid breaking chat functionality
     return;
@@ -50,13 +50,21 @@ export async function appendToSheet(rowData: (string | Date)[], sheetName = 'She
     const sheets = await getSheetsClient();
     const range = `${sheetName}!A1`;
 
+    // Ensure all data is in a string format for the sheet, handling dates and null/undefined values
+    const formattedRowData = rowData.map(cell => {
+      if (cell instanceof Date) {
+        return cell.toISOString();
+      }
+      return cell ?? ''; // Convert null/undefined to empty string
+    });
+
     await sheets.spreadsheets.values.append({
       spreadsheetId: SHEET_ID,
       range,
       valueInputOption: 'USER_ENTERED',
       insertDataOption: 'INSERT_ROWS',
       requestBody: {
-        values: [rowData],
+        values: [formattedRowData],
       },
     });
     console.log('[Sheets] Successfully appended a row to the sheet.');

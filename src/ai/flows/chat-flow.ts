@@ -12,6 +12,8 @@ import {ai} from '@/ai/genkit';
 import {z} from 'zod';
 import {getSubjects, getCurrentSessions, getImportantUpdates, getApexUpdates} from '@/lib/dynamic-data';
 import { appendToSheet } from '@/lib/sheets';
+import { headers } from 'next/headers';
+
 
 const ChatInputSchema = z.object({
   query: z.string().describe('The user question'),
@@ -108,7 +110,11 @@ export const chatFlow = ai.defineFlow(
     
     // Log the conversation to Google Sheets
     try {
-      await appendToSheet([new Date(), input.query, answer]);
+      const forwardedFor = headers().get('x-forwarded-for');
+      const realIp = headers().get('x-real-ip');
+      const ip = forwardedFor ? forwardedFor.split(',')[0] : realIp;
+      
+      await appendToSheet([new Date(), ip || 'Unknown', input.query, answer]);
     } catch (e) {
         console.error("Failed to write to google sheet", e);
     }
