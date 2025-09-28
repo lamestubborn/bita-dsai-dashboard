@@ -15,6 +15,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/t
 import { ApexProjectRegistration } from "./apex-project-registration";
 import { Chatbot } from "./chatbot";
 import { ThemeToggle } from "./theme-toggle";
+import { BuyMeACoffeeButton } from "./buy-me-a-coffee-button";
 
 
 export function Dashboard() {
@@ -124,7 +125,7 @@ export function Dashboard() {
         </Tabs>
       </main>
       <footer className="py-4 border-t">
-        <div className="container mx-auto flex items-center justify-center gap-4">
+        <div className="container mx-auto flex items-center justify-center gap-4 flex-wrap">
             <Button asChild size="icon" className="bg-[#0077b5] text-white hover:bg-[#0077b5]/90 rounded-full">
                 <a href="https://www.linkedin.com/in/thestubbornsailor/" target="_blank" rel="noopener noreferrer">
                     <Linkedin className="h-5 w-5" />
@@ -137,6 +138,7 @@ export function Dashboard() {
                     Read my newsletter
                 </a>
             </Button>
+            <BuyMeACoffeeButton />
         </div>
       </footer>
       <Chatbot />
