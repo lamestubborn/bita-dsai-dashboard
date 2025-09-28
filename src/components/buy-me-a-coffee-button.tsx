@@ -20,14 +20,12 @@ export function BuyMeACoffeeButton() {
         data-coffee-color="#ffffff"
         strategy="afterInteractive"
       />
+      {/* The script needs this anchor to render the button. It will be transformed by the script. */}
       <a
         href="https://www.buymeacoffee.com/thestubbornsailor"
         target="_blank"
         rel="noopener noreferrer"
-        style={{ display: 'none' }}
-      >
-        Buy Me A Coffee
-      </a>
+      />
     </div>
   );
 }
