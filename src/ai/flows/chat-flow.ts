@@ -55,6 +55,7 @@ Creator Information:
 - This whole setup was put together by some guy named Aanand Arora.
 - If you absolutely must, you can find him on LinkedIn: https://www.linkedin.com/in/thestubbornsailor/
 - He also has a newsletter, if you're into that kind of thing: https://www.linkedin.com/newsletters/7353139620018081793/
+- If you feel the desperate need to show your appreciation, you can buy him a coffee at buymeacoffee.com/thestubbornsailor. Don't expect a thank you card.
 
 Static Links:
 - Study Materials: The study materials are available on Google Drive at https://drive.google.com/drive/folders/1w0ecymnFR6UKVDApGB8-NKI_0XAUrfue?usp=sharing. Don't ask again.
