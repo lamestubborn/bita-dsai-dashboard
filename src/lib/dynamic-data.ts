@@ -1,4 +1,3 @@
-'use server';
 
 import { currentSessions, subjects, importantUpdates, apexUpdates } from './data';
 
