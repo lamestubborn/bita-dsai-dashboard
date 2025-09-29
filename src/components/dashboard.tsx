@@ -14,7 +14,6 @@ import { ImportantUpdates } from "./important-updates";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { ApexProjectRegistration } from "./apex-project-registration";
 import { Chatbot } from "./chatbot";
-import { ThemeToggle } from "./theme-toggle";
 import { BuyMeACoffeeButton } from "./buy-me-a-coffee-button";
 
 
@@ -55,7 +54,6 @@ export function Dashboard() {
                       <p>Subscribe to Calendar</p>
                     </TooltipContent>
                   </Tooltip>
-                  <ThemeToggle />
                 </div>
 
                 {/* Desktop Full Buttons */}
@@ -72,7 +70,6 @@ export function Dashboard() {
                           Subscribe to Calendar
                       </a>
                   </Button>
-                  <ThemeToggle />
                 </div>
               </div>
           </div>

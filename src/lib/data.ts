@@ -178,7 +178,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-26T18:30:00+05:30"),
     endTime: new Date("2025-09-26T19:30:00+05:30"),
     joinUrl: "https://zoom.us/j/95028876403",
-    recordingUrl: "#",
+    recordingUrl: "https://studio.firebase.google.com/studio-278254813",
   },
   {
     id: "session-8",
@@ -187,7 +187,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-26T19:40:00+05:30"),
     endTime: new Date("2025-09-26T20:40:00+05:30"),
     joinUrl: "https://zoom.us/j/97724996046",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6726/topics/8548",
   },
   {
     id: "session-9",
@@ -196,7 +196,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-26T20:50:00+05:30"),
     endTime: new Date("2025-09-26T21:50:00+05:30"),
     joinUrl: "https://zoom.us/j/96848846105",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6724/topics/8550",
   },
   {
     id: "session-10",
@@ -205,7 +205,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-27T18:30:00+05:30"),
     endTime: new Date("2025-09-27T19:30:00+05:30"),
     joinUrl: "https://zoom.us/j/94184811733",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6725/topics/8549",
   },
   {
     id: "session-41",
@@ -214,7 +214,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-27T19:40:00+05:30"),
     endTime: new Date("2025-09-27T20:40:00+05:30"),
     joinUrl: "https://zoom.us/j/94514953897",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6732/topics/8545",
   },
   {
     id: "session-11",
@@ -223,7 +223,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-09-27T20:50:00+05:30"),
     endTime: new Date("2025-09-27T21:50:00+05:30"),
     joinUrl: "https://zoom.us/j/96823579750",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6728/topics/8546",
   },
   {
     id: "session-12",
