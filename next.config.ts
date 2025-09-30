@@ -48,6 +48,13 @@ const nextConfig: NextConfig = {
       }
     ],
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // Exclude handlebars from the client-side bundle
+      config.externals.push('handlebars');
+    }
+    return config;
+  },
 };
 
 export default nextConfig;
