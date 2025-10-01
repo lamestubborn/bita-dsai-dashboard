@@ -38,6 +38,15 @@ export interface ApexUpdate {
 
 export const importantUpdates: ImportantUpdate[] = [
   {
+    id: 'update-fe-reschedule',
+    title: 'Feature Engineering Session Rescheduled',
+    description: `
+      <p>The Live Contact Session for Feature Engineering scheduled for Friday, 3 October 2025, will not be held.</p>
+      <p class="mt-2">It has been rescheduled to <strong>Tuesday, 07 October 2025, from 07:40 PM to 08:40 PM IST</strong>.</p>
+      <p class="mt-2 text-sm text-muted-foreground"><em>This adjustment is only for this week.</em></p>
+    `,
+  },
+  {
     id: 'update-1',
     title: 'Data Pre-processing Graded Quizzes 1, 2 & 3 Available',
     description: `
@@ -270,6 +279,15 @@ export const currentSessions: Session[] = [
     recordingUrl: "#",
   },
   {
+    id: "session-fe-rescheduled",
+    title: "Feature Engineering",
+    subject: "Feature Engineering",
+    startTime: new Date("2025-10-07T19:40:00+05:30"),
+    endTime: new Date("2025-10-07T20:40:00+05:30"),
+    joinUrl: "#",
+    recordingUrl: "#",
+  },
+  {
     id: "session-17",
     title: "Data Visualization and Storytelling",
     subject: "Data Visualization and Storytelling",
@@ -486,6 +504,8 @@ export const currentSessions: Session[] = [
     recordingUrl: "#",
   },
 ];
+
+    
 
     
 
