@@ -45,7 +45,6 @@ export const importantUpdates: ImportantUpdate[] = [
         <li>Quizzes 1, 2, & 3 are available after completing materials for their respective weeks.</li>
         <li><strong>Deadline for Quiz 2 & 3:</strong> 4th October, 11:59 PM IST.</li>
         <li><strong>Deadline for Quiz 1:</strong> The deadline is not confirmed, but it will be on or before 4th October. It is highly recommended to complete it as soon as possible.</li>
-        <li>If you cannot see a quiz, please try re-attempting the practice quizzes for that week.</li>
       </ul>
     `,
   },
@@ -231,25 +230,16 @@ export const currentSessions: Session[] = [
     subject: "Data Visualization and Storytelling",
     startTime: new Date("2025-10-03T18:30:00+05:30"),
     endTime: new Date("2025-10-03T19:30:00+05:30"),
-    joinUrl: "#",
-    recordingUrl: "#",
-  },
-  {
-    id: "session-13",
-    title: "Feature Engineering",
-    subject: "Feature Engineering",
-    startTime: new Date("2025-10-03T19:30:00+05:30"),
-    endTime: new Date("2025-10-03T20:30:00+05:30"),
-    joinUrl: "#",
+    joinUrl: "https://zoom.us/j/97656969793",
     recordingUrl: "#",
   },
   {
     id: "session-14",
     title: "Statistical Modelling and Inferencing",
     subject: "Statistical Modelling and Inferencing",
-    startTime: new Date("2025-10-03T20:30:00+05:30"),
-    endTime: new Date("2025-10-03T21:30:00+05:30"),
-    joinUrl: "#",
+    startTime: new Date("2025-10-03T20:50:00+05:30"),
+    endTime: new Date("2025-10-03T21:50:00+05:30"),
+    joinUrl: "https://zoom.us/j/97393124402",
     recordingUrl: "#",
   },
   {
@@ -258,16 +248,25 @@ export const currentSessions: Session[] = [
     subject: "Data Pre-processing",
     startTime: new Date("2025-10-04T18:30:00+05:30"),
     endTime: new Date("2025-10-04T19:30:00+05:30"),
-    joinUrl: "#",
+    joinUrl: "https://zoom.us/j/99072201356",
+    recordingUrl: "#",
+  },
+  {
+    id: "session-42",
+    title: "Advanced Apex Project I",
+    subject: "Advanced Apex Project I",
+    startTime: new Date("2025-10-04T19:40:00+05:30"),
+    endTime: new Date("2025-10-04T20:40:00+05:30"),
+    joinUrl: "https://zoom.us/j/96368782363",
     recordingUrl: "#",
   },
   {
     id: "session-16",
     title: "Data Stores and Pipelines",
     subject: "Data Stores and Pipelines",
-    startTime: new Date("2025-10-04T19:30:00+05:30"),
-    endTime: new Date("2025-10-04T20:30:00+05:30"),
-    joinUrl: "#",
+    startTime: new Date("2025-10-04T20:50:00+05:30"),
+    endTime: new Date("2025-10-04T21:50:00+05:30"),
+    joinUrl: "https://zoom.us/j/91314191875",
     recordingUrl: "#",
   },
   {
@@ -487,6 +486,8 @@ export const currentSessions: Session[] = [
     recordingUrl: "#",
   },
 ];
+
+    
 
     
 
