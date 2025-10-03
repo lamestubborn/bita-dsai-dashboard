@@ -77,7 +77,7 @@ export const subjects: Subject[] = [
     name: "Data Visualization and Storytelling",
     icon: "BarChartBig",
     totalChapters: 13,
-    completedChapters: 2,
+    completedChapters: 3,
     evaluationCriteria: "Evaluation criteria to be updated.",
   },
   {
@@ -102,7 +102,7 @@ export const subjects: Subject[] = [
     name: "Statistical Modelling and Inferencing",
     icon: "Sigma",
     totalChapters: 13,
-    completedChapters: 2,
+    completedChapters: 3,
     evaluationCriteria: "3 Quizzes (45%; W3, W6, W11), Assignment (20%; W10), Trimester Exam (35%)",
   },
   {
@@ -117,7 +117,7 @@ export const subjects: Subject[] = [
     id: "aap",
     name: "Advanced Apex Project I",
     icon: "Rocket",
-    totalChapters: 2,
+    totalChapters: 3,
     completedChapters: 2,
     evaluationCriteria: "Evaluation criteria to be updated.",
     projectDetailsUrl: "https://drive.google.com/drive/folders/1xhZZmYmC2vTwnKvaJj0MQJxnk3j1i5wz?usp=sharing",
