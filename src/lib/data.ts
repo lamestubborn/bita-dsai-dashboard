@@ -38,6 +38,14 @@ export interface ApexUpdate {
 
 export const importantUpdates: ImportantUpdate[] = [
   {
+    id: 'smi-quiz-1',
+    title: 'SMI: Graded Quiz 1 Available This Weekend',
+    description: `
+      <p>Graded Quiz 1 for <strong>Statistical Modelling and Inferencing</strong>, covering the syllabus from Week 1 to Week 3, will be available from <strong>Sunday, 5 October 2025, 12:01 AM IST</strong> to <strong>Monday, 6 October 2025, 11:59 PM IST</strong>.</p>
+      <p class="mt-2">You can access the quiz at the end of Week 3 materials on the LMS.</p>
+    `,
+  },
+  {
     id: 'update-fe-reschedule',
     title: 'Feature Engineering Session Rescheduled',
     description: `
@@ -504,6 +512,8 @@ export const currentSessions: Session[] = [
     recordingUrl: "#",
   },
 ];
+
+    
 
     
 
