@@ -240,7 +240,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-03T18:30:00+05:30"),
     endTime: new Date("2025-10-03T19:30:00+05:30"),
     joinUrl: "https://zoom.us/j/97656969793",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6727/topics/8777",
   },
   {
     id: "session-14",
