@@ -41,8 +41,7 @@ export const importantUpdates: ImportantUpdate[] = [
     id: 'smi-quiz-1',
     title: 'SMI: Graded Quiz 1 Available This Weekend',
     description: `
-      <p>Graded Quiz 1 for <strong>Statistical Modelling and Inferencing</strong>, covering the syllabus from Week 1 to Week 3, is now available.</p>
-      <p> <strong>Deadline: Monday, 6 October 2025, 11:59 PM IST</strong>.</p>
+      <p>Graded Quiz 1 for <strong>Statistical Modelling and Inferencing</strong>, covering the syllabus from Week 1 to Week 3, will be available from Sunday, 5 October 2025, 12:01 AM IST to Monday, 6 October 2025, 11:59 PM IST.</p>
       <p class="mt-2">You can access the quiz at the end of Week 3 materials on the LMS.</p>
     `,
   },
@@ -57,11 +56,11 @@ export const importantUpdates: ImportantUpdate[] = [
   },
   {
     id: 'update-1',
-    title: 'Data Pre-processing Graded Quizzes 1, 2 & 3 Closed',
+    title: 'Data Pre-processing Graded Quizzes 1, 2 & 3 Deadline Extended',
     description: `
       <ul class="list-disc pl-5 space-y-1">
-        <li>Quizzes 1, 2, & 3 are now closed.</li>
-        <li><strong>Deadline for Quiz 1, 2 & 3:</strong> 4th October, 11:59 PM IST.</li>
+        <li>The deadline for Quizzes 1, 2, & 3 has been extended.</li>
+        <li><strong>New Deadline:</strong> 6th October 2025, 11:59 PM IST.</li>
       </ul>
     `,
   },
@@ -513,3 +512,4 @@ export const currentSessions: Session[] = [
   },
 ];
 
+    
