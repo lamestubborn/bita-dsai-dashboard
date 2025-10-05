@@ -41,7 +41,8 @@ export const importantUpdates: ImportantUpdate[] = [
     id: 'smi-quiz-1',
     title: 'SMI: Graded Quiz 1 Available This Weekend',
     description: `
-      <p>Graded Quiz 1 for <strong>Statistical Modelling and Inferencing</strong>, covering the syllabus from Week 1 to Week 3, will be available from <strong>Sunday, 5 October 2025, 12:01 AM IST</strong> to <strong>Monday, 6 October 2025, 11:59 PM IST</strong>.</p>
+      <p>Graded Quiz 1 for <strong>Statistical Modelling and Inferencing</strong>, covering the syllabus from Week 1 to Week 3, is now available.</p>
+      <p> <strong>Deadline: Monday, 6 October 2025, 11:59 PM IST</strong>.</p>
       <p class="mt-2">You can access the quiz at the end of Week 3 materials on the LMS.</p>
     `,
   },
@@ -56,10 +57,10 @@ export const importantUpdates: ImportantUpdate[] = [
   },
   {
     id: 'update-1',
-    title: 'Data Pre-processing Graded Quizzes 1, 2 & 3 Available',
+    title: 'Data Pre-processing Graded Quizzes 1, 2 & 3 Closed',
     description: `
       <ul class="list-disc pl-5 space-y-1">
-        <li>Quizzes 1, 2, & 3 are available after completing materials for their respective weeks.</li>
+        <li>Quizzes 1, 2, & 3 are now closed.</li>
         <li><strong>Deadline for Quiz 1, 2 & 3:</strong> 4th October, 11:59 PM IST.</li>
       </ul>
     `,
@@ -100,7 +101,7 @@ export const subjects: Subject[] = [
     name: "Data Pre-processing",
     icon: "Filter",
     totalChapters: 8,
-    completedChapters: 2,
+    completedChapters: 3,
     evaluationCriteria: "6 Quizes - 60% (10% each quiz) & Trimester Exam - 40% ",
     slidesUrl: "https://drive.google.com/drive/u/3/folders/1z2k6AZuzAt6vt7AHj9PNUDo-HpY7o7WS",
   },
@@ -117,7 +118,7 @@ export const subjects: Subject[] = [
     name: "Data Stores and Pipelines",
     icon: "Database",
     totalChapters: 13,
-    completedChapters: 2,
+    completedChapters: 3,
     evaluationCriteria: "3 Quizzes (25%; W4, W8, W13), 2 Assignmens (40%; W5, W9),Trimester Exam - 35%",
   },
   {
@@ -125,7 +126,7 @@ export const subjects: Subject[] = [
     name: "Advanced Apex Project I",
     icon: "Rocket",
     totalChapters: 3,
-    completedChapters: 2,
+    completedChapters: 3,
     evaluationCriteria: "Evaluation criteria to be updated.",
     projectDetailsUrl: "https://drive.google.com/drive/folders/1xhZZmYmC2vTwnKvaJj0MQJxnk3j1i5wz?usp=sharing",
   },
@@ -265,7 +266,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-04T18:30:00+05:30"),
     endTime: new Date("2025-10-04T19:30:00+05:30"),
     joinUrl: "https://zoom.us/j/99072201356",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6725/topics/8791",
   },
   {
     id: "session-42",
@@ -274,7 +275,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-04T19:40:00+05:30"),
     endTime: new Date("2025-10-04T20:40:00+05:30"),
     joinUrl: "https://zoom.us/j/96368782363",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6732/topics/8792",
   },
   {
     id: "session-16",
@@ -283,7 +284,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-04T20:50:00+05:30"),
     endTime: new Date("2025-10-04T21:50:00+05:30"),
     joinUrl: "https://zoom.us/j/91314191875",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6728/topics/8793",
   },
   {
     id: "session-fe-rescheduled",
@@ -511,3 +512,4 @@ export const currentSessions: Session[] = [
     recordingUrl: "#",
   },
 ];
+
