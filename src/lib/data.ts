@@ -307,7 +307,7 @@ export const currentSessions: Session[] = [
     id: "session-18",
     title: "Feature Engineering",
     subject: "Feature Engineering",
-    startTime: new new Date("2025-10-17T19:30:00+05:30"),
+    startTime: new Date("2025-10-17T19:30:00+05:30"),
     endTime: new Date("2025-10-17T20:30:00+05:30"),
     joinUrl: "#",
     recordingUrl: "#",
