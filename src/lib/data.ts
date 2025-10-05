@@ -60,8 +60,7 @@ export const importantUpdates: ImportantUpdate[] = [
     description: `
       <ul class="list-disc pl-5 space-y-1">
         <li>Quizzes 1, 2, & 3 are available after completing materials for their respective weeks.</li>
-        <li><strong>Deadline for Quiz 2 & 3:</strong> 4th October, 11:59 PM IST.</li>
-        <li><strong>Deadline for Quiz 1:</strong> The deadline is not confirmed, but it will be on or before 4th October. It is highly recommended to complete it as soon as possible.</li>
+        <li><strong>Deadline for Quiz 1, 2 & 3:</strong> 4th October, 11:59 PM IST.</li>
       </ul>
     `,
   },
@@ -308,7 +307,7 @@ export const currentSessions: Session[] = [
     id: "session-18",
     title: "Feature Engineering",
     subject: "Feature Engineering",
-    startTime: new Date("2025-10-17T19:30:00+05:30"),
+    startTime: new new Date("2025-10-17T19:30:00+05:30"),
     endTime: new Date("2025-10-17T20:30:00+05:30"),
     joinUrl: "#",
     recordingUrl: "#",
@@ -512,15 +511,3 @@ export const currentSessions: Session[] = [
     recordingUrl: "#",
   },
 ];
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
