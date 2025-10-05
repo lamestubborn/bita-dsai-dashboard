@@ -291,7 +291,7 @@ export const currentSessions: Session[] = [
     subject: "Feature Engineering",
     startTime: new Date("2025-10-07T19:40:00+05:30"),
     endTime: new Date("2025-10-07T20:40:00+05:30"),
-    joinUrl: "#",
+    joinUrl: "https://zoom.us/j/99792901043",
     recordingUrl: "#",
   },
   {
@@ -512,4 +512,5 @@ export const currentSessions: Session[] = [
   },
 ];
 
+    
     
