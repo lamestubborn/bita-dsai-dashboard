@@ -15,6 +15,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/t
 import { ApexProjectRegistration } from "./apex-project-registration";
 import { Chatbot } from "./chatbot";
 import { BuyMeACoffeeButton } from "./buy-me-a-coffee-button";
+import { ThemeToggle } from "./theme-toggle";
 
 
 export function Dashboard() {
@@ -71,6 +72,7 @@ export function Dashboard() {
                       </a>
                   </Button>
                 </div>
+                <ThemeToggle />
               </div>
           </div>
         </TooltipProvider>
