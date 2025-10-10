@@ -38,29 +38,10 @@ export interface ApexUpdate {
 
 export const importantUpdates: ImportantUpdate[] = [
   {
-    id: 'smi-quiz-1',
-    title: 'SMI: Graded Quiz 1 (Now Closed)',
+    id: 'dp-smi-quizzes-closed',
+    title: 'Data Pre-processing & SMI Quizzes Closed',
     description: `
-      <p>Graded Quiz 1 for <strong>Statistical Modelling and Inferencing</strong>, covering the syllabus from Week 1 to Week 3, was available from Sunday, 5 October 2025, 12:01 AM IST to Monday, 6 October 2025, 11:59 PM IST.</p>
-    `,
-  },
-  {
-    id: 'update-fe-reschedule',
-    title: 'Feature Engineering Session Rescheduled',
-    description: `
-      <p>The Live Contact Session for Feature Engineering scheduled for Friday, 3 October 2025, will not be held.</p>
-      <p class="mt-2">It has been rescheduled to <strong>Tuesday, 07 October 2025, from 07:40 PM to 08:40 PM IST</strong>.</p>
-      <p class="mt-2 text-sm text-muted-foreground"><em>This adjustment is only for this week.</em></p>
-    `,
-  },
-  {
-    id: 'update-1',
-    title: 'Data Pre-processing Graded Quizzes 1, 2 & 3 (Now Closed)',
-    description: `
-      <ul class="list-disc pl-5 space-y-1">
-        <li>The deadline for Quizzes 1, 2, & 3 has passed.</li>
-        <li>The deadline was 6th October 2025, 11:59 PM IST.</li>
-      </ul>
+      <p>The deadline for the graded quizzes for <strong>Data Pre-processing</strong> and <strong>Statistical Modelling and Inferencing</strong> has passed. The quizzes are now closed.</p>
     `,
   },
 ];
@@ -566,4 +547,6 @@ export const currentSessions: Session[] = [
 ];
 
     
+    
+
     
