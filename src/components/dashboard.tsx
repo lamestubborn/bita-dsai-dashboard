@@ -2,7 +2,6 @@
 
 "use client";
 
-import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { CurrentSessions } from "@/components/current-sessions";
 import { PreviousSessions } from "@/components/previous-sessions";
@@ -19,7 +18,7 @@ import { BuyMeACoffeeButton } from "./buy-me-a-coffee-button";
 import { ThemeToggle } from "./theme-toggle";
 import { LoginDialog } from './login-dialog';
 import { useUser, useAuth } from '@/firebase';
-import { getAuth, signOut } from 'firebase/auth';
+import { signOut } from 'firebase/auth';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
 
 export function Dashboard() {
@@ -31,6 +30,19 @@ export function Dashboard() {
       await signOut(auth);
     }
   };
+
+  if (isUserLoading) {
+    return (
+        <div className="flex items-center justify-center min-h-screen bg-background">
+            {/* You can replace this with a more sophisticated loading spinner or skeleton screen */}
+            <p>Loading...</p>
+        </div>
+    )
+  }
+
+  if (!user) {
+    return <LoginDialog open={true} onOpenChange={() => {}} showTrigger={false} />;
+  }
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-background">
@@ -86,26 +98,20 @@ export function Dashboard() {
                   </Button>
                 </div>
                 <ThemeToggle />
-                {!isUserLoading && (
-                  user ? (
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon" className="rounded-full">
-                          <UserIcon />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        {user.email && <DropdownMenuItem disabled>{user.email}</DropdownMenuItem>}
-                        <DropdownMenuItem onClick={handleLogout}>
-                          <LogOut className="mr-2 h-4 w-4" />
-                          <span>Log out</span>
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  ) : (
-                    <LoginDialog />
-                  )
-                )}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="icon" className="rounded-full">
+                      <UserIcon />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    {user.email && <DropdownMenuItem disabled>{user.email}</DropdownMenuItem>}
+                    <DropdownMenuItem onClick={handleLogout}>
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Log out</span>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
           </div>
         </TooltipProvider>
