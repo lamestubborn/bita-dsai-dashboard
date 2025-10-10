@@ -79,7 +79,7 @@ export const subjects: Subject[] = [
     name: "Data Visualization and Storytelling",
     icon: "BarChartBig",
     totalChapters: 13,
-    completedChapters: 3,
+    completedChapters: 4,
     evaluationCriteria: "Evaluation criteria to be updated.",
   },
   {
@@ -87,7 +87,7 @@ export const subjects: Subject[] = [
     name: "Feature Engineering",
     icon: "Cog",
     totalChapters: 8,
-    completedChapters: 3,
+    completedChapters: 4,
     evaluationCriteria: "1 Quiz (20%; W4) , Assignment (40%; W5-W7) & Trimester Exam (40%)",
   },
   {
@@ -112,7 +112,7 @@ export const subjects: Subject[] = [
     name: "Data Stores and Pipelines",
     icon: "Database",
     totalChapters: 13,
-    completedChapters: 3,
+    completedChapters: 4,
     evaluationCriteria: "3 Quizzes (25%; W4, W8, W13), 2 Assignmens (40%; W5, W9),Trimester Exam - 35%",
   },
   {
@@ -565,3 +565,4 @@ export const currentSessions: Session[] = [
     
 
     
+
