@@ -1,3 +1,4 @@
+
 'use client';
     
 import {
@@ -8,6 +9,8 @@ import {
   CollectionReference,
   DocumentReference,
   SetOptions,
+  doc,
+  Firestore,
 } from 'firebase/firestore';
 import { errorEmitter } from '@/firebase/error-emitter';
 import {FirestorePermissionError} from '@/firebase/errors';
@@ -65,6 +68,32 @@ export function updateDocumentNonBlocking(docRef: DocumentReference, data: any) 
           path: docRef.path,
           operation: 'update',
           requestResourceData: data,
+        })
+      )
+    });
+}
+
+/**
+ * Updates a user's session data, creating the document if it doesn't exist.
+ * This is useful for tracking completion status or other user-specific session info.
+ */
+export function updateUserSession(firestore: Firestore, userId: string, sessionId: string, data: { completed?: boolean; reminderSet?: boolean }) {
+  const userSessionRef = doc(firestore, 'users', userId, 'user_sessions', sessionId);
+  const payload = {
+    userId,
+    sessionId,
+    ...data
+  };
+  
+  // Use setDoc with merge:true to create or update the document non-blockingly
+  setDoc(userSessionRef, payload, { merge: true })
+    .catch(error => {
+      errorEmitter.emit(
+        'permission-error',
+        new FirestorePermissionError({
+          path: userSessionRef.path,
+          operation: 'write',
+          requestResourceData: payload,
         })
       )
     });

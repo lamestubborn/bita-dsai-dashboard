@@ -8,10 +8,23 @@ import { ArrowRight, Clock } from "lucide-react";
 import { format, startOfWeek, endOfWeek } from "date-fns";
 import type { Session } from "@/lib/data";
 import { motion } from 'framer-motion';
+import { useUser, useFirestore, useCollection, updateUserSession, useMemoFirebase } from '@/firebase';
+import { collection } from 'firebase/firestore';
+import { Checkbox } from './ui/checkbox';
+import { Label } from './ui/label';
 
 export function CurrentSessions() {
   const [upcomingSessions, setUpcomingSessions] = useState<Session[]>([]);
   const [isClient, setIsClient] = useState(false);
+  const { user } = useUser();
+  const firestore = useFirestore();
+
+  const userSessionsQuery = useMemoFirebase(() => {
+    if (!user || !firestore) return null;
+    return collection(firestore, 'users', user.uid, 'user_sessions');
+  }, [user, firestore]);
+
+  const { data: userSessions } = useCollection(userSessionsQuery);
 
   useEffect(() => {
     setIsClient(true);
@@ -36,6 +49,15 @@ export function CurrentSessions() {
 
     fetchSessions();
   }, []);
+
+  const handleMarkAsComplete = (sessionId: string, completed: boolean) => {
+    if (!user || !firestore) return;
+    updateUserSession(firestore, user.uid, sessionId, { completed });
+  };
+
+  const isSessionCompleted = (sessionId: string) => {
+    return userSessions?.some(us => us.sessionId === sessionId && us.completed) || false;
+  };
 
   const containerVariants = {
     hidden: {},
@@ -100,7 +122,18 @@ export function CurrentSessions() {
                     </span>
                   </div>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className='justify-between items-center'>
+                   <div className="flex items-center space-x-2">
+                    <Checkbox
+                      id={`complete-${session.id}`}
+                      checked={isSessionCompleted(session.id)}
+                      onCheckedChange={(checked) => handleMarkAsComplete(session.id, !!checked)}
+                      disabled={!user}
+                    />
+                    <Label htmlFor={`complete-${session.id}`} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                      Mark as Complete
+                    </Label>
+                  </div>
                   {session.joinUrl === "#" ? (
                     <Button disabled variant="secondary" className="w-full sm:w-auto ml-auto rounded-full px-6 py-3">
                       Link coming soon

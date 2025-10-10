@@ -9,6 +9,10 @@ import { format, differenceInCalendarWeeks } from "date-fns";
 import type { Session } from "@/lib/data";
 import { motion } from 'framer-motion';
 import { Separator } from './ui/separator';
+import { useUser, useFirestore, useCollection, updateUserSession, useMemoFirebase } from '@/firebase';
+import { collection } from 'firebase/firestore';
+import { Checkbox } from './ui/checkbox';
+import { Label } from './ui/label';
 
 type GroupedSessions = {
   [week: string]: Session[];
@@ -17,6 +21,16 @@ type GroupedSessions = {
 export function PreviousSessions() {
   const [groupedSessions, setGroupedSessions] = useState<GroupedSessions>({});
   const [isClient, setIsClient] = useState(false);
+  const { user } = useUser();
+  const firestore = useFirestore();
+
+  const userSessionsQuery = useMemoFirebase(() => {
+    if (!user || !firestore) return null;
+    return collection(firestore, 'users', user.uid, 'user_sessions');
+  }, [user, firestore]);
+
+  const { data: userSessions } = useCollection(userSessionsQuery);
+
 
   useEffect(() => {
     setIsClient(true);
@@ -50,6 +64,15 @@ export function PreviousSessions() {
 
     fetchSessions();
   }, []);
+
+  const handleMarkAsComplete = (sessionId: string, completed: boolean) => {
+    if (!user || !firestore) return;
+    updateUserSession(firestore, user.uid, sessionId, { completed });
+  };
+
+  const isSessionCompleted = (sessionId: string) => {
+    return userSessions?.some(us => us.sessionId === sessionId && us.completed) || false;
+  };
 
   const containerVariants = {
     hidden: {},
@@ -104,8 +127,19 @@ export function PreviousSessions() {
                             {format(session.startTime, "MMMM d, yyyy 'at' h:mm a")}
                           </CardDescription>
                         </CardHeader>
-                        <CardFooter className="flex-grow items-end justify-end gap-2">
-                        {session.recordingUrl === "#" ? (
+                        <CardFooter className="flex-grow items-end justify-between gap-2">
+                           <div className="flex items-center space-x-2">
+                            <Checkbox
+                              id={`complete-archive-${session.id}`}
+                              checked={isSessionCompleted(session.id)}
+                              onCheckedChange={(checked) => handleMarkAsComplete(session.id, !!checked)}
+                              disabled={!user}
+                            />
+                            <Label htmlFor={`complete-archive-${session.id}`} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                              Mark as Complete
+                            </Label>
+                          </div>
+                          {session.recordingUrl === "#" ? (
                             <Button disabled variant="secondary" size="sm" className="rounded-full">
                               Recording soon
                             </Button>

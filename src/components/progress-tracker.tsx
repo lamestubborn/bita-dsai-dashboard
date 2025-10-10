@@ -9,9 +9,12 @@ import { motion } from 'framer-motion';
 import { X, Presentation, FileText } from 'lucide-react';
 import { Button } from './ui/button';
 import { Icon } from './icons';
+import { useUser, useFirestore, useCollection, useMemoFirebase } from '@/firebase';
+import { collection, query, where } from 'firebase/firestore';
 
 interface SubjectProgress extends Subject {
   progress: number;
+  completedSessions: number;
 }
 
 export function ProgressTracker() {
@@ -19,24 +22,46 @@ export function ProgressTracker() {
   const [isClient, setIsClient] = useState(false);
   const [flippedCard, setFlippedCard] = useState<string | null>(null);
 
+  const { user } = useUser();
+  const firestore = useFirestore();
+
+  const userSessionsQuery = useMemoFirebase(() => {
+    if (!user || !firestore) return null;
+    return query(collection(firestore, 'users', user.uid, 'user_sessions'), where('completed', '==', true));
+  }, [user, firestore]);
+
+  const { data: completedSessions } = useCollection(userSessionsQuery);
+
   useEffect(() => {
     setIsClient(true);
-    const fetchSubjects = async () => {
-      const { getSubjects } = await import('@/lib/dynamic-data');
+    const fetchSubjectsAndCalculateProgress = async () => {
+      const { getSubjects, getCurrentSessions } = await import('@/lib/dynamic-data');
       const subjects = await getSubjects();
+      const allSessions = await getCurrentSessions();
+
       const calculatedProgress = subjects.map((subject) => {
-        const progress = subject.totalChapters > 0 ? (subject.completedChapters / subject.totalChapters) * 100 : 0;
+        const totalSessionsForSubject = allSessions.filter(s => s.subject === subject.name).length;
+        const completedCount = completedSessions?.filter(us => {
+            const session = allSessions.find(s => s.id === us.sessionId);
+            return session && session.subject === subject.name;
+        }).length || 0;
+        
+        const progress = totalSessionsForSubject > 0 ? (completedCount / totalSessionsForSubject) * 100 : 0;
         
         return {
           ...subject,
           progress,
+          completedSessions: completedCount,
+          totalChapters: totalSessionsForSubject, // Overriding totalChapters with actual session count
         };
       });
       setSubjectsWithProgress(calculatedProgress);
     };
 
-    fetchSubjects();
-  }, []);
+    if (completedSessions !== undefined) {
+        fetchSubjectsAndCalculateProgress();
+    }
+  }, [completedSessions]);
 
   const containerVariants = {
     hidden: {},
@@ -101,7 +126,7 @@ export function ProgressTracker() {
                         </span>
                     </div>
                     <p className="mt-2 text-sm text-muted-foreground">
-                      {subject.completedChapters} / {subject.totalChapters} sessions completed
+                      {subject.completedSessions} / {subject.totalChapters} sessions completed
                     </p>
                   </CardContent>
                 </Card>
