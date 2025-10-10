@@ -122,18 +122,7 @@ export function CurrentSessions() {
                     </span>
                   </div>
                 </CardContent>
-                <CardFooter className='justify-between items-center'>
-                   <div className="flex items-center space-x-2">
-                    <Checkbox
-                      id={`complete-${session.id}`}
-                      checked={isSessionCompleted(session.id)}
-                      onCheckedChange={(checked) => handleMarkAsComplete(session.id, !!checked)}
-                      disabled={!user}
-                    />
-                    <Label htmlFor={`complete-${session.id}`} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                      Mark as Complete
-                    </Label>
-                  </div>
+                <CardFooter className='justify-end'>
                   {session.joinUrl === "#" ? (
                     <Button disabled variant="secondary" className="w-full sm:w-auto ml-auto rounded-full px-6 py-3">
                       Link coming soon
