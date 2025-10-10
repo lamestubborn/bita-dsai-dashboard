@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CurrentSessions } from "@/components/current-sessions";
 import { PreviousSessions } from "@/components/previous-sessions";
 import { ProgressTracker } from "@/components/progress-tracker";
-import { CalendarDays, Linkedin, Newspaper, BookOpen, User as UserIcon, LogOut, FileText } from "lucide-react";
+import { CalendarDays, Linkedin, Newspaper, BookOpen, User as UserIcon, LogOut } from "lucide-react";
 import { BITSLogo } from '@/components/bits-logo';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from 'framer-motion';
@@ -18,8 +18,9 @@ import { ThemeToggle } from "./theme-toggle";
 import { LoginDialog } from './login-dialog';
 import { useUser, useAuth } from '@/firebase';
 import { signOut } from 'firebase/auth';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator } from './ui/dropdown-menu';
 import { Quizzes } from './quizzes';
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export function Dashboard() {
   const { user, isUserLoading } = useUser();
@@ -101,11 +102,20 @@ export function Dashboard() {
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="icon" className="rounded-full">
-                      <UserIcon />
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src={user.photoURL || ''} alt={user.displayName || user.email || 'User'} />
+                        <AvatarFallback>
+                          {user.email ? user.email.charAt(0).toUpperCase() : <UserIcon />}
+                        </AvatarFallback>
+                      </Avatar>
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    {user.email && <DropdownMenuItem disabled>{user.email}</DropdownMenuItem>}
+                    {user.displayName && <DropdownMenuLabel>{user.displayName}</DropdownMenuLabel>}
+                    {user.email && (
+                        <DropdownMenuLabel className="font-normal text-muted-foreground">{user.email}</DropdownMenuLabel>
+                    )}
+                    <DropdownMenuSeparator />
                     <DropdownMenuItem onClick={handleLogout}>
                       <LogOut className="mr-2 h-4 w-4" />
                       <span>Log out</span>
