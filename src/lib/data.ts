@@ -38,6 +38,21 @@ export interface ApexUpdate {
 
 export const importantUpdates: ImportantUpdate[] = [
   {
+    id: 'fe-quiz-1-week-3',
+    title: 'Feature Engineering: Graded Quiz 1 Week 3',
+    description: '<p>Starts: Oct 10 | Due: Oct 12</p>'
+  },
+  {
+    id: 'dsp-quiz-1',
+    title: 'Data Stores & Pipelines: Graded Quiz #1 (8%)',
+    description: '<p>Starts: Oct 11 | Due: Oct 12</p>'
+  },
+  {
+    id: 'dp-quiz-week-4',
+    title: 'Data Pre-processing: Week 4 Graded Quiz (Live)',
+    description: '<p>Starts: Oct 11 | Due: Oct 14</p>'
+  },
+  {
     id: 'dp-smi-quizzes-closed',
     title: 'Data Pre-processing & SMI Quizzes Closed',
     description: `
