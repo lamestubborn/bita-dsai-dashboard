@@ -52,13 +52,6 @@ export const importantUpdates: ImportantUpdate[] = [
     title: 'Data Pre-processing: Week 4 Graded Quiz (Live)',
     description: '<p>Starts: Oct 11 | Due: Oct 14</p>'
   },
-  {
-    id: 'dp-smi-quizzes-closed',
-    title: 'Data Pre-processing & SMI Quizzes Closed',
-    description: `
-      <p>The deadline for the graded quizzes for <strong>Data Pre-processing</strong> and <strong>Statistical Modelling and Inferencing</strong> has passed. The quizzes are now closed.</p>
-    `,
-  },
 ];
 
 export const apexUpdates: ApexUpdate[] = [
@@ -565,4 +558,5 @@ export const currentSessions: Session[] = [
     
 
     
+
 
