@@ -39,10 +39,9 @@ export interface ApexUpdate {
 export const importantUpdates: ImportantUpdate[] = [
   {
     id: 'smi-quiz-1',
-    title: 'SMI: Graded Quiz 1 Available This Weekend',
+    title: 'SMI: Graded Quiz 1 (Now Closed)',
     description: `
-      <p>Graded Quiz 1 for <strong>Statistical Modelling and Inferencing</strong>, covering the syllabus from Week 1 to Week 3, will be available from Sunday, 5 October 2025, 12:01 AM IST to Monday, 6 October 2025, 11:59 PM IST.</p>
-      <p class="mt-2">You can access the quiz at the end of Week 3 materials on the LMS.</p>
+      <p>Graded Quiz 1 for <strong>Statistical Modelling and Inferencing</strong>, covering the syllabus from Week 1 to Week 3, was available from Sunday, 5 October 2025, 12:01 AM IST to Monday, 6 October 2025, 11:59 PM IST.</p>
     `,
   },
   {
@@ -56,11 +55,11 @@ export const importantUpdates: ImportantUpdate[] = [
   },
   {
     id: 'update-1',
-    title: 'Data Pre-processing Graded Quizzes 1, 2 & 3 Deadline Extended',
+    title: 'Data Pre-processing Graded Quizzes 1, 2 & 3 (Now Closed)',
     description: `
       <ul class="list-disc pl-5 space-y-1">
-        <li>The deadline for Quizzes 1, 2, & 3 has been extended.</li>
-        <li><strong>New Deadline:</strong> 6th October 2025, 11:59 PM IST.</li>
+        <li>The deadline for Quizzes 1, 2, & 3 has passed.</li>
+        <li>The deadline was 6th October 2025, 11:59 PM IST.</li>
       </ul>
     `,
   },
