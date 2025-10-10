@@ -72,7 +72,7 @@ export const subjects: Subject[] = [
     name: "Feature Engineering",
     icon: "Cog",
     totalChapters: 8,
-    completedChapters: 2,
+    completedChapters: 3,
     evaluationCriteria: "1 Quiz (20%; W4) , Assignment (40%; W5-W7) & Trimester Exam (40%)",
   },
   {
@@ -104,7 +104,7 @@ export const subjects: Subject[] = [
     id: "aap",
     name: "Advanced Apex Project I",
     icon: "Rocket",
-    totalChapters: 3,
+    totalChapters: 4,
     completedChapters: 3,
     evaluationCriteria: "Evaluation criteria to be updated.",
     projectDetailsUrl: "https://drive.google.com/drive/folders/1xhZZmYmC2vTwnKvaJj0MQJxnk3j1i5wz?usp=sharing",
@@ -267,12 +267,12 @@ export const currentSessions: Session[] = [
   },
   {
     id: "session-fe-rescheduled",
-    title: "Feature Engineering",
-    subject: "Feature Engineering",
+    title: "Feature Engineering- Week 3 Rescheduled",
+    subject: "Feature Engineering- Week 3 Rescheduled",
     startTime: new Date("2025-10-07T19:40:00+05:30"),
     endTime: new Date("2025-10-07T20:40:00+05:30"),
     joinUrl: "https://zoom.us/j/99792901043",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6726/topics/9117",
   },
   {
     id: "session-dvs-oct-10",

@@ -15,7 +15,6 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/t
 import { ApexProjectRegistration } from "./apex-project-registration";
 import { Chatbot } from "./chatbot";
 import { BuyMeACoffeeButton } from "./buy-me-a-coffee-button";
-import { ThemeToggle } from "./theme-toggle";
 
 
 export function Dashboard() {
@@ -44,7 +43,7 @@ export function Dashboard() {
                   </Tooltip>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Button asChild variant="ghost" size="icon">
+                      <Button asChild variant="ghost" size-="icon">
                           <a href="/api/calendar/feed.ics">
                               <CalendarDays className="h-5 w-5" />
                               <span className="sr-only">Subscribe to Calendar</span>
@@ -55,7 +54,6 @@ export function Dashboard() {
                       <p>Subscribe to Calendar</p>
                     </TooltipContent>
                   </Tooltip>
-                  <ThemeToggle />
                 </div>
 
                 {/* Desktop Full Buttons */}
@@ -72,7 +70,6 @@ export function Dashboard() {
                           Subscribe to Calendar
                       </a>
                   </Button>
-                  <ThemeToggle />
                 </div>
               </div>
           </div>
