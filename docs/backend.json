@@ -1,0 +1,186 @@
+{
+  "entities": {
+    "UserAccount": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserAccount",
+      "type": "object",
+      "description": "Represents a user account within the StudyPulse application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user account."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the user.",
+          "format": "email"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First name of the user."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of the user."
+        },
+        "notificationPreferences": {
+          "type": "string",
+          "description": "User's notification preferences (e.g., email, push).",
+          "format": "string"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "firstName",
+        "lastName"
+      ]
+    },
+    "StudySession": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "StudySession",
+      "type": "object",
+      "description": "Represents a study session.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the study session."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the study session."
+        },
+        "subject": {
+          "type": "string",
+          "description": "Subject of the study session."
+        },
+        "startTime": {
+          "type": "string",
+          "description": "Start time of the study session.",
+          "format": "date-time"
+        },
+        "endTime": {
+          "type": "string",
+          "description": "End time of the study session.",
+          "format": "date-time"
+        },
+        "joinLink": {
+          "type": "string",
+          "description": "Link to join the study session.",
+          "format": "uri"
+        },
+        "recordingLink": {
+          "type": "string",
+          "description": "Link to the recording of the study session (if available).",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "subject",
+        "startTime",
+        "endTime",
+        "joinLink"
+      ]
+    },
+    "UserSession": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserSession",
+      "type": "object",
+      "description": "Represents the relationship between a user and a study session, allowing for tracking completion and reminders.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user session."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to UserAccount. (Relationship: UserAccount 1:N UserSession)"
+        },
+        "sessionId": {
+          "type": "string",
+          "description": "Reference to StudySession. (Relationship: StudySession 1:N UserSession)"
+        },
+        "completed": {
+          "type": "boolean",
+          "description": "Indicates whether the user has completed the session."
+        },
+        "reminderSet": {
+          "type": "boolean",
+          "description": "Indicates whether a reminder has been set for the session."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "sessionId",
+        "completed",
+        "reminderSet"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "UserAccount",
+          "schema": {
+            "$ref": "#/backend/entities/UserAccount"
+          },
+          "description": "Stores user account information.  Path-based ownership for private data.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user.  Corresponds to Firebase auth UID."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/study_sessions/{sessionId}",
+        "definition": {
+          "entityName": "StudySession",
+          "schema": {
+            "$ref": "#/backend/entities/StudySession"
+          },
+          "description": "Stores information about study sessions. Allows for global listing.",
+          "params": [
+            {
+              "name": "sessionId",
+              "description": "The unique identifier for the study session."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/user_sessions/{sessionId}",
+        "definition": {
+          "entityName": "UserSession",
+          "schema": {
+            "$ref": "#/backend/entities/UserSession"
+          },
+          "description": "Stores user-specific information about a study session (e.g., completion status, reminder settings). Includes denormalized 'sessionId' for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "sessionId",
+              "description": "The unique identifier for the study session."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to ensure authorization independence, clarity, and scalability. User data is stored under `/users/{userId}`, providing clear ownership and simplifying security rules. Study sessions are stored under `/study_sessions/{sessionId}`, allowing for global listing and easy querying. User-specific session data (completion status, reminders) is stored under `/users/{userId}/user_sessions/{sessionId}`, denormalizing the session ID to maintain authorization independence and enabling efficient querying of a user's sessions. This structure supports QAPs by allowing secure listing of study sessions and user-specific sessions via path-based rules.\n\nDenormalization is used in the `user_sessions` subcollection by including the `sessionId` in each document. This avoids the need for `get()` calls to parent documents (the `study_sessions` collection) to determine authorization, thus ensuring authorization independence. The `userId` is implicit in the path."
+  }
+}

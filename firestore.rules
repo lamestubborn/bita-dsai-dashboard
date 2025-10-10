@@ -1,0 +1,116 @@
+/**
+ * @file Firestore Security Rules
+ * @description This ruleset enforces a strict user-ownership model for user accounts and user-specific session data, while allowing public read access to study session information.
+ *
+ * Data Structure:
+ * - /users/{userId}: Stores private user account data, accessible only to the owner.
+ * - /study_sessions/{sessionId}: Stores publicly accessible study session information.
+ * - /users/{userId}/user_sessions/{sessionId}: Stores user-specific session data (completion status, reminders), accessible only to the owner.
+ *
+ * Key Security Decisions:
+ * - User listing is disallowed.
+ * - Public read access is granted for study session information to facilitate discovery.
+ * - All write operations are secured with authorization checks based on ownership.
+ *
+ * Denormalization for Authorization:
+ * - The `user_sessions` subcollection includes the `sessionId` in each document to avoid the need for `get()` calls to the `study_sessions` collection, ensuring authorization independence.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Controls access to user account documents.
+     * @path /users/{userId}
+     * @allow (create) User with ID 'user123' can create their account.
+     * @allow (get) User with ID 'user123' can get their own account.
+     * @allow (update) User with ID 'user123' can update their own account.
+     * @allow (delete) User with ID 'user123' can delete their own account.
+     * @deny (create) User with ID 'user456' cannot create an account with ID 'user123'.
+     * @deny (get) User with ID 'user456' cannot get user with ID 'user123' account.
+     * @principle Enforces document ownership for all operations on user accounts.
+     */
+    match /users/{userId} {
+      // Helper function to check if the requesting user is the owner of the document.
+      function isOwner(userId) {
+        return request.auth.uid == userId;
+      }
+
+      // Helper function to check if the requesting user is the owner of the existing document.
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      // Allow the user to create their own document.
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+
+      // Allow the user to get their own document.
+      allow get: if isOwner(userId);
+
+      // Allow the user to list their own document.
+      allow list: if false;
+
+      // Allow the user to update their own document. Enforce immutability of the 'id' field.
+      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+
+      // Allow the user to delete their own document.
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Controls access to study session documents.
+     * @path /study_sessions/{sessionId}
+     * @allow (get) Any user can retrieve a study session.
+     * @allow (list) Any user can list study sessions.
+     * @deny (create) No one can create study sessions without authentication. // TODO: Implement admin role
+     * @deny (update) No one can update study sessions without authentication. // TODO: Implement admin role
+     * @deny (delete) No one can delete study sessions without authentication. // TODO: Implement admin role
+     * @principle Allows public read access to study session information, while restricting write access to authorized users (e.g., admins).
+     */
+    match /study_sessions/{sessionId} {
+      // Allow anyone to read study session information.
+      allow get, list: if true;
+
+      // Only allow authenticated users to create, update, and delete study sessions.
+      allow create, update, delete: if false; // TODO: Add admin role validation.
+    }
+
+    /**
+     * @description Controls access to user-specific study session data.
+     * @path /users/{userId}/user_sessions/{sessionId}
+     * @allow (create) User with ID 'user123' can create a session for themselves.
+     * @allow (get) User with ID 'user123' can get their own session data.
+     * @allow (update) User with ID 'user123' can update their own session data.
+     * @allow (delete) User with ID 'user123' can delete their own session data.
+     * @deny (create) User with ID 'user456' cannot create a session for user with ID 'user123'.
+     * @deny (get) User with ID 'user456' cannot get session data for user with ID 'user123'.
+     * @principle Enforces document ownership for all operations on user-specific session data, and validates that the userId matches the parent path.
+     */
+    match /users/{userId}/user_sessions/{sessionId} {
+      // Helper function to check if the requesting user is the owner of the document.
+      function isOwner(userId) {
+        return request.auth.uid == userId;
+      }
+
+      // Helper function to check if the requesting user is the owner of the existing document.
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      // Allow the user to create their own document. Validate userId.
+      allow create: if isOwner(userId) && request.resource.data.userId == userId;
+
+      // Allow the user to get their own document.
+      allow get: if isOwner(userId);
+
+      // Allow the user to list their own documents.
+      allow list: if isOwner(userId);
+
+      // Allow the user to update their own document. Enforce immutability of the 'userId' field.
+      allow update: if isExistingOwner(userId) && request.resource.data.userId == resource.data.userId;
+
+      // Allow the user to delete their own document.
+      allow delete: if isExistingOwner(userId);
+    }
+  }
+}
