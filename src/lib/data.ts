@@ -46,7 +46,7 @@ export const quizzes: Quiz[] = [
     subject: 'Feature Engineering',
     startDate: new Date('2025-10-10T00:00:00+05:30'),
     dueDate: new Date('2025-10-12T23:59:59+05:30'),
-    link: '#',
+    link: 'https://lumen.bitspilani-digital.edu.in/d2l/lms/quizzing/user/quiz_summary.d2l?ou=6726&qi=4085&cfql=0',
     weightage: '20%'
   },
   {
@@ -582,6 +582,7 @@ export const currentSessions: Session[] = [
     
 
     
+
 
 
 
