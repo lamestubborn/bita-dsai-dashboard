@@ -96,64 +96,6 @@ export function Dashboard() {
           <ApexProjectRegistration />
           <ImportantUpdates />
         </div>
-
-        <div className="space-y-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input 
-              placeholder="Search sessions, updates, subjects..."
-              className="w-full pl-10"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          <div className="flex flex-col sm:flex-row gap-2">
-            <Select value={filterType} onValueChange={(value: FilterType) => setFilterType(value)}>
-              <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Filter by type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Types</SelectItem>
-                <SelectItem value="session">Sessions</SelectItem>
-                <SelectItem value="update">Updates</SelectItem>
-                <SelectItem value="subject">Subjects</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select value={subjectFilter} onValueChange={(value: SubjectFilterType) => setSubjectFilter(value)}>
-              <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Filter by subject" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Subjects</SelectItem>
-                <SelectItem value="dvs">Data Visualization</SelectItem>
-                <SelectItem value="fe">Feature Engineering</SelectItem>
-                <SelectItem value="dp">Data Pre-processing</SelectItem>
-                <SelectItem value="smi">Statistical Modelling</SelectItem>
-                <SelectItem value="dsp">Data Stores & Pipelines</SelectItem>
-                <SelectItem value="aap">Advanced Apex Project</SelectItem>
-              </SelectContent>
-            </Select>
-             <Select value={sortType} onValueChange={(value: SortType) => setSortType(value)}>
-              <SelectTrigger className="w-full sm:w-[180px]">
-                <SelectValue placeholder="Sort by" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="relevance">Relevance</SelectItem>
-                <SelectItem value="date-desc">Date (Newest)</SelectItem>
-                <SelectItem value="date-asc">Date (Oldest)</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-        
-        {showSearchResults ? (
-           <SearchResults 
-              query={searchQuery}
-              filter={filterType}
-              subjectFilter={subjectFilter}
-              sort={sortType}
-            />
-        ) : (
           <Tabs defaultValue="this-week">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -194,7 +136,6 @@ export function Dashboard() {
                 </motion.div>
               </TabsContent>
           </Tabs>
-        )}
       </main>
       <footer className="py-4 border-t">
         <div className="container mx-auto flex items-center justify-center gap-4 flex-wrap">
