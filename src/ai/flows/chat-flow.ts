@@ -10,7 +10,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'zod';
-import {getSubjects, getCurrentSessions, getImportantUpdates, getApexUpdates} from '@/lib/dynamic-data';
+import {getSubjects, getCurrentSessions, getImportantUpdates} from '@/lib/dynamic-data';
 import { appendToSheet } from '@/lib/sheets';
 import { headers } from 'next/headers';
 
@@ -37,7 +37,6 @@ const prompt = ai.definePrompt({
       subjects: z.string(),
       sessions: z.string(),
       importantUpdates: z.string(),
-      apexUpdates: z.string(),
     }),
   },
   output: {schema: ChatOutputSchema},
@@ -72,9 +71,6 @@ Sessions data:
 Important Updates:
 {{{importantUpdates}}}
 
-Apex Project Registration Updates:
-{{{apexUpdates}}}
-
 User's question:
 "{{{query}}}"`,
 });
@@ -91,7 +87,6 @@ export const chatFlow = ai.defineFlow(
     const subjects = await getSubjects();
     const sessions = await getCurrentSessions();
     const importantUpdates = await getImportantUpdates();
-    const apexUpdates = await getApexUpdates();
 
     const result = await prompt({
       query: input.query,
@@ -102,7 +97,6 @@ export const chatFlow = ai.defineFlow(
         2
       ),
       importantUpdates: JSON.stringify(importantUpdates, null, 2),
-      apexUpdates: JSON.stringify(apexUpdates, null, 2),
     });
     
     const answer = result.output!.answer;

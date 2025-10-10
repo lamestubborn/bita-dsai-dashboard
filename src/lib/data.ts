@@ -29,13 +29,6 @@ export interface ImportantUpdate {
   titleLink?: string;
 }
 
-export interface ApexUpdate {
-  id: string;
-  title: string;
-  description: string;
-  titleLink?: string;
-}
-
 export const importantUpdates: ImportantUpdate[] = [
   {
     id: 'fe-quiz-1-week-3',
@@ -51,18 +44,6 @@ export const importantUpdates: ImportantUpdate[] = [
     id: 'dp-quiz-week-4',
     title: 'Data Pre-processing: Week 4 Graded Quiz (Live)',
     description: '<p>Starts: Oct 11 | Due: Oct 14</p>'
-  },
-];
-
-export const apexUpdates: ApexUpdate[] = [
-  {
-    id: 'update-1',
-    title: 'Registration Closed',
-    titleLink: '',
-    description: `
-      <p>Team registration for Advanced Apex Project 1 is now closed. The deadline was 26/09/2025 (FRI) 10:00AM.</p>
-      <p class="mt-2"><strong>To Find Project Details:</strong> Navigate to the 'Progress' tab. Hover over the project section to find and download the PDF with all the information.</p>
-    `,
   },
 ];
 
@@ -558,5 +539,6 @@ export const currentSessions: Session[] = [
     
 
     
+
 
 

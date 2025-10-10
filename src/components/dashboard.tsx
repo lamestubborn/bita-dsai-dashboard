@@ -12,7 +12,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from 'framer-motion';
 import { ImportantUpdates } from "./important-updates";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
-import { ApexProjectRegistration } from "./apex-project-registration";
 import { Chatbot } from "./chatbot";
 import { BuyMeACoffeeButton } from "./buy-me-a-coffee-button";
 import { ThemeToggle } from "./theme-toggle";
@@ -117,8 +116,7 @@ export function Dashboard() {
         </TooltipProvider>
       </header>
       <main className="container mx-auto flex flex-1 flex-col gap-8 p-4 md:p-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <ApexProjectRegistration />
+        <div className="grid grid-cols-1">
           <ImportantUpdates />
         </div>
           <Tabs defaultValue="this-week">
