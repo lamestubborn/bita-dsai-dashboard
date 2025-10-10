@@ -1,4 +1,3 @@
-
 'use client';
 import {
   Auth, // Import Auth type for type hinting
@@ -35,7 +34,7 @@ export function initiateEmailSignIn(authInstance: Auth, email: string, password:
 export function initiateGoogleSignIn(authInstance: Auth) {
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({
-    'hd': 'bitspilani-digital.edu.in'
+    hd: 'bitspilani-digital.edu.in'
   });
   return signInWithPopup(authInstance, provider);
 }
