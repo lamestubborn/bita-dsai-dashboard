@@ -75,17 +75,21 @@ export function Quizzes() {
             </div>
         </CardContent>
         <CardFooter>
-          {quiz.link === "#" ? (
-            <Button disabled variant="secondary" className="w-full sm:w-auto ml-auto rounded-full px-6 py-3">
-              Link coming soon
-            </Button>
-          ) : (
-            <Button asChild className="w-full sm:w-auto ml-auto rounded-full px-6 py-3 bg-accent text-accent-foreground hover:bg-accent/90">
-              <a href={quiz.link} target="_blank" rel="noopener noreferrer">
-                Go to Quiz
-                <ExternalLink className="ml-2 h-4 w-4" />
-              </a>
-            </Button>
+          {isCurrent && (
+            <>
+              {quiz.link === "#" ? (
+                <Button disabled variant="secondary" className="w-full sm:w-auto ml-auto rounded-full px-6 py-3">
+                  Link coming soon
+                </Button>
+              ) : (
+                <Button asChild className="w-full sm:w-auto ml-auto rounded-full px-6 py-3 bg-accent text-accent-foreground hover:bg-accent/90">
+                  <a href={quiz.link} target="_blank" rel="noopener noreferrer">
+                    Go to Quiz
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+              )}
+            </>
           )}
         </CardFooter>
       </Card>
