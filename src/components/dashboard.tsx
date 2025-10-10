@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { CurrentSessions } from "@/components/current-sessions";
 import { PreviousSessions } from "@/components/previous-sessions";
 import { ProgressTracker } from "@/components/progress-tracker";
-import { CalendarDays, Linkedin, Newspaper, BookOpen, Search } from "lucide-react";
+import { CalendarDays, Linkedin, Newspaper, BookOpen, User as UserIcon, LogOut } from "lucide-react";
 import { BITSLogo } from '@/components/bits-logo';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from 'framer-motion';
@@ -17,21 +17,20 @@ import { ApexProjectRegistration } from "./apex-project-registration";
 import { Chatbot } from "./chatbot";
 import { BuyMeACoffeeButton } from "./buy-me-a-coffee-button";
 import { ThemeToggle } from "./theme-toggle";
-import { Input } from './ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { SearchResults } from './search-results';
-
-export type FilterType = 'all' | 'session' | 'update' | 'subject';
-export type SortType = 'relevance' | 'date-desc' | 'date-asc';
-export type SubjectFilterType = 'all' | 'dvs' | 'fe' | 'dp' | 'smi' | 'dsp' | 'aap';
+import { LoginDialog } from './login-dialog';
+import { useUser, useAuth } from '@/firebase';
+import { getAuth, signOut } from 'firebase/auth';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
 
 export function Dashboard() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filterType, setFilterType] = useState<FilterType>('all');
-  const [subjectFilter, setSubjectFilter] = useState<SubjectFilterType>('all');
-  const [sortType, setSortType] = useState<SortType>('relevance');
+  const { user, isUserLoading } = useUser();
+  const auth = useAuth();
 
-  const showSearchResults = searchQuery.trim() !== '';
+  const handleLogout = async () => {
+    if (auth) {
+      await signOut(auth);
+    }
+  };
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-background">
@@ -87,6 +86,26 @@ export function Dashboard() {
                   </Button>
                 </div>
                 <ThemeToggle />
+                {!isUserLoading && (
+                  user ? (
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon" className="rounded-full">
+                          <UserIcon />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        {user.email && <DropdownMenuItem disabled>{user.email}</DropdownMenuItem>}
+                        <DropdownMenuItem onClick={handleLogout}>
+                          <LogOut className="mr-2 h-4 w-4" />
+                          <span>Log out</span>
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  ) : (
+                    <LoginDialog />
+                  )
+                )}
               </div>
           </div>
         </TooltipProvider>
