@@ -17,6 +17,7 @@ import { headers } from 'next/headers';
 
 const ChatInputSchema = z.object({
   query: z.string().describe('The user question'),
+  userEmail: z.string().optional().describe('The email of the user'),
 });
 export type ChatInput = z.infer<typeof ChatInputSchema>;
 
@@ -118,7 +119,7 @@ export const chatFlow = ai.defineFlow(
       const realIp = headers().get('x-real-ip');
       const ip = forwardedFor ? forwardedFor.split(',')[0] : realIp;
       
-      await appendToSheet([new Date(), ip || 'Unknown', input.query, answer]);
+      await appendToSheet([new Date(), ip || 'Unknown', input.userEmail || 'anonymous', input.query, answer]);
     } catch (e) {
         console.error("Failed to write to google sheet", e);
     }

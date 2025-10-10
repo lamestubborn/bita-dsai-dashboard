@@ -10,6 +10,7 @@ import { Card } from './ui/card';
 import { chat } from '@/ai/flows/chat-flow';
 import { BITSLogo } from './bits-logo';
 import ReactMarkdown from 'react-markdown';
+import { useUser } from '@/firebase';
 
 interface Message {
   role: 'user' | 'bot';
@@ -22,6 +23,7 @@ export function Chatbot() {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { user } = useUser();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -39,7 +41,7 @@ export function Chatbot() {
     setIsLoading(true);
 
     try {
-      const response = await chat({ query: inputValue });
+      const response = await chat({ query: inputValue, userEmail: user?.email || undefined });
       const botMessage: Message = { role: 'bot', text: response.answer };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
