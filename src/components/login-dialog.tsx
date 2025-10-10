@@ -59,7 +59,7 @@ export function LoginDialog({ open: controlledOpen, onOpenChange: controlledOnOp
         </DialogDescription>
       </DialogHeader>
       <div className="py-4">
-        <Button onClick={handleGoogleSignIn} className="w-full">
+        <Button onClick={handleGoogleSignIn} className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
             Sign in with BITS Pilani Google Account
         </Button>
       </div>
