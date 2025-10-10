@@ -1,12 +1,13 @@
 
 import { NextResponse } from 'next/server';
-import { currentSessions } from '@/lib/data';
+import { getCurrentSessions, getQuizzes } from '@/lib/dynamic-data';
+import { addDays } from 'date-fns';
 
 // Force the route to be dynamic
 export const dynamic = 'force-dynamic';
 
 // Function to format a date for iCalendar in a specific timezone, e.g., 20240101T120000
-const formatICalDate = (date: Date): string => {
+const formatICalDateTime = (date: Date): string => {
   const pad = (num: number) => num.toString().padStart(2, '0');
   
   // Use toLocaleString to get date parts in the correct timezone
@@ -34,6 +35,30 @@ const formatICalDate = (date: Date): string => {
   return `${year}${month}${day}T${hours}${minutes}${seconds}`;
 };
 
+
+// Function to format a date for an all-day iCalendar event, e.g., 20240101
+const formatICalDate = (date: Date): string => {
+    const pad = (num: number) => num.toString().padStart(2, '0');
+    
+    // Use toLocaleString to get date parts in the correct timezone
+    const options: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        timeZone: 'Asia/Kolkata',
+    };
+
+    const formatter = new Intl.DateTimeFormat('en-US', options);
+    const parts = formatter.formatToParts(date);
+    
+    const year = parts.find(p => p.type === 'year')?.value || '0000';
+    const month = parts.find(p => p.type === 'month')?.value || '00';
+    const day = parts.find(p => p.type === 'day')?.value || '00';
+
+    return `${year}${month}${day}`;
+};
+
+
 export async function GET() {
   const calHeader = [
     'BEGIN:VCALENDAR',
@@ -42,7 +67,7 @@ export async function GET() {
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'X-PUBLISHED-TTL:PT1M',
-    'X-WR-CALNAME:BITS MSc DSAI Sessions',
+    'X-WR-CALNAME:BITS MSc DSAI Calendar',
     'X-WR-TIMEZONE:Asia/Kolkata', // Set timezone to IST
     'BEGIN:VTIMEZONE',
     'TZID:Asia/Kolkata',
@@ -57,16 +82,16 @@ export async function GET() {
 
   const calFooter = ['END:VCALENDAR'];
 
-  // The dates in lib/data.ts are parsed with a specific timezone offset (+05:30),
-  // so they represent a correct point in time.
-  const events = currentSessions.map(session => {
+  const currentSessions = await getCurrentSessions();
+  const quizzes = await getQuizzes();
+
+  const sessionEvents = currentSessions.map(session => {
     const event = [
       'BEGIN:VEVENT',
       `UID:${session.id}@bits-dsai-dashboard.app`,
-      // Use a UTC timestamp for DTSTAMP
       `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'}`,
-      `DTSTART;TZID=Asia/Kolkata:${formatICalDate(session.startTime)}`,
-      `DTEND;TZID=Asia/Kolkata:${formatICalDate(session.endTime)}`,
+      `DTSTART;TZID=Asia/Kolkata:${formatICalDateTime(session.startTime)}`,
+      `DTEND;TZID=Asia/Kolkata:${formatICalDateTime(session.endTime)}`,
       `SUMMARY:${session.title}`,
       `DESCRIPTION:Subject: ${session.subject}\\nJoin your session here: ${session.joinUrl}`,
       'END:VEVENT',
@@ -74,13 +99,29 @@ export async function GET() {
     return event.join('\r\n');
   });
 
-  const calBody = [ ...calHeader, ...events, ...calFooter ].join('\r\n');
+  const quizEvents = quizzes.map(quiz => {
+    const event = [
+        'BEGIN:VEVENT',
+        `UID:${quiz.id}@bits-dsai-dashboard.app`,
+        `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'}`,
+        `DTSTART;VALUE=DATE:${formatICalDate(quiz.dueDate)}`,
+        `DTEND;VALUE=DATE:${formatICalDate(addDays(quiz.dueDate, 1))}`,
+        `SUMMARY:DUE: ${quiz.title}`,
+        `DESCRIPTION:Subject: ${quiz.subject}\\nWeightage: ${quiz.weightage || 'N/A'}\\nSubmit here: ${quiz.link}`,
+        'END:VEVENT',
+    ];
+    return event.join('\r\n');
+  });
+
+  const allEvents = [...sessionEvents, ...quizEvents];
+
+  const calBody = [ ...calHeader, ...allEvents, ...calFooter ].join('\r\n');
 
   return new NextResponse(calBody, {
     status: 200,
     headers: {
       'Content-Type': 'text/calendar; charset=utf-8',
-      'Content-Disposition': 'attachment; filename="bits_dsai_sessions.ics"',
+      'Content-Disposition': 'attachment; filename="bits_dsai_calendar.ics"',
       'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
       'Pragma': 'no-cache',
       'Expires': '0',

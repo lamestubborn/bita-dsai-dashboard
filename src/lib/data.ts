@@ -60,7 +60,7 @@ export const quizzes: Quiz[] = [
   },
   {
     id: 'dp-quiz-week-4',
-    title: 'Week 4 Graded Quiz (Live)',
+    title: 'Quiz 2 - Week 4',
     subject: 'Data Pre-processing',
     startDate: new Date('2025-10-11T00:00:00+05:30'),
     dueDate: new Date('2025-10-14T23:59:59+05:30'),
@@ -78,12 +78,12 @@ export const quizzes: Quiz[] = [
   },
    {
     id: 'dpp-quiz-1-past',
-    title: 'Quiz 1',
+    title: 'Quiz 1- Week2',
     subject: 'Data Pre-Processing',
     startDate: new Date('2025-09-21T00:00:00+05:30'),
     dueDate: new Date('2025-10-06T23:59:59+05:30'),
     link: '#',
-    weightage: '15%'
+    weightage: '10%'
   },
 ];
 
