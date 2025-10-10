@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CurrentSessions } from "@/components/current-sessions";
 import { PreviousSessions } from "@/components/previous-sessions";
 import { ProgressTracker } from "@/components/progress-tracker";
-import { CalendarDays, Linkedin, Newspaper, BookOpen, User as UserIcon, LogOut } from "lucide-react";
+import { CalendarDays, Linkedin, Newspaper, BookOpen, User as UserIcon, LogOut, FileText } from "lucide-react";
 import { BITSLogo } from '@/components/bits-logo';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from 'framer-motion';
@@ -19,6 +19,7 @@ import { LoginDialog } from './login-dialog';
 import { useUser, useAuth } from '@/firebase';
 import { signOut } from 'firebase/auth';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
+import { Quizzes } from './quizzes';
 
 export function Dashboard() {
   const { user, isUserLoading } = useUser();
@@ -125,8 +126,9 @@ export function Dashboard() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="grid w-full grid-cols-4">
                 <TabsTrigger value="this-week">This Week</TabsTrigger>
+                <TabsTrigger value="quizzes">Quizzes</TabsTrigger>
                 <TabsTrigger value="progress">Progress</TabsTrigger>
                 <TabsTrigger value="archive">Archive</TabsTrigger>
               </TabsList>
@@ -138,6 +140,15 @@ export function Dashboard() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
                     <CurrentSessions />
+                </motion.div>
+              </TabsContent>
+               <TabsContent value="quizzes">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                    <Quizzes />
                 </motion.div>
               </TabsContent>
               <TabsContent value="progress">

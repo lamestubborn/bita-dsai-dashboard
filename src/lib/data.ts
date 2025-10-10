@@ -29,23 +29,66 @@ export interface ImportantUpdate {
   titleLink?: string;
 }
 
-export const importantUpdates: ImportantUpdate[] = [
+export interface Quiz {
+  id: string;
+  title: string;
+  subject: string;
+  startDate: Date;
+  dueDate: Date;
+  link: string;
+  weightage?: string;
+}
+
+export const quizzes: Quiz[] = [
   {
     id: 'fe-quiz-1-week-3',
-    title: 'Feature Engineering: Graded Quiz 1 Week 3',
-    description: '<p>Starts: Oct 10 | Due: Oct 12</p>'
+    title: 'Graded Quiz 1',
+    subject: 'Feature Engineering',
+    startDate: new Date('2025-10-10T00:00:00+05:30'),
+    dueDate: new Date('2025-10-12T23:59:59+05:30'),
+    link: '#',
+    weightage: '20%'
   },
   {
     id: 'dsp-quiz-1',
-    title: 'Data Stores & Pipelines: Graded Quiz #1 (8%)',
-    description: '<p>Starts: Oct 11 | Due: Oct 12</p>'
+    title: 'Graded Quiz #1',
+    subject: 'Data Stores & Pipelines',
+    startDate: new Date('2025-10-11T00:00:00+05:30'),
+    dueDate: new Date('2025-10-12T23:59:59+05:30'),
+    link: '#',
+    weightage: '8%'
   },
   {
     id: 'dp-quiz-week-4',
-    title: 'Data Pre-processing: Week 4 Graded Quiz (Live)',
-    description: '<p>Starts: Oct 11 | Due: Oct 14</p>'
+    title: 'Week 4 Graded Quiz (Live)',
+    subject: 'Data Pre-processing',
+    startDate: new Date('2025-10-11T00:00:00+05:30'),
+    dueDate: new Date('2025-10-14T23:59:59+05:30'),
+    link: '#',
+    weightage: '10%'
+  },
+   {
+    id: 'smi-quiz-1-past',
+    title: 'Quiz 1',
+    subject: 'Statistical Modelling and Inferencing',
+    startDate: new Date('2025-09-28T00:00:00+05:30'),
+    dueDate: new Date('2025-10-01T23:59:59+05:30'),
+    link: '#',
+    weightage: '15%'
+  },
+   {
+    id: 'dvs-quiz-1-past',
+    title: 'Quiz 1',
+    subject: 'Data Visualization and Storytelling',
+    startDate: new Date('2025-09-21T00:00:00+05:30'),
+    dueDate: new Date('2025-09-24T23:59:59+05:30'),
+    link: '#',
+    weightage: '15%'
   },
 ];
+
+
+export const importantUpdates: ImportantUpdate[] = [];
 
 export const subjects: Subject[] = [
   {
@@ -539,6 +582,7 @@ export const currentSessions: Session[] = [
     
 
     
+
 
 
 

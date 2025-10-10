@@ -10,7 +10,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'zod';
-import {getSubjects, getCurrentSessions, getImportantUpdates} from '@/lib/dynamic-data';
+import {getSubjects, getCurrentSessions, getImportantUpdates, getQuizzes} from '@/lib/dynamic-data';
 import { appendToSheet } from '@/lib/sheets';
 import { headers } from 'next/headers';
 
@@ -37,6 +37,7 @@ const prompt = ai.definePrompt({
       subjects: z.string(),
       sessions: z.string(),
       importantUpdates: z.string(),
+      quizzes: z.string(),
     }),
   },
   output: {schema: ChatOutputSchema},
@@ -68,6 +69,9 @@ Subjects data:
 Sessions data:
 {{{sessions}}}
 
+Quizzes and Assignments:
+{{{quizzes}}}
+
 Important Updates:
 {{{importantUpdates}}}
 
@@ -87,6 +91,7 @@ export const chatFlow = ai.defineFlow(
     const subjects = await getSubjects();
     const sessions = await getCurrentSessions();
     const importantUpdates = await getImportantUpdates();
+    const quizzes = await getQuizzes();
 
     const result = await prompt({
       query: input.query,
@@ -97,6 +102,11 @@ export const chatFlow = ai.defineFlow(
         2
       ),
       importantUpdates: JSON.stringify(importantUpdates, null, 2),
+      quizzes: JSON.stringify(
+        quizzes.map(q => ({...q, startDate: q.startDate.toISOString(), dueDate: q.dueDate.toISOString()})),
+        null,
+        2
+      )
     });
     
     const answer = result.output!.answer;
