@@ -4,8 +4,7 @@
 import { google } from 'googleapis';
 import { JWT } from 'google-auth-library';
 
-// Ensure environment variables are loaded
-import 'dotenv/config';
+// Next.js handles loading environment variables automatically, so dotenv is not needed.
 
 const SHEET_ID = process.env.GOOGLE_SHEET_ID;
 const SERVICE_ACCOUNT_CREDS = process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS;
