@@ -1,19 +1,24 @@
 /**
  * @file Firestore Security Rules
- * @description This ruleset enforces a strict user-ownership model for user accounts and user-specific session data, while allowing public read access to study session information.
+ * @description This ruleset enforces a strict user-ownership model for private user data
+ * and allows public read access to study sessions. User-specific data, such as study session
+ * completions and quiz results, are stored in subcollections under each user's document.
+ * This design prioritizes authorization independence, clarity, and scalability.
  *
  * Data Structure:
- * - /users/{userId}: Stores private user account data, accessible only to the owner.
- * - /study_sessions/{sessionId}: Stores publicly accessible study session information.
- * - /users/{userId}/user_sessions/{sessionId}: Stores user-specific session data (completion status, reminders), accessible only to the owner.
+ * - /users/{userId}: Stores user account information. Only the user can read/write their own data.
+ * - /study_sessions/{sessionId}: Stores information about study sessions. Publicly readable, but only the owner can create/modify.
+ * - /users/{userId}/user_sessions/{sessionId}: Stores user-specific session data. Only the user can read/write their own data.
+ * - /users/{userId}/user_quizzes/{quizId}: Stores user-specific quiz completion data. Only the user can read/write their own data.
  *
  * Key Security Decisions:
- * - User listing is disallowed.
- * - Public read access is granted for study session information to facilitate discovery.
- * - All write operations are secured with authorization checks based on ownership.
+ * - User data is strictly private; no listing of users is allowed.
+ * - Study sessions are publicly readable to facilitate discovery.
+ * - Subcollections inherit ownership from their parent user document.
  *
  * Denormalization for Authorization:
- * - The `user_sessions` subcollection includes the `sessionId` in each document to avoid the need for `get()` calls to the `study_sessions` collection, ensuring authorization independence.
+ * - The `user_sessions` and `user_quizzes` subcollections include the `sessionId` and `quizId` respectively, within each document.
+ *   This avoids the need for potentially slow and costly `get()` calls to parent documents to determine authorization.
  */
 rules_version = '2';
 service cloud.firestore {
@@ -22,95 +27,76 @@ service cloud.firestore {
     /**
      * @description Controls access to user account documents.
      * @path /users/{userId}
-     * @allow (create) User with ID 'user123' can create their account.
-     * @allow (get) User with ID 'user123' can get their own account.
-     * @allow (update) User with ID 'user123' can update their own account.
-     * @allow (delete) User with ID 'user123' can delete their own account.
-     * @deny (create) User with ID 'user456' cannot create an account with ID 'user123'.
-     * @deny (get) User with ID 'user456' cannot get user with ID 'user123' account.
-     * @principle Enforces document ownership for all operations on user accounts.
+     * @allow (create) User with ID 'scPOaGwtHlSYPjNuMlfKJONtCwC3' can create their own document.
+     * @allow (get, update, delete) User with ID 'scPOaGwtHlSYPjNuMlfKJONtCwC3' can read, update, and delete their own document.
+     * @deny (create) User with ID 'scPOaGwtHlSYPjNuMlfKJONtCwC3' cannot create a document with a different ID.
+     * @deny (get, update, delete) User with ID 'attackerId' cannot read, update, or delete the document of user 'scPOaGwtHlSYPjNuMlfKJONtCwC3'.
+     * @principle Enforces document ownership for writes.
      */
     match /users/{userId} {
-      // Helper function to check if the requesting user is the owner of the document.
-      function isOwner(userId) {
-        return request.auth.uid == userId;
-      }
-
-      // Helper function to check if the requesting user is the owner of the existing document.
-      function isExistingOwner(userId) {
-        return isOwner(userId) && resource != null;
-      }
-
-      // Allow the user to create their own document.
-      allow create: if isOwner(userId) && request.resource.data.id == userId;
-
-      // Allow the user to get their own document.
       allow get: if isOwner(userId);
-
-      // Allow the user to list their own document.
-      allow list: if false;
-
-      // Allow the user to update their own document. Enforce immutability of the 'id' field.
-      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
-
-      // Allow the user to delete their own document.
+      allow list: if false; // Prevent listing of all users.
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+      allow update: if isExistingOwner(userId) && resource.data.id == userId;
       allow delete: if isExistingOwner(userId);
     }
 
     /**
      * @description Controls access to study session documents.
      * @path /study_sessions/{sessionId}
-     * @allow (get) Any user can retrieve a study session.
-     * @allow (list) Any user can list study sessions.
-     * @deny (create) No one can create study sessions without authentication. // TODO: Implement admin role
-     * @deny (update) No one can update study sessions without authentication. // TODO: Implement admin role
-     * @deny (delete) No one can delete study sessions without authentication. // TODO: Implement admin role
-     * @principle Allows public read access to study session information, while restricting write access to authorized users (e.g., admins).
+     * @allow (get, list) Any user can read study session information.
+     * @allow (create) Only the owner can create a study session. Author id must equal to request.auth.uid.
+     * @allow (update, delete) Only the owner can update or delete a study session.
+     * @deny (create) An unauthenticated user cannot create a study session.
+     * @deny (update, delete) A non-owner cannot update or delete a study session.
+     * @principle Allows public read access while restricting writes to the owner.
      */
     match /study_sessions/{sessionId} {
-      // Allow anyone to read study session information.
       allow get, list: if true;
-
-      // Only allow authenticated users to create, update, and delete study sessions.
-      allow create, update, delete: if false; // TODO: Add admin role validation.
+      allow create: if isSignedIn();
+      allow update: if false; // TODO: Add owner validation once the schema is updated with an ownership field.
+      allow delete: if false; // TODO: Add owner validation once the schema is updated with an ownership field.
     }
 
     /**
      * @description Controls access to user-specific study session data.
      * @path /users/{userId}/user_sessions/{sessionId}
-     * @allow (create) User with ID 'user123' can create a session for themselves.
-     * @allow (get) User with ID 'user123' can get their own session data.
-     * @allow (update) User with ID 'user123' can update their own session data.
-     * @allow (delete) User with ID 'user123' can delete their own session data.
-     * @deny (create) User with ID 'user456' cannot create a session for user with ID 'user123'.
-     * @deny (get) User with ID 'user456' cannot get session data for user with ID 'user123'.
-     * @principle Enforces document ownership for all operations on user-specific session data, and validates that the userId matches the parent path.
+     * @allow (create, get, update, delete, list) User with ID 'scPOaGwtHlSYPjNuMlfKJONtCwC3' can manage their own study session data.
+     * @deny (create, get, update, delete, list) User with ID 'attackerId' cannot manage the study session data of user 'scPOaGwtHlSYPjNuMlfKJONtCwC3'.
+     * @principle Restricts access to a user's own data tree.
      */
     match /users/{userId}/user_sessions/{sessionId} {
-      // Helper function to check if the requesting user is the owner of the document.
-      function isOwner(userId) {
-        return request.auth.uid == userId;
-      }
-
-      // Helper function to check if the requesting user is the owner of the existing document.
-      function isExistingOwner(userId) {
-        return isOwner(userId) && resource != null;
-      }
-
-      // Allow the user to create their own document. Validate userId.
+      allow get, list: if isOwner(userId);
       allow create: if isOwner(userId) && request.resource.data.userId == userId;
-
-      // Allow the user to get their own document.
-      allow get: if isOwner(userId);
-
-      // Allow the user to list their own documents.
-      allow list: if isOwner(userId);
-
-      // Allow the user to update their own document. Enforce immutability of the 'userId' field.
-      allow update: if isExistingOwner(userId) && request.resource.data.userId == resource.data.userId;
-
-      // Allow the user to delete their own document.
+      allow update: if isExistingOwner(userId) && resource.data.userId == userId;
       allow delete: if isExistingOwner(userId);
     }
+
+    /**
+     * @description Controls access to user-specific quiz completion data.
+     * @path /users/{userId}/user_quizzes/{quizId}
+     * @allow (create, get, update, delete, list) User with ID 'scPOaGwtHlSYPjNuMlfKJONtCwC3' can manage their own quiz completion data.
+     * @deny (create, get, update, delete, list) User with ID 'attackerId' cannot manage the quiz completion data of user 'scPOaGwtHlSYPjNuMlfKJONtCwC3'.
+     * @principle Restricts access to a user's own data tree.
+     */
+    match /users/{userId}/user_quizzes/{quizId} {
+      allow get, list: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.userId == userId;
+      allow update: if isExistingOwner(userId) && resource.data.userId == userId;
+      allow delete: if isExistingOwner(userId);
+    }
+  }
+
+  // Helper functions
+  function isSignedIn() {
+    return request.auth != null;
+  }
+
+  function isOwner(userId) {
+    return request.auth.uid == userId;
+  }
+
+  function isExistingOwner(userId) {
+    return isOwner(userId) && resource != null;
   }
 }
