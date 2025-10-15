@@ -79,7 +79,7 @@ export const quizzes: Quiz[] = [
    {
     id: 'dpp-quiz-1-past',
     title: 'Quiz 1- Week2',
-    subject: 'Data Pre-Processing',
+    subject: 'Data Pre-processing',
     startDate: new Date('2025-09-21T00:00:00+05:30'),
     dueDate: new Date('2025-10-06T23:59:59+05:30'),
     link: '#',
@@ -420,6 +420,7 @@ export const currentSessions: Session[] = [
     
 
     
+
 
 
 
