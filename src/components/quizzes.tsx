@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Calendar, Percent } from "lucide-react";
@@ -12,32 +12,43 @@ import { Separator } from './ui/separator';
 import { getQuizzes } from '@/lib/dynamic-data';
 import { Badge } from './ui/badge';
 import { cn } from '@/lib/utils';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
 export function Quizzes() {
-  const [currentQuizzes, setCurrentQuizzes] = useState<Quiz[]>([]);
-  const [pastQuizzes, setPastQuizzes] = useState<Quiz[]>([]);
+  const [allQuizzes, setAllQuizzes] = useState<Quiz[]>([]);
+  const [selectedSubject, setSelectedSubject] = useState<string>('all');
   const [isClient, setIsClient] = useState(false);
-
+  
   useEffect(() => {
     setIsClient(true);
     const fetchQuizzes = async () => {
-      const allQuizzes = await getQuizzes();
-      const now = new Date();
-      
-      const current = allQuizzes
-        .filter(quiz => quiz.dueDate >= now)
-        .sort((a, b) => a.dueDate.getTime() - b.dueDate.getTime());
-      
-      const past = allQuizzes
-        .filter(quiz => quiz.dueDate < now)
-        .sort((a, b) => b.dueDate.getTime() - a.dueDate.getTime());
-
-      setCurrentQuizzes(current);
-      setPastQuizzes(past);
+      const quizzes = await getQuizzes();
+      setAllQuizzes(quizzes);
     };
 
     fetchQuizzes();
   }, []);
+
+  const { subjects, currentQuizzes, pastQuizzes } = useMemo(() => {
+    const subjectSet = new Set(allQuizzes.map(q => q.subject));
+    const uniqueSubjects = Array.from(subjectSet);
+    
+    const filtered = selectedSubject === 'all' 
+      ? allQuizzes 
+      : allQuizzes.filter(quiz => quiz.subject === selectedSubject);
+
+    const now = new Date();
+    const current = filtered
+      .filter(quiz => quiz.dueDate >= now)
+      .sort((a, b) => a.dueDate.getTime() - b.dueDate.getTime());
+      
+    const past = filtered
+      .filter(quiz => quiz.dueDate < now)
+      .sort((a, b) => b.dueDate.getTime() - a.dueDate.getTime());
+
+    return { subjects: uniqueSubjects, currentQuizzes: current, pastQuizzes: past };
+  }, [allQuizzes, selectedSubject]);
+
 
   const containerVariants = {
     hidden: {},
@@ -98,7 +109,20 @@ export function Quizzes() {
 
   return (
     <div className="space-y-8">
-      <h2 className="font-headline text-4xl font-bold tracking-tight">Quizzes & Assignments</h2>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <h2 className="font-headline text-4xl font-bold tracking-tight">Quizzes & Assignments</h2>
+        <Select value={selectedSubject} onValueChange={setSelectedSubject}>
+          <SelectTrigger className="w-full sm:w-[280px]">
+            <SelectValue placeholder="Filter by subject..." />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Subjects</SelectItem>
+            {subjects.map(subject => (
+              <SelectItem key={subject} value={subject}>{subject}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
       
       {/* Current Quizzes */}
       <div className="space-y-6">
@@ -114,7 +138,7 @@ export function Quizzes() {
               {currentQuizzes.map((quiz) => <QuizCard key={quiz.id} quiz={quiz} isCurrent />)}
             </motion.div>
           ) : (
-            <p className="text-muted-foreground py-12 text-center">No current quizzes or assignments. Keep an eye out for updates!</p>
+            <p className="text-muted-foreground py-12 text-center">No current quizzes or assignments for the selected subject.</p>
           )
         ) : (
            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -141,7 +165,7 @@ export function Quizzes() {
               {pastQuizzes.map((quiz) => <QuizCard key={quiz.id} quiz={quiz} />)}
             </motion.div>
           ) : (
-            <p className="text-muted-foreground py-12 text-center">No past quizzes found.</p>
+            <p className="text-muted-foreground py-12 text-center">No past quizzes found for the selected subject.</p>
           )
         ) : (
            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -154,3 +178,5 @@ export function Quizzes() {
     </div>
   );
 }
+
+    
