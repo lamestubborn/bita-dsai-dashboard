@@ -313,7 +313,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-10T18:30:00+05:30"),
     endTime: new Date("2025-10-10T19:30:00+05:30"),
     joinUrl: "https://zoom.us/j/97625555370",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6727/topics/9173",
   },
   {
     id: "session-fe-oct-10",
@@ -322,7 +322,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-10T19:40:00+05:30"),
     endTime: new Date("2025-10-10T20:40:00+05:30"),
     joinUrl: "https://zoom.us/j/92860794895",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6726/topics/9174",
   },
   {
     id: "session-dsp-oct-10",
@@ -331,7 +331,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-10T20:50:00+05:30"),
     endTime: new Date("2025-10-10T21:50:00+05:30"),
     joinUrl: "https://zoom.us/j/92063819149",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6728/topics/9172",
   },
   {
     id: "session-dp-oct-11",
@@ -340,7 +340,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-11T18:30:00+05:30"),
     endTime: new Date("2025-10-11T19:30:00+05:30"),
     joinUrl: "https://zoom.us/j/95764273373",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6725/topics/9175",
   },
   {
     id: "session-aap-oct-11",
@@ -349,7 +349,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-11T19:40:00+05:30"),
     endTime: new Date("2025-10-11T20:40:00+05:30"),
     joinUrl: "https://zoom.us/j/96009483570",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6732/topics/9171",
   },
   {
     id: "session-smi-oct-11",
@@ -358,7 +358,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-11T20:50:00+05:30"),
     endTime: new Date("2025-10-11T21:50:00+05:30"),
     joinUrl: "https://zoom.us/j/98605093627",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6724/topics/9176",
   },
   {
     id: "session-17",
@@ -366,25 +366,25 @@ export const currentSessions: Session[] = [
     subject: "Data Visualization and Storytelling",
     startTime: new Date("2025-10-17T18:30:00+05:30"),
     endTime: new Date("2025-10-17T19:30:00+05:30"),
-    joinUrl: "#",
+    joinUrl: "https://zoom.us/j/92417554167",
     recordingUrl: "#",
   },
   {
     id: "session-18",
     title: "Feature Engineering",
     subject: "Feature Engineering",
-    startTime: new Date("2025-10-17T19:30:00+05:30"),
-    endTime: new Date("2025-10-17T20:30:00+05:30"),
-    joinUrl: "#",
+    startTime: new Date("2025-10-17T19:40:00+05:30"),
+    endTime: new Date("2025-10-17T20:40:00+05:30"),
+    joinUrl: "https://zoom.us/j/93813338012",
     recordingUrl: "#",
   },
   {
     id: "session-19",
     title: "Statistical Modelling and Inferencing",
     subject: "Statistical Modelling and Inferencing",
-    startTime: new Date("2025-10-17T20:30:00+05:30"),
-    endTime: new Date("2025-10-17T21:30:00+05:30"),
-    joinUrl: "#",
+    startTime: new Date("2025-10-17T20:50:00+05:30"),
+    endTime: new Date("2025-10-17T21:50:00+05:30"),
+    joinUrl: "https://zoom.us/j/98088271158",
     recordingUrl: "#",
   },
   {
@@ -393,16 +393,16 @@ export const currentSessions: Session[] = [
     subject: "Data Pre-processing",
     startTime: new Date("2025-10-18T18:30:00+05:30"),
     endTime: new Date("2025-10-18T19:30:00+05:30"),
-    joinUrl: "#",
+    joinUrl: "https://zoom.us/j/93720459681",
     recordingUrl: "#",
   },
   {
     id: "session-21",
     title: "Data Stores and Pipelines",
     subject: "Data Stores and Pipelines",
-    startTime: new Date("2025-10-18T19:30:00+05:30"),
-    endTime: new Date("2025-10-18T20:30:00+05:30"),
-    joinUrl: "#",
+    startTime: new Date("2025-10-18T20:50:00+05:30"),
+    endTime: new Date("2025-10-18T21:50:00+05:30"),
+    joinUrl: "https://zoom.us/j/95153652675",
     recordingUrl: "#",
   },
   {
@@ -576,12 +576,22 @@ export const currentSessions: Session[] = [
     joinUrl: "#",
     recordingUrl: "#",
   },
+  {
+    id: "session-aap-oct-18",
+    title: "Advanced Apex Project I",
+    subject: "Advanced Apex Project I",
+    startTime: new Date("2025-10-18T19:40:00+05:30"),
+    endTime: new Date("2025-10-18T20:40:00+05:30"),
+    joinUrl: "https://zoom.us/j/96042626338",
+    recordingUrl: "#",
+  },
 ];
 
     
     
 
     
+
 
 
 
