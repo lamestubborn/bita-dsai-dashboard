@@ -13,11 +13,24 @@ import { getQuizzes } from '@/lib/dynamic-data';
 import { Badge } from './ui/badge';
 import { cn } from '@/lib/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { useUser, useFirestore, useCollection, updateUserQuiz, useMemoFirebase } from '@/firebase';
+import { collection } from 'firebase/firestore';
+import { Checkbox } from './ui/checkbox';
+import { Label } from './ui/label';
 
 export function Quizzes() {
   const [allQuizzes, setAllQuizzes] = useState<Quiz[]>([]);
   const [selectedSubject, setSelectedSubject] = useState<string>('all');
   const [isClient, setIsClient] = useState(false);
+  const { user } = useUser();
+  const firestore = useFirestore();
+
+  const userQuizzesQuery = useMemoFirebase(() => {
+    if (!user || !firestore) return null;
+    return collection(firestore, 'users', user.uid, 'user_quizzes');
+  }, [user, firestore]);
+
+  const { data: userQuizzes } = useCollection(userQuizzesQuery);
   
   useEffect(() => {
     setIsClient(true);
@@ -48,6 +61,15 @@ export function Quizzes() {
 
     return { subjects: uniqueSubjects, currentQuizzes: current, pastQuizzes: past };
   }, [allQuizzes, selectedSubject]);
+
+  const handleMarkAsComplete = (quizId: string, completed: boolean) => {
+    if (!user || !firestore) return;
+    updateUserQuiz(firestore, user.uid, quizId, { completed });
+  };
+
+  const isQuizCompleted = (quizId: string) => {
+    return userQuizzes?.some(uq => uq.quizId === quizId && uq.completed) || false;
+  };
 
 
   const containerVariants = {
@@ -85,7 +107,18 @@ export function Quizzes() {
                 <span>Due: {format(quiz.dueDate, "eee, MMM d 'at' h:mm a")}</span>
             </div>
         </CardContent>
-        <CardFooter>
+        <CardFooter className="flex-grow items-end justify-between gap-2">
+           <div className="flex items-center space-x-2">
+            <Checkbox
+              id={`complete-quiz-${quiz.id}`}
+              checked={isQuizCompleted(quiz.id)}
+              onCheckedChange={(checked) => handleMarkAsComplete(quiz.id, !!checked)}
+              disabled={!user}
+            />
+            <Label htmlFor={`complete-quiz-${quiz.id}`} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              Mark as Complete
+            </Label>
+          </div>
           {isCurrent && (
             <>
               {quiz.link === "#" ? (
@@ -178,5 +211,3 @@ export function Quizzes() {
     </div>
   );
 }
-
-    

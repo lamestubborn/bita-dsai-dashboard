@@ -119,6 +119,36 @@
         "completed",
         "reminderSet"
       ]
+    },
+    "UserQuiz": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserQuiz",
+      "type": "object",
+      "description": "Tracks a user's completion status for a specific quiz.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier, typically the same as the quizId."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the UserAccount."
+        },
+        "quizId": {
+          "type": "string",
+          "description": "Reference to the Quiz."
+        },
+        "completed": {
+          "type": "boolean",
+          "description": "Indicates whether the user has completed the quiz."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "quizId",
+        "completed"
+      ]
     }
   },
   "auth": {
@@ -179,8 +209,28 @@
             }
           ]
         }
+      },
+      {
+        "path": "/users/{userId}/user_quizzes/{quizId}",
+        "definition": {
+          "entityName": "UserQuiz",
+          "schema": {
+            "$ref": "#/backend/entities/UserQuiz"
+          },
+          "description": "Stores user-specific information about a quiz's completion status. Includes denormalized 'quizId' for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            },
+            {
+              "name": "quizId",
+              "description": "The unique identifier for the quiz."
+            }
+          ]
+        }
       }
     ],
-    "reasoning": "The Firestore structure is designed to ensure authorization independence, clarity, and scalability. User data is stored under `/users/{userId}`, providing clear ownership and simplifying security rules. Study sessions are stored under `/study_sessions/{sessionId}`, allowing for global listing and easy querying. User-specific session data (completion status, reminders) is stored under `/users/{userId}/user_sessions/{sessionId}`, denormalizing the session ID to maintain authorization independence and enabling efficient querying of a user's sessions. This structure supports QAPs by allowing secure listing of study sessions and user-specific sessions via path-based rules.\n\nDenormalization is used in the `user_sessions` subcollection by including the `sessionId` in each document. This avoids the need for `get()` calls to parent documents (the `study_sessions` collection) to determine authorization, thus ensuring authorization independence. The `userId` is implicit in the path."
+    "reasoning": "The Firestore structure is designed to ensure authorization independence, clarity, and scalability. User data is stored under `/users/{userId}`, providing clear ownership and simplifying security rules. Study sessions are stored under `/study_sessions/{sessionId}`, allowing for global listing and easy querying. User-specific session data (completion status, reminders) is stored under `/users/{userId}/user_sessions/{sessionId}`, denormalizing the session ID to maintain authorization independence and enabling efficient querying of a user's sessions. The same pattern is applied to user quiz completions. This structure supports QAPs by allowing secure listing of study sessions and user-specific sessions/quizzes via path-based rules.\n\nDenormalization is used in the `user_sessions` and `user_quizzes` subcollections by including the `sessionId` or `quizId` in each document. This avoids the need for `get()` calls to parent documents to determine authorization, thus ensuring authorization independence. The `userId` is implicit in the path."
   }
 }

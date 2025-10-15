@@ -99,6 +99,31 @@ export function updateUserSession(firestore: Firestore, userId: string, sessionI
     });
 }
 
+/**
+ * Updates a user's quiz completion data, creating the document if it doesn't exist.
+ */
+export function updateUserQuiz(firestore: Firestore, userId: string, quizId: string, data: { completed?: boolean }) {
+  const userQuizRef = doc(firestore, 'users', userId, 'user_quizzes', quizId);
+  const payload = {
+    userId,
+    quizId,
+    ...data
+  };
+
+  // Use setDoc with merge:true to create or update the document non-blockingly
+  setDoc(userQuizRef, payload, { merge: true })
+    .catch(error => {
+      errorEmitter.emit(
+        'permission-error',
+        new FirestorePermissionError({
+          path: userQuizRef.path,
+          operation: 'write',
+          requestResourceData: payload,
+        })
+      )
+    });
+}
+
 
 /**
  * Initiates a deleteDoc operation for a document reference.
