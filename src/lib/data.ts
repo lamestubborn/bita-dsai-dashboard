@@ -85,6 +85,15 @@ export const quizzes: Quiz[] = [
     link: '#',
     weightage: '10%'
   },
+  {
+    id: 'dpp-quiz-3-week-5',
+    title: 'Quiz 3 - Week 5',
+    subject: 'Data Pre-processing',
+    startDate: new Date('2025-10-18T00:00:00+05:30'),
+    dueDate: new Date('2025-10-20T23:59:59+05:30'),
+    link: 'https://lumen.bitspilani-digital.edu.in/d2l/lms/quizzing/user/quiz_summary.d2l?ou=6725&qi=4037&cfql=0',
+    weightage: '10%'
+  },
 ];
 
 
