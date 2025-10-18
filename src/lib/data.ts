@@ -136,7 +136,7 @@ export const subjects: Subject[] = [
     id: "aap",
     name: "Advanced Apex Project I",
     icon: "Rocket",
-    totalChapters: 4,
+    totalChapters: 5,
     completedChapters: 4,
     evaluationCriteria: "Evaluation criteria to be updated.",
     projectDetailsUrl: "https://drive.google.com/drive/folders/1xhZZmYmC2vTwnKvaJj0MQJxnk3j1i5wz?usp=sharing",
@@ -367,7 +367,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-17T18:30:00+05:30"),
     endTime: new Date("2025-10-17T19:30:00+05:30"),
     joinUrl: "https://zoom.us/j/92417554167",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6727/topics/9493",
   },
   {
     id: "session-18",
@@ -376,7 +376,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-17T19:40:00+05:30"),
     endTime: new Date("2025-10-17T20:40:00+05:30"),
     joinUrl: "https://zoom.us/j/93813338012",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6726/topics/9494",
   },
   {
     id: "session-19",
@@ -385,7 +385,7 @@ export const currentSessions: Session[] = [
     startTime: new Date("2025-10-17T20:50:00+05:30"),
     endTime: new Date("2025-10-17T21:50:00+05:30"),
     joinUrl: "https://zoom.us/j/98088271158",
-    recordingUrl: "#",
+    recordingUrl: "https://lumen.bitspilani-digital.edu.in/d2l/le/lessons/6724/topics/9495",
   },
   {
     id: "session-20",
@@ -431,3 +431,6 @@ export const currentSessions: Session[] = [
 
 
 
+
+
+    
